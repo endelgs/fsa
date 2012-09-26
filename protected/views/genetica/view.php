@@ -23,8 +23,8 @@ $this->breadcrumbs=array(
     $model->del_5 = ($model->del_5 == 'true')?'Sim':'Não';
     
     $model->a1555g = ($model->a1555g == 'true')?'Sim':'Não';
-		$model->c1494t = ($model->c1494t == 'true')?'Sim':'Não';
-		$model->a827g = ($model->a827g == 'true')?'Sim':'Não';	
+	$model->c1494t = ($model->c1494t == 'true')?'Sim':'Não';
+	$model->a827g = ($model->a827g == 'true')?'Sim':'Não';	
     $model->a7445g = ($model->a7445g == 'true')?'Sim':'Não';
     $model->a7444g = ($model->a7444g == 'true')?'Sim':'Não';
     $model->a3243g = ($model->a3243g == 'true')?'Sim':'Não';
