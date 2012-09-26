@@ -14,35 +14,82 @@ $this->menu=array(
 	array('label'=>'Gerenciar Paciente', 'url'=>array('admin')),
 );
 ?>
+<style>
+	.linha{}
+	.alinhamento{display:inline-block;}
+	.item50{width:50%;}
+	.item40{width:40%;}
+	.item30{width:30%;}
+	.item20{width:20%;}
+	.item10{width:10%;}
+	
+	#yw1_tab_0 *{
+		font-size:12px;
+		color:rgb(85,85,85);
+	}
+	#yw1_tab_0 p{
+		margin-bottom: 5px;
+	}
+</style>
 
-<h1><?php echo $model->nome; ?></h1>
-
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'nome',
-		'hc',
-		'nome_mae',
-		'hc_mae',
-		'data_nascimento',
-		'sexo',
-		'endereco',
-		'cidade',
-		'telefone_fixo',
-		'telefone_movel',
-		'telefone_trabalho',
-	),
-)); ?>
-
+<h2>Perfil Completo de <?php echo $model->nome; ?></h2>
+<p class='linha'>
+		<div class="item50 alinhamento">
+			<span>Nome:</span><b> <?php echo CHtml::encode($model->nome); ?></b>
+		</div>
+		<div class="item20 alinhamento">
+			<span>HC:</span><b> <?php echo CHtml::encode($model->hc); ?></b>
+		</div>
+		<div class="alinhamento">
+			<span>Data Nascimento:</span><b> <?php echo CHtml::encode($model->data_nascimento); ?></b>
+		</div>
+</p>
+<p class='linha'>
+	<div class="item50 alinhamento">
+		<span>Mãe:</span><b> <?php echo CHtml::encode($model->nome_mae); ?></b>
+	</div>
+	<div class="item20 alinhamento">
+		<span>HC:</span><b> <?php echo CHtml::encode($model->hc_mae); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="item50 alinhamento">
+		<span>Endereço:</span><b> <?php echo CHtml::encode($model->endereco); ?></b>
+	</div>
+	<div class="item20 alinhamento">
+		<span>Cidade:</span><b> <?php echo CHtml::encode($model->cidade); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="item30 alinhamento">
+		<span>Telefone Residencial:</span><b> <?php echo CHtml::encode($model->telefone_fixo); ?></b>
+	</div>
+	<div class="item30 alinhamento">
+		<span>Telefone Móvel:</span><b> <?php echo CHtml::encode($model->telefone_movel); ?></b>
+	</div>
+	<div class="item30 alinhamento">
+		<span>Telefone Trabalho:</span><b> <?php echo CHtml::encode($model->telefone_trabalho); ?></b>
+	</div>
+</p>
 <?php
 $modelTriagem = Triagem::model()->find(array('select'=>'*','condition'=>'paciente_r=:id','params'=>array(':id'=>$model->id)));
-$modelGenetica = Genetica::model()->find(array('select'=>'*','condition'=>'paciente_r=:id','params'=>array(':id'=>$model->id)));
+if($modelTriagem->id)$tabTriagem=$aTabs['Triagem']=$this->renderPartial('../triagem/tabView', array('model'=>$modelTriagem),true);
+else $tabTriagem="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastrados. ".CHtml::link(CHtml::encode("Cadastrar agora"), array('triagem/create'))."</h5>";
 
-$aTabs=array();
-if($modelTriagem->id)$aTabs['Triagem']=$this->renderPartial('../triagem/view', array('model'=>$modelTriagem),true);
-if($modelGenetica->id)$aTabs['Genética']=$this->renderPartial('../genetica/view', array('model'=>$modelGenetica),true);
+$modelGenetica = Genetica::model()->find(array('select'=>'*','condition'=>'paciente_r=:id','params'=>array(':id'=>$model->id)));
+if($modelGenetica->id)$tabGenetica=$aTabs['Genética']=$this->renderPartial('../genetica/view', array('model'=>$modelGenetica),true);
+else $tabGenetica="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastrados. ".CHtml::link(CHtml::encode("Cadastrar agora"), array('genetica/create'))."</h5>";
+
+$tabProtese="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastrados. ".CHtml::link(CHtml::encode("Cadastrar agora*"), array('paciente/admin'))."</h5>";
+
+$tabServicoSocial="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastrados. ".CHtml::link(CHtml::encode("Cadastrar agora*"), array('paciente/admin'))."</h5>";
+
 
 $this->widget('zii.widgets.jui.CJuiTabs', array(
-	'tabs' => $aTabs
+	'tabs' => array(
+		'Triagem'=>$tabTriagem,
+		'Genética'=>$tabGenetica,
+		'Prótese'=>$tabProtese,
+		'Serviço Social'=>$tabServicoSocial		
+	)
 )); ?>
