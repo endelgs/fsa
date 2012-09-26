@@ -140,7 +140,8 @@ class Paciente extends CActiveRecord
 	public static function pacienteAutoComplete($name='') {
 		$sql = '
 		SELECT 
-			*, 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
 			CONCAT(hc,\' - \',nome) as label,
 			triagem.id as triagem_id,
 			genetica.id as genetica_id
@@ -159,6 +160,7 @@ class Paciente extends CActiveRecord
 		$command = Yii::app()->db->createCommand($sql);
 		$qterm = $name.'%';
 		$command->bindParam(":qterm", $qterm, PDO::PARAM_STR);
+		$command->queryAll();
 		return $command->queryAll();
 	
 	}
