@@ -25,11 +25,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<<<<<<< .mine
 <h1>Gerenciar dados de Genética</h1>
-=======
-<h1>Gerenciar dados de genética</h1>
->>>>>>> .r6
 
 <p>
 Você pode usar operadores de comparação (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
