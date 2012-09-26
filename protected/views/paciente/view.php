@@ -73,11 +73,11 @@ $this->menu=array(
 </p>
 <?php
 $modelTriagem = Triagem::model()->find(array('select'=>'*','condition'=>'paciente_r=:id','params'=>array(':id'=>$model->id)));
-if($modelTriagem->id)$tabTriagem=$aTabs['Triagem']=$this->renderPartial('../triagem/tabView', array('model'=>$modelTriagem),true);
+if($modelTriagem != null)$tabTriagem=$aTabs['Triagem']=$this->renderPartial('../triagem/tabView', array('model'=>$modelTriagem),true);
 else $tabTriagem="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastrados. ".CHtml::link(CHtml::encode("Cadastrar agora"), array('triagem/create'))."</h5>";
 
 $modelGenetica = Genetica::model()->find(array('select'=>'*','condition'=>'paciente_r=:id','params'=>array(':id'=>$model->id)));
-if($modelGenetica->id)$tabGenetica=$aTabs['Genética']=$this->renderPartial('../genetica/view', array('model'=>$modelGenetica),true);
+if($modelGenetica != null)$tabGenetica=$aTabs['Genética']=$this->renderPartial('../genetica/view', array('model'=>$modelGenetica),true);
 else $tabGenetica="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastrados. ".CHtml::link(CHtml::encode("Cadastrar agora"), array('genetica/create'))."</h5>";
 
 $tabProtese="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastrados. ".CHtml::link(CHtml::encode("Cadastrar agora*"), array('paciente/admin'))."</h5>";
