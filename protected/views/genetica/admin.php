@@ -3,12 +3,12 @@
 /* @var $model Genetica */
 
 $this->breadcrumbs=array(
-	'Geneticas'=>array('index'),
+	'Genética' => array('admin'),
 	'Gerenciar',
 );
 
 $this->menu=array(
-	array('label'=>'Inserir Genética', 'url'=>array('create')),
+	array('label'=>'Cadastrar Dados de Genética', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -25,7 +25,11 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
+<<<<<<< .mine
+<h1>Gerenciar dados de Genética</h1>
+=======
 <h1>Gerenciar dados de genética</h1>
+>>>>>>> .r6
 
 <p>
 Você pode usar operadores de comparação (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -46,12 +50,13 @@ or <b>=</b>) no começo de cada valor de busca para especificar como a comparaç
   'emptyText' => 'Não há registros a serem exibidos.',
   'summaryText' => 'Mostrando {start}-{end} de {count} registro(s).',
 	'columns'=>array(
-		'id',
-		'genetica',
+		array(
+      'name' => 'paciente_r',
+      'value' => '$data->pacienteR->nome'),
+    'genetica',
 		'hipotese_diagnostica',
 		'conduta',
 		'alteracoes_observadas',
-		'homozigoto_normal',
 		/*
 		'homozigoto_mutante',
 		'heterozigoto',

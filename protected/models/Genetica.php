@@ -80,6 +80,34 @@ class Genetica extends CActiveRecord
 		);
 	}
 
+  protected function afterFind(){
+		parent::afterFind();
+    $this->homozigoto_normal=($this->homozigoto_normal == 'true')?'Sim':'Não';
+    $this->homozigoto_mutante=($this->homozigoto_mutante == 'true')?'Sim':'Não';
+    $this->heterozigoto=($this->heterozigoto == 'true')?'Sim':'Não';
+    
+    $this->del_gjb6_d13s1830 = ($this->del_gjb6_d13s1830 == 'true')?'Sim':'Não';
+    $this->del_gjb6_d13s1854 = ($this->del_gjb6_d13s1854 == 'true')?'Sim':'Não';
+    $this->del_3 = ($this->del_3 == 'true')?'Sim':'Não';
+    $this->del_4 = ($this->del_4 == 'true')?'Sim':'Não';
+    $this->del_5 = ($this->del_5 == 'true')?'Sim':'Não';
+    
+    $this->a1555g = ($this->a1555g == 'true')?'Sim':'Não';
+		$this->c1494t = ($this->c1494t == 'true')?'Sim':'Não';
+		$this->a827g = ($this->a827g == 'true')?'Sim':'Não';	
+    $this->a7445g = ($this->a7445g == 'true')?'Sim':'Não';
+    $this->a7444g = ($this->a7444g == 'true')?'Sim':'Não';
+    $this->a3243g = ($this->a3243g == 'true')?'Sim':'Não';
+		
+    $this->gjb2 = ($this->gjb2 == 'true')?'Sim':'Não';
+    $this->gjb3 = ($this->gjb3 == 'true')?'Sim':'Não';
+    $this->gjb6 = ($this->gjb6 == 'true')?'Sim':'Não';
+    $this->slc26a4 = ($this->slc26a4 == 'true')?'Sim':'Não';
+    $this->otof = ($this->otof == 'true')?'Sim':'Não';
+    $this->mtrnr1 = ($this->mtrnr1 == 'true')?'Sim':'Não';
+    $this->outros_genes = ($this->outros_genes == 'true')?'Sim':'Não';
+    
+	}
 	/**
 	 * @return array relational rules.
 	 */

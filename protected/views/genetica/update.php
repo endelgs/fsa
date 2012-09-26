@@ -3,8 +3,8 @@
 /* @var $model Genetica */
 
 $this->breadcrumbs=array(
-	'Geneticas'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
+	'Genética'=>array('admin'),
+	$model->pacienteR->nome=>array('view','id'=>$model->id),
 	'Editar',
 );
 
@@ -15,6 +15,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Editar Genética <?php echo $model->id; ?></h1>
+<h1>Editar dados de Genética de <?php echo $model->pacienteR->nome; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

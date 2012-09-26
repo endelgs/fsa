@@ -3,24 +3,17 @@
 /* @var $model Genetica */
 
 $this->breadcrumbs=array(
-	'Geneticas'=>array('index'),
-	$model->id,
+	'Genética'=>array('admin'),
+	$model->pacienteR->nome,
 );
 
-$this->menu=array(
-	array('label'=>'Inserir Genética', 'url'=>array('create')),
-	array('label'=>'Editar Genética', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Remover Genética', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Você tem certeza que quer remover este? Genetica')),
-	array('label'=>'Gerenciar Genética', 'url'=>array('admin')),
-);
 ?>
 
-<h1>Visualizar Genética #<?php echo $model->id; ?></h1>
+<h1>Visualizando Genética de <?php echo $model->pacienteR->nome; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
 		'genetica',
 		'hipotese_diagnostica',
 		'conduta',
@@ -53,6 +46,6 @@ $this->menu=array(
 		'mtrnr1_genotipo',
 		'outros_genes',
 		'outros_genes_genotipo',
-		array('label'=>'Paciente', 'value'=>$model->pacienteR->nome),
+		
 	),
 )); ?>

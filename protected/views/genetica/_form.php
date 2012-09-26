@@ -47,7 +47,7 @@
                 		
                 		if(ui.item.genetica_id)$("#infoPaciente .aviso").html("<div style=\"color:red;\">Este paciente já possui genética cadastrada!</div>");
                 		
-                		$("#infoPaciente .link").html("<a href=/saudeAuditiva/index.php?r=paciente/update&id="+ui.item.id+">Editar Paciente</a>");
+                		$("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('paciente/update').'&id=\'+ui.item.id+\'">Editar paciente</a>\');
                 	}'
                 ),
                 'htmlOptions'=>array('size'=>45),

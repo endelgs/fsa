@@ -3,8 +3,8 @@
 /* @var $model Genetica */
 
 $this->breadcrumbs=array(
-	'Geneticas'=>array('index'),
-	'Inserir',
+	'Genética'=>array('index'),
+	'Cadastrar dados de genética',
 );
 
 $this->menu=array(
