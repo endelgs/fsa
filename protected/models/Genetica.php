@@ -79,35 +79,7 @@ class Genetica extends CActiveRecord
 			array('id, genetica, hipotese_diagnostica, conduta, alteracoes_observadas, homozigoto_normal, homozigoto_mutante, heterozigoto, del_gjb6_d13s1830, del_gjb6_d13s1854, del_3, del_4, del_5, a1555g, c1494t, a827g, a7445g, a7444g, a3243g, gjb2, gjb2_genotipo, gjb6, gjb6_genotipo, gjb3, gjb3_genotipo, slc26a4, slc26a4_genotipo, otof, otof_genotipo, mtrnr1, mtrnr1_genotipo, outros_genes, outros_genes_genotipo, paciente_r', 'safe', 'on'=>'search'),
 		);
 	}
-/*
-  protected function afterFind(){
-		parent::afterFind();
-    $this->_homozigoto_normal=($this->homozigoto_normal == 'true')?'Sim':'Não';
-    $this->_homozigoto_mutante=($this->homozigoto_mutante == 'true')?'Sim':'Não';
-    $this->_heterozigoto=($this->heterozigoto == 'true')?'Sim':'Não';
-    
-    $this->_del_gjb6_d13s1830 = ($this->del_gjb6_d13s1830 == 'true')?'Sim':'Não';
-    $this->_del_gjb6_d13s1854 = ($this->del_gjb6_d13s1854 == 'true')?'Sim':'Não';
-    $this->_del_3 = ($this->del_3 == 'true')?'Sim':'Não';
-    $this->_del_4 = ($this->del_4 == 'true')?'Sim':'Não';
-    $this->_del_5 = ($this->del_5 == 'true')?'Sim':'Não';
-    
-    $this->_a1555g = ($this->a1555g == 'true')?'Sim':'Não';
-		$this->_c1494t = ($this->c1494t == 'true')?'Sim':'Não';
-		$this->_a827g = ($this->a827g == 'true')?'Sim':'Não';	
-    $this->_a7445g = ($this->a7445g == 'true')?'Sim':'Não';
-    $this->_a7444g = ($this->a7444g == 'true')?'Sim':'Não';
-    $this->_a3243g = ($this->a3243g == 'true')?'Sim':'Não';
-		
-    $this->_gjb2 = ($this->gjb2 == 'true')?'Sim':'Não';
-    $this->_gjb3 = ($this->gjb3 == 'true')?'Sim':'Não';
-    $this->_gjb6 = ($this->gjb6 == 'true')?'Sim':'Não';
-    $this->_slc26a4 = ($this->slc26a4 == 'true')?'Sim':'Não';
-    $this->_otof = ($this->otof == 'true')?'Sim':'Não';
-    $this->_mtrnr1 = ($this->mtrnr1 == 'true')?'Sim':'Não';
-    $this->_outros_genes = ($this->outros_genes == 'true')?'Sim':'Não';
-    
-	}
+
 	/**
 	 * @return array relational rules.
 	 */
