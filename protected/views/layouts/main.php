@@ -30,39 +30,39 @@
 		<?php $this->widget('application.extensions.mbmenu.MbMenu',array(
             'items'=>array(
                 array('label'=>'Página Inicial', 'url'=>array('/')),
-                array('label'=>'Cadastro de Pacientes', 'url'=>array('#'),
+                array('label'=>'Cadastro de Pacientes',
                   'items'=>array(
                     array('label'=>'Cadastrar novo paciente', 'url'=>array('paciente/create')),
                     array('label'=>'Gerenciar pacientes', 'url'=>array('paciente/admin')),
                   ),
                 ),
-            	array('label'=>'Triagem', 'url'=>array('#'),
+            	array('label'=>'Triagem',
             		'items'=>array(
             			array('label'=>'Cadastrar nova triagem', 'url'=>array('triagem/create')),
             			array('label'=>'Gerenciar triagens', 'url'=>array('triagem/admin')),
-            			array('label'=>'Agenda de triagens*', 'url'=>array('#')),
+            			array('label'=>'Agenda de triagens*'),
             		),
             	),
-            	array('label'=>'Genética', 'url'=>array('#'),
+            	array('label'=>'Genética',
             		'items'=>array(
             			array('label'=>'Cadastrar dados de genética', 'url'=>array('genetica/create')),
             			array('label'=>'Gerenciar dados de genética', 'url'=>array('genetica/admin')),
             		),
             	),
-            	array('label'=>'Assistência Social', 'url'=>array('#'),
+            	array('label'=>'Assistência Social',
             		'items'=>array(
-            			array('label'=>'Cadastrar dados de assistência social*', 'url'=>array('#')),
-            			array('label'=>'Gerenciar dados de assistência social*', 'url'=>array('#')),
+            			array('label'=>'Cadastrar dados de assistência social*'),
+            			array('label'=>'Gerenciar dados de assistência social*'),
             		),
             	),
-            	array('label'=>'Prótese', 'url'=>array('#'),
+            	array('label'=>'Prótese',
             		'items'=>array(
-            			array('label'=>'Cadastrar dados de prótese*', 'url'=>array('#')),
-            			array('label'=>'Agenda de próteses*', 'url'=>array('#')),
+            			array('label'=>'Cadastrar dados de prótese*'),
+            			array('label'=>'Agenda de próteses*'),
             		),
             	),
             	array('label'=>'Monitoramento', 'url'=>array('paciente/admin')),
-            	array('label'=>'Agenda*', 'url'=>array('#')),
+            	array('label'=>'Agenda*'),
             	array('label'=>'Sair do sistema', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
             ),
     )); ?>
