@@ -26,18 +26,46 @@
 		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
 
-	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Página Inicial', 'url'=>array('/paciente')),
-				array('label'=>'Gerenciar Paciente', 'url'=>array('/paciente')),
-				array('label'=>'Gerenciar Triagem', 'url'=>array('/triagem')),
-				array('label'=>'Gerenciar Genética', 'url'=>array('/genetica')),
-				/*array('label'=>'Contact', 'url'=>array('/site/contact')),*/
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Sair do sistema ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-			),
-		)); ?>
+	<div id="mainMbMenu">
+		<?php $this->widget('application.extensions.mbmenu.MbMenu',array(
+            'items'=>array(
+                array('label'=>'Página Inicial', 'url'=>array('/')),
+                array('label'=>'Cadastro de Pacientes', 'url'=>array('#'),
+                  'items'=>array(
+                    array('label'=>'Cadastrar novo paciente', 'url'=>array('paciente/create')),
+                    array('label'=>'Gerenciar pacientes', 'url'=>array('paciente/admin')),
+                  ),
+                ),
+            	array('label'=>'Triagem', 'url'=>array('#'),
+            		'items'=>array(
+            			array('label'=>'Cadastrar nova triagem', 'url'=>array('triagem/create')),
+            			array('label'=>'Gerenciar triagens', 'url'=>array('triagem/admin')),
+            			array('label'=>'Agenda de triagens*', 'url'=>array('#')),
+            		),
+            	),
+            	array('label'=>'Genética', 'url'=>array('#'),
+            		'items'=>array(
+            			array('label'=>'Cadastrar dados de genética', 'url'=>array('genetica/create')),
+            			array('label'=>'Gerenciar dados de genética', 'url'=>array('genetica/admin')),
+            		),
+            	),
+            	array('label'=>'Assistência Social', 'url'=>array('#'),
+            		'items'=>array(
+            			array('label'=>'Cadastrar dados de assistência social*', 'url'=>array('#')),
+            			array('label'=>'Gerenciar dados de assistência social*', 'url'=>array('#')),
+            		),
+            	),
+            	array('label'=>'Prótese', 'url'=>array('#'),
+            		'items'=>array(
+            			array('label'=>'Cadastrar dados de prótese*', 'url'=>array('#')),
+            			array('label'=>'Agenda de próteses*', 'url'=>array('#')),
+            		),
+            	),
+            	array('label'=>'Monitoramento', 'url'=>array('paciente/admin')),
+            	array('label'=>'Agenda*', 'url'=>array('#')),
+            	array('label'=>'Sair do sistema', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+            ),
+    )); ?>
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
@@ -45,14 +73,12 @@
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
 
-	<?php echo $content; ?>
 
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by FCM - Saúde Auditiva.<br/>
+		Copyright &copy; <?php echo date('Y'); ?> - TANU-UTI - Faculdade de Ciências Médicas - Unicamp.<br/>
 		Todos os direitos reservados.<br/>
-		<?php /* echo Yii::powered();*/ ?>
 	</div><!-- footer -->
 
 </div><!-- page -->
