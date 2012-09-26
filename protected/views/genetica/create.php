@@ -12,6 +12,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Inserir Genética</h1>
+<h1>Cadastrar dados de genética</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

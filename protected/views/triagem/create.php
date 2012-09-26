@@ -12,6 +12,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Inserir Triagem</h1>
+<h1>Cadastrar nova triagem</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

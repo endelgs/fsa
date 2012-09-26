@@ -12,6 +12,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Inserir Paciente</h1>
+<h1>Cadastrar novo paciente</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
