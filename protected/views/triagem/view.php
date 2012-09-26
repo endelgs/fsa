@@ -14,26 +14,65 @@ $this->menu=array(
 	array('label'=>'Gerenciar Triagem', 'url'=>array('admin')),
 );
 ?>
+<style>
+	.linha{}
+	.alinhamento{display:inline-block;}
+	.item50{width:50%;}
+	.item40{width:40%;}
+	.item30{width:30%;}
+	.item20{width:20%;}
+	.item10{width:10%;}
+</style>
+<h1>Dados da Triagem do Paciente: <?php echo $model->pacienteR->nome; ?></h1>
 
-<h1>Visualizar Triagem #<?php echo $model->id; ?></h1>
-
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'peso',
-		'apgar_1',
-		'apgar_5',
-		'apgar_10',
-		'idade_semanas',
-		'idade_dias',
-		'metodo_avaliacao',
-		'avaliacao_score',
-		'termo',
-		'crescimento',
-		'tipo_exame',
-		'resultado',
-		'indicadores_risco',
-		array('label'=>'Paciente', 'value'=>$model->pacienteR->nome),
-	),
-));?>
+<p class='linha'>
+	<div class="item30 alinhamento">
+		<span>Peso:</span><b> <?php echo CHtml::encode($model->peso); ?></b>
+	</div>
+	<div class="item30 alinhamento">
+		<span>Idade dias:</span><b> <?php echo CHtml::encode($model->idade_dias); ?></b>
+	</div>
+	<div class="item30 alinhamento">
+		<span>Idade semanas:</span><b> <?php echo CHtml::encode($model->idade_semanas); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="item30 alinhamento">
+		<span>Apgar 1:</span><b> <?php echo CHtml::encode($model->apgar_1); ?></b>
+	</div>
+	<div class="item30 alinhamento">
+		<span>Apgar 5:</span><b> <?php echo CHtml::encode($model->apgar_5); ?></b>
+	</div>
+	<div class="item30 alinhamento">
+		<span>Apgar 10:</span><b> <?php echo CHtml::encode($model->apgar_10); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="item30 alinhamento">
+		<span>Método de Avaliação:</span><b> <?php echo CHtml::encode($model->metodo_avaliacao); ?></b>
+	</div>
+	<div class="item30 alinhamento">
+		<span>Score:</span><b> <?php echo CHtml::encode($model->avaliacao_score); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="item30 alinhamento">
+		<span>Termo:</span><b> <?php echo CHtml::encode($model->termo); ?></b>
+	</div>
+	<div class="item30 alinhamento">
+		<span>Crescimento intra-uterino:</span><b> <?php echo CHtml::encode($model->crescimento); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="item50 alinhamento">
+		<span>Indicadores de risco:</span><b> <?php echo CHtml::encode($model->indicadores_risco); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="item30 alinhamento">
+		<span>Tipo exame:</span><b> <?php echo CHtml::encode($model->tipo_exame); ?></b>
+	</div>
+	<div class="item30 alinhamento">
+		<span>Resultado:</span><b> <?php echo CHtml::encode($model->resultado); ?></b>
+	</div>
+</p>
