@@ -7,12 +7,6 @@ $this->breadcrumbs=array(
 	$model->id,
 );
 
-$this->menu=array(
-	array('label'=>'Inserir Paciente', 'url'=>array('create')),
-	array('label'=>'Editar Paciente', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Remover Paciente', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Você tem certeza que quer remover este? Paciente')),
-	array('label'=>'Gerenciar Paciente', 'url'=>array('admin')),
-);
 ?>
 <style>
 	.linha{}
