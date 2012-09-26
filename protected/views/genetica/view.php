@@ -6,12 +6,7 @@ $this->breadcrumbs=array(
 	'Genética'=>array('admin'),
 	$model->pacienteR->nome,
 );
-
-?>
-
-<h1>Visualizando Genética de <?php echo $model->pacienteR->nome; ?></h1>
-
-<?php 
+ 
     $model->homozigoto_normal=($model->homozigoto_normal == 'true')?'Sim':'Não';
     $model->homozigoto_mutante=($model->homozigoto_mutante == 'true')?'Sim':'Não';
     $model->heterozigoto=($model->heterozigoto == 'true')?'Sim':'Não';
@@ -36,42 +31,144 @@ $this->breadcrumbs=array(
     $model->otof = ($model->otof == 'true')?'Sim':'Não';
     $model->mtrnr1 = ($model->mtrnr1 == 'true')?'Sim':'Não';
     $model->outros_genes = ($model->outros_genes == 'true')?'Sim':'Não';
-    
-$this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'genetica',
-		'hipotese_diagnostica',
-		'conduta',
-		'alteracoes_observadas',
-		'homozigoto_normal',
-		'homozigoto_mutante',
-		'heterozigoto',
-		'del_gjb6_d13s1830',
-		'del_gjb6_d13s1854',
-		'del_3',
-		'del_4',
-		'del_5',
-		'a1555g',
-		'c1494t',
-		'a827g',
-		'a7445g',
-		'a7444g',
-		'a3243g',
-		'gjb2',
-		'gjb2_genotipo',
-		'gjb6',
-		'gjb6_genotipo',
-		'gjb3',
-		'gjb3_genotipo',
-		'slc26a4',
-		'slc26a4_genotipo',
-		'otof',
-		'otof_genotipo',
-		'mtrnr1',
-		'mtrnr1_genotipo',
-		'outros_genes',
-		'outros_genes_genotipo',
-		
-	),
-)); ?>
+ ?>
+ 
+<style>
+	.linha{}
+	.alinhamento{display:inline-block;}
+	.margem{ margin-right:15px;}
+	.item50{width:50%;}
+	.item40{width:40%;}
+	.item30{width:30%;}
+	.item20{width:20%;}
+	.item10{width:10%;}
+</style>
+<h1>Dados de Genética do Paciente: <?php echo $model->pacienteR->nome; ?></h1>
+<p class='linha'>
+	<div class="alinhamento">
+		<span>Genética:</span><b> <?php echo CHtml::encode($model->genetica); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="alinhamento">
+		<span>Hipótese diagnóstica:</span><b> <?php echo CHtml::encode($model->hipotese_diagnostica); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="alinhamento">
+		<span>Conduta:</span><b> <?php echo CHtml::encode($model->conduta); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="alinhamento">
+		<span>Alterações observadas:</span><b> <?php echo CHtml::encode($model->alteracoes_observadas); ?></b>
+	</div>
+</p><br/>
+<h4>Alterações frequentes</h4>
+<p class='linha'>
+	<div class="item30 alinhamento">
+		<span>Homozigoto normal (N/N):</span><b> <?php echo CHtml::encode($model->homozigoto_normal); ?></b>
+	</div>
+	<div class="item40 alinhamento">
+		<span>Homozigoto mutante (35deIG/35deIG):</span><b> <?php echo CHtml::encode($model->homozigoto_mutante); ?></b>
+	</div>
+	<div class="alinhamento">
+		<span>Heterozigoto (35deIG/N):</span><b> <?php echo CHtml::encode($model->heterozigoto); ?></b>
+	</div>
+</p><br/>
+<h4>Deleções</h4>
+<p class='linha'>
+	<div class="alinhamento margem">
+		<span>Del (GJB6-D13S1830):</span><b> <?php echo CHtml::encode($model->del_gjb6_d13s1830); ?></b>
+	</div>
+	<div class="alinhamento margem">
+		<span>Del (GJB6-D13S1854):</span><b> <?php echo CHtml::encode($model->del_gjb6_d13s1854); ?></b>
+	</div>
+	<div class="alinhamento margem">
+		<span>Del 3:</span><b> <?php echo CHtml::encode($model->del_3); ?></b>
+	</div>
+	<div class="alinhamento margem">
+		<span>Del 4:</span><b> <?php echo CHtml::encode($model->del_4); ?></b>
+	</div>
+	<div class="alinhamento">
+		<span>Del 5:</span><b> <?php echo CHtml::encode($model->del_5); ?></b>
+	</div>
+</p><br/>
+<h4>Mutações Mitocondriais Frequentes</h4>
+<p class='linha'>
+	<div class="alinhamento margem">
+		<span>A1555G:</span><b> <?php echo CHtml::encode($model->a1555g); ?></b>
+	</div>
+	<div class="alinhamento margem">
+		<span>C1494T:</span><b> <?php echo CHtml::encode($model->c1494t); ?></b>
+	</div>
+	<div class="alinhamento margem">
+		<span>A827G:</span><b> <?php echo CHtml::encode($model->a827g); ?></b>
+	</div>
+	<div class="alinhamento margem">
+		<span>A7445G:</span><b> <?php echo CHtml::encode($model->a7445g); ?></b>
+	</div>
+	<div class="alinhamento">
+		<span>A7444G:</span><b> <?php echo CHtml::encode($model->a7444g); ?></b>
+	</div>
+	<div class="alinhamento">
+		<span>A3243G:</span><b> <?php echo CHtml::encode($model->a3243g); ?></b>
+	</div>
+</p><br/>
+<h4>Genes</h4>
+<p class='linha'>
+	<div class="alinhamento margem">
+		<span>GJB2:</span><b> <?php echo CHtml::encode($model->gjb2); ?></b>
+	</div>
+	<div class="alinhamento margem">
+		<span>Genótipo:</span><b> <?php echo CHtml::encode($model->gjb2_genotipo); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="alinhamento margem">
+		<span>GJB6:</span><b> <?php echo CHtml::encode($model->gjb6); ?></b>
+	</div>
+	<div class="alinhamento margem">
+		<span>Genótipo:</span><b> <?php echo CHtml::encode($model->gjb6_genotipo); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="alinhamento margem">
+		<span>GJB3:</span><b> <?php echo CHtml::encode($model->gjb3); ?></b>
+	</div>
+	<div class="alinhamento margem">
+		<span>Genótipo:</span><b> <?php echo CHtml::encode($model->gjb3_genotipo); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="alinhamento margem">
+		<span>SLC26A4:</span><b> <?php echo CHtml::encode($model->slc26a4); ?></b>
+	</div>
+	<div class="alinhamento margem">
+		<span>Genótipo:</span><b> <?php echo CHtml::encode($model->slc26a4_genotipo); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="alinhamento margem">
+		<span>OTOF:</span><b> <?php echo CHtml::encode($model->otof); ?></b>
+	</div>
+	<div class="alinhamento margem">
+		<span>Genótipo:</span><b> <?php echo CHtml::encode($model->otof_genotipo); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="alinhamento margem">
+		<span>MTRNR1:</span><b> <?php echo CHtml::encode($model->mtrnr1); ?></b>
+	</div>
+	<div class="alinhamento margem">
+		<span>Genótipo:</span><b> <?php echo CHtml::encode($model->mtrnr1_genotipo); ?></b>
+	</div>
+</p>
+<p class='linha'>
+	<div class="alinhamento margem">
+		<span>Outros genes:</span><b> <?php echo CHtml::encode($model->outros_genes); ?></b>
+	</div>
+	<div class="alinhamento margem">
+		<span>Genótipo:</span><b> <?php echo CHtml::encode($model->outros_genes_genotipo); ?></b>
+	</div>
+</p>
