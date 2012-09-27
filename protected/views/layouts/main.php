@@ -30,7 +30,7 @@
 		<?php $this->widget('application.extensions.mbmenu.MbMenu',array(
             'items'=>array(
                 array('label'=>'Página Inicial', 'url'=>array('/')),
-                array('label'=>'Cadastro de Pacientes',
+                array('label'=>'Pacientes',
                   'items'=>array(
                     array('label'=>'Cadastrar novo paciente', 'url'=>array('paciente/create')),
                     array('label'=>'Gerenciar pacientes', 'url'=>array('paciente/admin')),
@@ -38,7 +38,7 @@
                 ),
             	array('label'=>'Triagem',
             		'items'=>array(
-            			array('label'=>'Cadastrar nova triagem', 'url'=>array('triagem/create')),
+            			array('label'=>'Cadastrar triagem para um paciente', 'url'=>array('triagem/create')),
             			array('label'=>'Gerenciar triagens', 'url'=>array('triagem/admin')),
             			array('label'=>'Agenda de triagens*'),
             		),
@@ -61,9 +61,8 @@
             			array('label'=>'Agenda de próteses*'),
             		),
             	),
-            	array('label'=>'Monitoramento', 'url'=>array('paciente/admin')),
             	array('label'=>'Agenda*'),
-            	array('label'=>'Sair do sistema', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+            	array('label'=>'Sair do sistema', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
             ),
     )); ?>
 	</div><!-- mainmenu -->

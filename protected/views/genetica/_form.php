@@ -21,6 +21,7 @@
 			border:solid thin grey;
 			background-color:#efefef;
 			padding: 5px 10px 5px 10px;
+      width:320px;
 		}
 	</style>
 	<p class="note">Campos marcados com <span class="required">*</span> são obrigatórios.</p>
@@ -28,46 +29,9 @@
 	<?php echo $form->errorSummary($model); ?>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'paciente_r'); ?>
-		<?php /* echo $form->dropDownList($model,'paciente_r', CHtml::listData(Paciente::model()->findAll(), 'id', 'nome'), array('empty'=>'Selecione um Paciente')). '<br/><span class="help">Ex: João da Silva</span>'; */?>
-		<?php 
-			$this->widget('ext.devAutoComplete', array(
-            	'model'=>$model,
-                'attribute'=>'paciente_r',
-				'name'=>'paciente_autocomplete',
-				'value'=>$model->isNewRecord ? '': $model->pacienteR->nome,
-                'sourceUrl'=> $this->createUrl('paciente/getPacientesAC'),
-                // additional javascript options for the autocomplete plugin
-                'options'=>array(
-                	'minLength'=>'1',
-                	'select'=>'js:function(event, ui) {
-                		$("#infoPaciente").css("display","block");
-                		$("#infoPaciente th").css("text-align","right");
-                		$("#infoPaciente .nome").html(ui.item.nome);
-                		$("#infoPaciente .hc").html(ui.item.hc);
-                		$("#infoPaciente .mae").html(ui.item.nome_mae);
-                		$("#infoPaciente .hc_mae").html(ui.item.hc_mae);
-                		$("#infoPaciente .nascimento").html(ui.item.data_nascimento);
-                		$("#infoPaciente .sexo").html(ui.item.sexo);
-                		$("#infoPaciente .endereco").html(ui.item.endereco);
-                		$("#infoPaciente .cidade").html(ui.item.cidade);
-                		$("#infoPaciente .tel_fixo").html(ui.item.telefone_fixo);
-                		$("#infoPaciente .tel_movel").html(ui.item.telefone_movel);
-                		$("#infoPaciente .tel_trab").html(ui.item.telefone_trabalho);
-                		
-                		if(ui.item.genetica_id)$("#infoPaciente .aviso").html("<div style=\"color:red;\">Este paciente já possui dados de genética cadastrados!</div>");
-                		
-                		$("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('paciente/update').'&id=\'+ui.item.id+\'">Editar paciente</a>\');
-                	}'
-                ),
-                'htmlOptions'=>array('size'=>45),
-            ));
-        ?>
-		
-		
-		<?php echo $form->error($model,'paciente_r'); ?>
-	</div>
-	<div id="infoPaciente">
+    
+    <div id="infoPaciente">
+    <h3 style="text-align:center">Identificação do Paciente</h3>
 		<table class="detail-view" id="yw0" >
 			<tr class="even">
 				<th>Nome</th><td class='nome'></td>
@@ -104,12 +68,57 @@
 		<div class='aviso'></div>
 		<div class='link'></div>
 	</div>
-	
-	<div class="row">
+	<div style="float:left; margin-right:12px;">
+		<?php echo $form->labelEx($model,'paciente_r'); ?>
+		<?php /* echo $form->dropDownList($model,'paciente_r', CHtml::listData(Paciente::model()->findAll(), 'id', 'nome'), array('empty'=>'Selecione um Paciente')). '<br/><span class="help">Ex: João da Silva</span>'; */?>
+		<?php 
+			$this->widget('ext.devAutoComplete', array(
+            	'model'=>$model,
+                'attribute'=>'paciente_r',
+				'name'=>'paciente_autocomplete',
+				'value'=>$model->isNewRecord ? '': $model->pacienteR->nome,
+                'sourceUrl'=> $this->createUrl('paciente/getPacientesAC'),
+                // additional javascript options for the autocomplete plugin
+                'options'=>array(
+                	'minLength'=>'1',
+                	'select'=>'js:function(event, ui) {
+                		$("#infoPaciente").css("display","block");
+                		$("#infoPaciente th").css("text-align","right");
+                		$("#infoPaciente .nome").html(ui.item.nome);
+                		$("#infoPaciente .hc").html(ui.item.hc);
+                		$("#infoPaciente .mae").html(ui.item.nome_mae);
+                		$("#infoPaciente .hc_mae").html(ui.item.hc_mae);
+                		$("#infoPaciente .nascimento").html(ui.item.data_nascimento);
+                		$("#infoPaciente .sexo").html(ui.item.sexo);
+                		$("#infoPaciente .endereco").html(ui.item.endereco);
+                		$("#infoPaciente .cidade").html(ui.item.cidade);
+                		$("#infoPaciente .tel_fixo").html(ui.item.telefone_fixo);
+                		$("#infoPaciente .tel_movel").html(ui.item.telefone_movel);
+                		$("#infoPaciente .tel_trab").html(ui.item.telefone_trabalho);
+                		
+                		if(ui.item.genetica_id != null){
+                      $("#infoPaciente .aviso").html("<div style=\"color:red;\">Este paciente já possui genética cadastrada!</div>");
+                      $("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('paciente/update').'&id=\'+ui.item.genetica_id+\'">Editar genética do paciente</a>\');
+                    }else{
+                      $("#infoPaciente .aviso").empty();
+                      $("#infoPaciente .link").empty();
+                    }
+                	}'
+                ),
+                'htmlOptions'=>array('size'=>45),
+            ));
+        ?>
+		
+		
+		<?php echo $form->error($model,'paciente_r'); ?>
+	</div>
+  <div>
 		<?php echo $form->labelEx($model,'genetica'); ?>
-		<?php echo $form->textField($model,'genetica',array('size'=>45,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+		<?php echo $form->textField($model,'genetica',array('size'=>28,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
 		<?php echo $form->error($model,'genetica'); ?>
 	</div>
+	</div>
+	
 	<br/>
 	<div class="row">
 		<?php echo $form->labelEx($model,'hipotese_diagnostica'); ?>

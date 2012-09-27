@@ -3,8 +3,8 @@
 /* @var $model Paciente */
 
 $this->breadcrumbs=array(
-	'Pacientes'=>array('index'),
-	'Inserir',
+	'Pacientes'=>array('admin'),
+	'Cadastrar novo paciente',
 );
 
 $this->menu=array(

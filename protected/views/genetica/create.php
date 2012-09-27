@@ -3,13 +3,10 @@
 /* @var $model Genetica */
 
 $this->breadcrumbs=array(
-	'Genética'=>array('index'),
+	'Genética'=>array('admin'),
 	'Cadastrar dados de genética',
 );
 
-$this->menu=array(
-	array('label'=>'Gerenciar Genética', 'url'=>array('admin')),
-);
 ?>
 
 <h1>Cadastrar dados de genética</h1>

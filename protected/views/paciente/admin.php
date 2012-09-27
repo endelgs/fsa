@@ -3,7 +3,7 @@
 /* @var $model Paciente */
 
 $this->breadcrumbs=array(
-	'Pacientes'=>array('index'),
+	'Pacientes'=>array('admin'),
 	'Gerenciar',
 );
 
@@ -46,7 +46,6 @@ or <b>=</b>) no começo de cada valor de busca para especificar como a comparaç
   'emptyText' => 'Não há registros a serem exibidos.',
   'summaryText' => 'Mostrando {start}-{end} de {count} registro(s).',
 	'columns'=>array(
-		'id',
 		'nome',
 		'hc',
 		'nome_mae',

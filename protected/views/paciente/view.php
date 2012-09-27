@@ -2,6 +2,10 @@
 /* @var $this PacienteController */
 /* @var $model Paciente */
 
+$this->breadcrumbs=array(
+	'Pacientes'=>array('admin'),
+	'Perfil completo de '.$model->nome,
+);
 
 ?>
 <style>
@@ -22,7 +26,7 @@
 	}
 </style>
 
-<h2>Perfil Completo de <?php echo $model->nome; ?></h2>
+<h2>Perfil completo de <?php echo $model->nome; ?></h2>
 <p class='linha'>
 		<div class="item50 alinhamento">
 			<span>Nome:</span><b> <?php echo CHtml::encode($model->nome); ?></b>
@@ -83,10 +87,5 @@ $this->widget('zii.widgets.jui.CJuiTabs', array(
 		'Serviço Social'=>$tabServicoSocial		
 	)
 ));
-
-$this->breadcrumbs=array(
-		'Pacientes'=>array('index'),
-		$model->nome,
-);
 
 ?>

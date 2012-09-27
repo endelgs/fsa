@@ -227,3 +227,18 @@ div.search-form
 {
 	background: #80CFFF;
 }
+.boxHelp{
+  padding:10px;
+  padding-bottom:0;
+  margin-right:10px;
+  margin-bottom:10px;  
+  /*width:390px; */
+  width:890px;
+  background: #fafafa;
+  float:left;
+  border:dashed 1px #999;
+}
+#yw0{
+  font-size: 13px;
+  font-family:arial;
+}

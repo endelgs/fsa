@@ -3,12 +3,8 @@
 /* @var $model Triagem */
 
 $this->breadcrumbs=array(
-	'Triagems'=>array('index'),
-	'Gerenciar',
-);
-
-$this->menu=array(
-	array('label'=>'Inserir Triagem', 'url'=>array('create')),
+	'Triagem'=>array('admin'),
+	'Gerenciar triagens',
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -25,7 +21,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Gerenciar Triagens</h1>
+<h1>Gerenciar triagens</h1>
 
 <p>
 Você pode usar operadores de comparação (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -46,7 +42,9 @@ or <b>=</b>) no começo de cada valor de busca para especificar como a comparaç
   'emptyText' => 'Não há registros a serem exibidos.',
   'summaryText' => 'Mostrando {start}-{end} de {count} registro(s).',
 	'columns'=>array(
-		'id',
+    array(
+      'name' => 'paciente_r',
+      'value' => '$data->pacienteR->nome'),
 		'peso',
 		'apgar_1',
 		'apgar_5',

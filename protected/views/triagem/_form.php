@@ -21,6 +21,7 @@
 			border:solid thin grey;
 			background-color:#efefef;
 			padding: 5px 10px 5px 10px;
+      width: 320px;
 		}
 	</style>
 	<p class="note">Campos marcados com <span class="required">*</span> são obrigatórios.</p>
@@ -28,46 +29,8 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'paciente_r'); ?>
-		<?php 
-			$this->widget('ext.devAutoComplete', array(
-            	'model'=>$model,
-                'attribute'=>'paciente_r',
-				'name'=>'paciente_autocomplete',
-				'value'=>$model->isNewRecord ? '': $model->pacienteR->nome,
-                'sourceUrl'=> $this->createUrl('paciente/getPacientesAC'),
-                // additional javascript options for the autocomplete plugin
-				'options'=>array(
-					'minLength'=>'1',
-					//'showAnim'=>'fold',
-					//'select'=>$this->renderPartial('../paciente/viewInfo', array('model'=>Paciente::model()->find(array('select'=>'*','condition'=>'id=:id','params'=>array(':id'=>1)))),true)
-			        'select'=>'js:function(event, ui) {
-						$("#infoPaciente").css("display","block");
-						$("#infoPaciente th").css("text-align","right");
-						$("#infoPaciente .nome").html(ui.item.nome);
-						$("#infoPaciente .hc").html(ui.item.hc);
-						$("#infoPaciente .mae").html(ui.item.nome_mae);
-						$("#infoPaciente .hc_mae").html(ui.item.hc_mae);
-						$("#infoPaciente .nascimento").html(ui.item.data_nascimento);
-						$("#infoPaciente .sexo").html(ui.item.sexo);
-						$("#infoPaciente .endereco").html(ui.item.endereco);
-						$("#infoPaciente .cidade").html(ui.item.cidade);
-						$("#infoPaciente .tel_fixo").html(ui.item.telefone_fixo);
-						$("#infoPaciente .tel_movel").html(ui.item.telefone_movel);
-						$("#infoPaciente .tel_trab").html(ui.item.telefone_trabalho);
-						
-						if(ui.item.triagem_id)$("#infoPaciente .aviso").html("<div style=\"color:red;\">Este paciente já possui triagem cadastrada!</div>");
-						
-						$("#infoPaciente .link").html("<a href=/saudeAuditiva/index.php?r=paciente/update&id="+ui.item.id+">Editar Paciente</a>");
-			        }'
-				),
-						
-                'htmlOptions'=>array('size'=>45)
-            ));
-        ?>
-		<?php echo $form->error($model,'paciente_r'); ?>
-	</div>
-	<div id="infoPaciente">
+    <div id="infoPaciente">
+      <h3 style="text-align:center">Identificação do Paciente</h3>
 		<table class="detail-view" id="yw0" >
 			<tr class="even">
 				<th>Nome</th><td class='nome'></td>
@@ -104,8 +67,92 @@
 		<div class='aviso'></div>
 		<div class='link'></div>
 	</div>
+    <div style="float:left; margin-right:12px;">
+		<?php echo $form->labelEx($model,'paciente_r'); ?>
+		<?php 
+      if($model->isNewRecord){
+        $this->widget('ext.devAutoComplete', array(
+                'model'=>$model,
+                  'attribute'=>'paciente_r',
+          'name'=>'paciente_autocomplete',
+          'value'=>$model->isNewRecord ? '': $model->pacienteR->nome,
+                  'sourceUrl'=> $this->createUrl('paciente/getPacientesAC'),
+                  // additional javascript options for the autocomplete plugin
+          'options'=>array(
+            'minLength'=>'1',
+            //'showAnim'=>'fold',
+            //'select'=>$this->renderPartial('../paciente/viewInfo', array('model'=>Paciente::model()->find(array('select'=>'*','condition'=>'id=:id','params'=>array(':id'=>1)))),true)
+                'select'=>'js:function(event, ui) {
+              $("#infoPaciente").css("display","block");
+              $("#infoPaciente th").css("text-align","right");
+              $("#infoPaciente .nome").html(ui.item.nome);
+              $("#infoPaciente .hc").html(ui.item.hc);
+              $("#infoPaciente .mae").html(ui.item.nome_mae);
+              $("#infoPaciente .hc_mae").html(ui.item.hc_mae);
+              $("#infoPaciente .nascimento").html(ui.item.data_nascimento);
+              $("#infoPaciente .sexo").html(ui.item.sexo);
+              $("#infoPaciente .endereco").html(ui.item.endereco);
+              $("#infoPaciente .cidade").html(ui.item.cidade);
+              $("#infoPaciente .tel_fixo").html(ui.item.telefone_fixo);
+              $("#infoPaciente .tel_movel").html(ui.item.telefone_movel);
+              $("#infoPaciente .tel_trab").html(ui.item.telefone_trabalho);
+              
+              if(ui.item.triagem_id != null){
+                $("#infoPaciente .aviso").html("<div style=\"color:red;\">Este paciente já possui triagem cadastrada!</div>");
+                $("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('triagem/update').'&id=\'+ui.item.triagem_id+\'">Editar dados de triagem do paciente</a>\');
+              }else{
+                $("#infoPaciente .aviso").empty();
+                $("#infoPaciente .link").empty();
+              }
+                }'
+          ),
+              
+                  'htmlOptions'=>array('size'=>45)
+              ));
+            }else{
+              echo $form->textField($model->pacienteR,'nome',array('size'=>45,'disabled'=>'disabled'));
+            }
+        ?>
+		<?php echo $form->error($model,'paciente_r'); ?>
+	</div>
+
+		<div>
+			<label>Idade Gestacional</label>
+			<div style="float:left; margin-right:12px;">
+				<div>
+					<div style="float:left; vertical-align:middle;">
+						<?php echo $form->textField($model,'idade_semanas',array('size'=>3)).'<br/><span class="help">Ex: 45</span>'; ?>
+					</div>
+					<div style="float:left; margin-left:5px; line-height:28px;">
+						<?php echo $form->labelEx($model,'idade_semanas'); ?>
+					</div>
+				</div>
+				<div>
+					<?php echo $form->error($model,'idade_semanas'); ?>
+				</div>
+			</div>
+			<div>
+				<div>
+					<div style="float:left; vertical-align:middle;">
+						<?php echo $form->textField($model,'idade_dias',array('size'=>3)).'<br/><span class="help">Ex: 5</span>'; ?>
+					</div>
+					<div style="margin-left:5px; line-height:28px;">
+						<?php echo $form->labelEx($model,'idade_dias'); ?>
+					</div>
+				</div>
+				<div>
+					<?php echo $form->error($model,'idade_dias'); ?>
+				</div>
+			</div>
+		</div>
+	</div><br/>
 	
 	<div class="row">
+    <div style="float:left; margin-right:12px;">
+			<?php echo $form->labelEx($model,'peso'); ?>
+			<?php echo $form->textField($model,'peso',array('size'=>10)). '<br/><span class="help">Ex: 200</span>'; ?>
+			<?php echo $form->error($model,'peso'); ?>
+		</div>
 		<div style="float:left; margin-right:12px;">
 			<?php echo $form->labelEx($model,'apgar_1'); ?>
 			<?php echo $form->textField($model,'apgar_1',array('size'=>10)). '<br/><span class="help">Ex: 1</span>'; ?>
@@ -124,42 +171,7 @@
 	</div>
 	
 	
-	<div class="row">
-		<div style="float:left; margin-right:12px;">
-			<?php echo $form->labelEx($model,'peso'); ?>
-			<?php echo $form->textField($model,'peso',array('size'=>10)). '<br/><span class="help">Ex: 200</span>'; ?>
-			<?php echo $form->error($model,'peso'); ?>
-		</div>
-		<div>
-			<label>Idade Gestacional</label>
-			<div style="float:left; margin-right:12px;">
-				<div>
-					<div style="float:left; vertical-align:middle;">
-						<?php echo $form->textField($model,'idade_dias',array('size'=>5)).'<br/><span class="help">Ex: 45</span>'; ?>
-					</div>
-					<div style="float:left; margin-left:5px; line-height:28px;">
-						<?php echo $form->labelEx($model,'idade_dias'); ?>
-					</div>
-				</div>
-				<div>
-					<?php echo $form->error($model,'idade_dias'); ?>
-				</div>
-			</div>
-			<div>
-				<div>
-					<div style="float:left; vertical-align:middle;">
-						<?php echo $form->textField($model,'idade_semanas',array('size'=>5)).'<br/><span class="help">Ex: 5</span>'; ?>
-					</div>
-					<div style="margin-left:5px; line-height:28px;">
-						<?php echo $form->labelEx($model,'idade_semanas'); ?>
-					</div>
-				</div>
-				<div>
-					<?php echo $form->error($model,'idade_semanas'); ?>
-				</div>
-			</div>
-		</div>
-	</div><br/><br/>
+	
 	<div class="row">
 		<div style="float:left; margin-right:12px;">
 			<?php echo $form->labelEx($model,'metodo_avaliacao'); ?>

@@ -4,17 +4,43 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<h1>Bem-vindo ao sistema de registro de pacientes.</h1>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
+<p>Este sistema foi desenvolvido para auxiliar na organização e dar agilidade 
+em processos cotidianos dentro da UTI neonatal do Hospital das Clínicas da Unicamp.</p>
 
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
 
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+</p>
+<h3>O que você deseja fazer?</h3>
+<div class="boxHelp">
+<strong>Cadastrar um novo paciente</strong>
+<p>Vá até o menu 'Paciente' e clique em '<?php echo CHtml::link('Cadastrar novo paciente',array('paciente/create')) ?>'.</p>
+</div>
+
+<div class="boxHelp">
+<strong>Ver uma lista de todos os pacientes cadastrados</strong>
+<p>Vá até o menu 'Paciente' e clique em '<?php echo CHtml::link('Gerenciar pacientes',array('paciente/admin')) ?>'.</p>
+</div>
+
+<div class="boxHelp">
+<strong>Editar os dados de um paciente</strong>
+<p>Vá até o menu 'Paciente' e clique em '<?php echo CHtml::link('Gerenciar pacientes',array('paciente/admin')) ?>'. Na nova tela, você pode buscar o paciente pelo seu nome ou navegar através das páginas. Assim que encontrar o paciente a ser removido, clique no botão com o desenho do lápis.</p>
+</div>
+
+
+<div class="boxHelp">
+<strong>Ver o perfil completo de um paciente, incluindo dados de genética, assistência social, triagem e outros dados</strong>
+<p>Vá até o menu 'Paciente' e clique em '<?php echo CHtml::link('Gerenciar pacientes',array('paciente/admin')) ?>'. Na nova tela, você pode buscar o paciente pelo seu nome ou navegar através das páginas. Assim que encontrar o paciente a ser removido, clique no botão com o desenho da lupa.</p>
+</div>
+
+
+<div class="boxHelp">
+<strong>Excluir um paciente</strong>
+<p>Vá até o menu 'Paciente' e clique em '<?php echo CHtml::link('Gerenciar pacientes',array('paciente/admin')) ?>'. Na nova tela, você pode buscar o paciente pelo seu nome ou navegar através das páginas. Assim que encontrar o paciente a ser removido, clique no botão com o <span style="color:#900">'x'</span> em vermelho.</p>
+</div>
+
+<div class="boxHelp">
+<strong>Inserir dados de triagem para um paciente</strong>
+<p>Vá até o menu 'Triagem' e clique em '<?php echo CHtml::link('Cadastrar triagem para um paciente',array('triagem/create')) ?>'.</p>
+</div>
+

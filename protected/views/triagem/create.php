@@ -3,15 +3,12 @@
 /* @var $model Triagem */
 
 $this->breadcrumbs=array(
-	'Triagems'=>array('index'),
-	'Inserir',
+	'Triagem'=>array('admin'),
+	'Cadastrar triagem para um paciente',
 );
 
-$this->menu=array(
-	array('label'=>'Gerenciar Triagem', 'url'=>array('admin')),
-);
 ?>
 
-<h1>Cadastrar nova triagem</h1>
+<h1>Cadastrar triagem para um paciente</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
