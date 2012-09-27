@@ -3,7 +3,7 @@
 /* @var $model Triagem */
 
 $this->breadcrumbs=array(
-	'Triagems'=>array('index'),
+	'Triagem'=>array('admin'),
 	$model->pacienteR->nome=>array('view','id'=>$model->id),
 	'Editar',
 );
@@ -15,6 +15,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Editar dados da triagem <?php echo $model->pacienteR->nome; ?></h1>
+<h1>Editar dados de triagem de <?php echo $model->pacienteR->nome; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -72,6 +72,7 @@
 		<?php echo $form->labelEx($model,'paciente_r'); ?>
 		<?php /* echo $form->dropDownList($model,'paciente_r', CHtml::listData(Paciente::model()->findAll(), 'id', 'nome'), array('empty'=>'Selecione um Paciente')). '<br/><span class="help">Ex: João da Silva</span>'; */?>
 		<?php 
+    if($model->isNewRecord){
 			$this->widget('ext.devAutoComplete', array(
             	'model'=>$model,
                 'attribute'=>'paciente_r',
@@ -106,7 +107,9 @@
                 	}'
                 ),
                 'htmlOptions'=>array('size'=>45),
-            ));
+            ));}else{
+              echo $form->textField($model->pacienteR,'nome',array('size'=>45,'disabled'=>'disabled'));
+            }
         ?>
 		
 		
