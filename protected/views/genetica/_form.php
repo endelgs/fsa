@@ -12,7 +12,17 @@
 	'id'=>'genetica-form',
 	'enableAjaxValidation'=>false,
 )); ?>
-
+	<style>
+		#infoPaciente{
+			float:right;
+			display:none;
+			position:relative;
+			text-align:right;
+			border:solid thin grey;
+			background-color:#efefef;
+			padding: 5px 10px 5px 10px;
+		}
+	</style>
 	<p class="note">Campos marcados com <span class="required">*</span> são obrigatórios.</p>
 
 	<?php echo $form->errorSummary($model); ?>
@@ -45,7 +55,7 @@
                 		$("#infoPaciente .tel_movel").html(ui.item.telefone_movel);
                 		$("#infoPaciente .tel_trab").html(ui.item.telefone_trabalho);
                 		
-                		if(ui.item.genetica_id)$("#infoPaciente .aviso").html("<div style=\"color:red;\">Este paciente já possui genética cadastrada!</div>");
+                		if(ui.item.genetica_id)$("#infoPaciente .aviso").html("<div style=\"color:red;\">Este paciente já possui dados de genética cadastrados!</div>");
                 		
                 		$("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('paciente/update').'&id=\'+ui.item.id+\'">Editar paciente</a>\');
                 	}'
@@ -57,7 +67,7 @@
 		
 		<?php echo $form->error($model,'paciente_r'); ?>
 	</div>
-	<div id="infoPaciente" style="float:right; display:none; position:relative; text-align:right;">
+	<div id="infoPaciente">
 		<table class="detail-view" id="yw0" >
 			<tr class="even">
 				<th>Nome</th><td class='nome'></td>

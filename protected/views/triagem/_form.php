@@ -12,7 +12,17 @@
 	'id'=>'triagem-form',
 	'enableAjaxValidation'=>false,
 )); ?>
-
+	<style>
+		#infoPaciente{
+			float:right;
+			display:none;
+			position:relative;
+			text-align:right;
+			border:solid thin grey;
+			background-color:#efefef;
+			padding: 5px 10px 5px 10px;
+		}
+	</style>
 	<p class="note">Campos marcados com <span class="required">*</span> são obrigatórios.</p>
 
 	<?php echo $form->errorSummary($model); ?>
@@ -57,7 +67,7 @@
         ?>
 		<?php echo $form->error($model,'paciente_r'); ?>
 	</div>
-	<div id="infoPaciente" style="float:right;display:none; text-align:right;">
+	<div id="infoPaciente">
 		<table class="detail-view" id="yw0" >
 			<tr class="even">
 				<th>Nome</th><td class='nome'></td>

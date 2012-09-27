@@ -2,10 +2,6 @@
 /* @var $this PacienteController */
 /* @var $model Paciente */
 
-$this->breadcrumbs=array(
-	'Pacientes'=>array('index'),
-	$model->id,
-);
 
 ?>
 <style>
@@ -86,4 +82,11 @@ $this->widget('zii.widgets.jui.CJuiTabs', array(
 		'Prótese'=>$tabProtese,
 		'Serviço Social'=>$tabServicoSocial		
 	)
-)); ?>
+));
+
+$this->breadcrumbs=array(
+		'Pacientes'=>array('index'),
+		$model->nome,
+);
+
+?>

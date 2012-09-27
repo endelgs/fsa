@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Pacientes'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
+	$model->nome=>array('view','id'=>$model->id),
 	'Editar',
 );
 
