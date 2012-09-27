@@ -5,8 +5,8 @@
 
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('genetica')); ?>:</b>
-	<?php echo CHtml::encode($data->genetica); ?>
+	<b><?php echo CHtml::encode("Nome do Paciente"); ?>:</b>
+	<?php echo CHtml::link(CHtml::encode($data->pacienteR->nome), array('view', 'id'=>$data->id)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('hipotese_diagnostica')); ?>:</b>
