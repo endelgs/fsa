@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'TANU-UTI - Faculdade de Ciências Médicas - Unicamp',
+	'name'=>'Programa de Saúde Auditiva - Fonoaudiologia - FCM/Unicamp',
 	'language'=>'pt_br',
 		
 	// preloading 'log' component

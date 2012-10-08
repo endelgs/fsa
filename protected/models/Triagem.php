@@ -9,6 +9,7 @@
  * @property integer $apgar_1
  * @property integer $apgar_5
  * @property integer $apgar_10
+ * @property integer $apgar_15
  * @property integer $idade_semanas
  * @property integer $idade_dias
  * @property string $metodo_avaliacao
@@ -16,8 +17,11 @@
  * @property string $termo
  * @property string $crescimento
  * @property string $tipo_exame
- * @property string $resultado
+ * @property string $resultado_esquerdo
+ * @property string $resultado_direito
  * @property string $indicadores_risco
+ * @property string $last_update
+ * @property string $data_triagem
  * @property integer $paciente_r
  *
  * The followings are the available model relations:
@@ -51,17 +55,16 @@ class Triagem extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('peso, apgar_1, apgar_5, apgar_10, idade_semanas, idade_dias, metodo_avaliacao, avaliacao_score, termo, crescimento, tipo_exame, resultado, indicadores_risco, paciente_r', 'required'),
-			array('peso, apgar_1, apgar_5, apgar_10, idade_semanas, idade_dias, avaliacao_score, paciente_r', 'numerical', 'integerOnly'=>true),
+			array('peso, apgar_1, apgar_5, idade_semanas, idade_dias, metodo_avaliacao, termo, crescimento, tipo_exame, resultado_esquerdo, resultado_direito, indicadores_risco, paciente_r', 'required'),
+			array('peso, apgar_1, apgar_5, apgar_10,  apgar_15, idade_semanas, idade_dias, avaliacao_score, paciente_r', 'numerical', 'integerOnly'=>true),
 			array('metodo_avaliacao', 'length', 'max'=>11),
 			array('termo', 'length', 'max'=>9),
 			array('crescimento', 'length', 'max'=>3),
 			array('tipo_exame', 'length', 'max'=>7),
-			array('resultado', 'length', 'max'=>6),
 			array('indicadores_risco', 'length'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, peso, apgar_1, apgar_5, apgar_10, idade_semanas, idade_dias, metodo_avaliacao, avaliacao_score, termo, crescimento, tipo_exame, resultado, indicadores_risco, paciente_r', 'safe', 'on'=>'search'),
+			array('id, peso, apgar_1, apgar_5, apgar_10, apgar_15, idade_semanas, idade_dias, metodo_avaliacao, avaliacao_score, termo, crescimento, tipo_exame, resultado_esquerdo, resultado_direito, indicadores_risco, paciente_r', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -88,6 +91,7 @@ class Triagem extends CActiveRecord
 			'apgar_1' => 'Apgar 1',
 			'apgar_5' => 'Apgar 5',
 			'apgar_10' => 'Apgar 10',
+			'apgar_15' => 'Apgar 15',
 			'idade_semanas' => 'Semanas',
 			'idade_dias' => 'Dias',
 			'metodo_avaliacao' => 'Método Avaliação',
@@ -95,8 +99,11 @@ class Triagem extends CActiveRecord
 			'termo' => 'Termo',
 			'crescimento' => 'Crescimento Intra-Uterino',
 			'tipo_exame' => 'Tipo Exame',
-			'resultado' => 'Resultado',
+			'resultado_esquerdo' => 'Resultado Ouvido Esquerdo',
+			'resultado_direito' => 'Resultado Ouvido Direito',
 			'indicadores_risco' => 'Indicadores Risco',
+			'last_update' => 'Paciente','Última Atualização',
+			'data_triagem' => 'Data da Triagem',
 			'paciente_r' => 'Paciente',
 		);
 	}
@@ -117,6 +124,7 @@ class Triagem extends CActiveRecord
 		$criteria->compare('apgar_1',$this->apgar_1);
 		$criteria->compare('apgar_5',$this->apgar_5);
 		$criteria->compare('apgar_10',$this->apgar_10);
+		$criteria->compare('apgar_15',$this->apgar_15);
 		$criteria->compare('idade_semanas',$this->idade_semanas);
 		$criteria->compare('idade_dias',$this->idade_dias);
 		$criteria->compare('metodo_avaliacao',$this->metodo_avaliacao,true);
@@ -124,12 +132,20 @@ class Triagem extends CActiveRecord
 		$criteria->compare('termo',$this->termo,true);
 		$criteria->compare('crescimento',$this->crescimento,true);
 		$criteria->compare('tipo_exame',$this->tipo_exame,true);
-		$criteria->compare('resultado',$this->resultado,true);
+		$criteria->compare('resultado_esquerdo',$this->resultado_esquerdo,true);
+		$criteria->compare('resultado_direito',$this->resultado_direito,true);
 		$criteria->compare('indicadores_risco',$this->indicadores_risco,true);
+		$criteria->compare('last_update',$this->last_update,true);
+		$criteria->compare('data_triagem',$this->data_triagem,true);
 		$criteria->compare('paciente_r',$this->paciente_r);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	protected function afterFind(){
+		parent::afterFind();
+		$this->last_update=date('d/m/Y - G:i', strtotime(str_replace("-", "", $this->last_update)))."h";
 	}
 }

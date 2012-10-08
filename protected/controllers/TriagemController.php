@@ -70,6 +70,7 @@ class TriagemController extends Controller
 		if(isset($_POST['Triagem']))
 		{
 			$model->attributes=$_POST['Triagem'];
+			$model->last_update=new CDbExpression('NOW()');
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -94,6 +95,7 @@ class TriagemController extends Controller
 		if(isset($_POST['Triagem']))
 		{
 			$model->attributes=$_POST['Triagem'];
+			$model->last_update=new CDbExpression('NOW()');
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

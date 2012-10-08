@@ -36,6 +36,8 @@ $this->breadcrumbs=array(
 <style>
 	.linha{}
 	.alinhamento{display:inline-block;}
+	.direita{float: right;}
+	.esquerda{float:left;}
 	.margem{ margin-right:15px;}
 	.item50{width:50%;}
 	.item40{width:40%;}
@@ -43,7 +45,11 @@ $this->breadcrumbs=array(
 	.item20{width:20%;}
 	.item10{width:10%;}
 </style>
-<h1>Dados de Genética do Paciente: <?php echo $model->pacienteR->nome; ?></h1>
+
+<div>
+	<div class='alinhamento'><h1>Dados de Genética do Paciente: <?php echo $model->pacienteR->nome; ?></h1></div>
+	<div class='alinhamento direita'>última atualização: <i><?php echo $model->last_update; ?></i></div>
+</div>
 <p class='linha'>
 	<div class="alinhamento">
 		<b><span>Genética:</span></b> <?php echo CHtml::encode($model->genetica); ?>

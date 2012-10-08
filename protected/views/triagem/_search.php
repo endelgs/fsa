@@ -72,8 +72,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'resultado'); ?>
-		<?php echo $form->textField($model,'resultado',array('size'=>6,'maxlength'=>6)); ?>
+		<?php echo $form->label($model,'resultado_esquerdo'); ?>
+		<?php echo $form->textField($model,'resultado_esquerdo',array('size'=>6,'maxlength'=>6)); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->label($model,'resultado_direito'); ?>
+		<?php echo $form->textField($model,'resultado_direito',array('size'=>6,'maxlength'=>6)); ?>
 	</div>
 
 	<div class="row">

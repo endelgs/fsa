@@ -37,6 +37,7 @@
  * @property string $mtrnr1_genotipo
  * @property string $outros_genes
  * @property string $outros_genes_genotipo
+ * @property string $last_update
  * @property integer $paciente_r
  * 
  * The followings are the available model relations:
@@ -131,6 +132,7 @@ class Genetica extends CActiveRecord
 			'mtrnr1_genotipo' => 'Genótipo Observado',
 			'outros_genes' => 'Outros Genes',
 			'outros_genes_genotipo' => 'Genótipo Observado',
+			'last_update' => 'Última Atualização',
 			'paciente_r' => 'Nome do Paciente',
 		);
 	}
@@ -179,10 +181,16 @@ class Genetica extends CActiveRecord
 		$criteria->compare('mtrnr1_genotipo',$this->mtrnr1_genotipo,true);
 		$criteria->compare('outros_genes',$this->outros_genes,true);
 		$criteria->compare('outros_genes_genotipo',$this->outros_genes_genotipo,true);
+		$criteria->compare('last_update',$this->last_update,true);
 		$criteria->compare('paciente_r',$this->paciente_r);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	protected function afterFind(){
+		parent::afterFind();
+		$this->last_update=date('d/m/Y - G:i', strtotime(str_replace("-", "", $this->last_update)))."h";
 	}
 }

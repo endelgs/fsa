@@ -9,7 +9,17 @@ $this->breadcrumbs=array(
 );
 
 ?>
+<style>
+	.alinhamento{display:inline-block;}
+	.direita{float: right;}
+	.esquerda{float:left;}
+</style>
 
-<h1>Editar Paciente <?php echo $model->id; ?></h1>
+
+<div>
+	<div class='alinhamento'><h1>Editar Paciente <?php echo $model->id; ?></h1></div>
+	<div class='alinhamento direita'>última atualização: <i><?php echo $model->last_update; ?></i></div>
+</div>
+
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

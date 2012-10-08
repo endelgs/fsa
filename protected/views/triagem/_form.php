@@ -21,7 +21,13 @@
 			border:solid thin grey;
 			background-color:#efefef;
 			padding: 5px 10px 5px 10px;
-      width: 320px;
+     		width: 320px;
+		}
+		#infoPaciente .lastUpdate{
+			font-style: italic;
+			text-align: center;
+			margin-bottom: 10px;
+			margin-top: -15px;
 		}
 	</style>
 	<p class="note">Campos marcados com <span class="required">*</span> são obrigatórios.</p>
@@ -31,6 +37,7 @@
 	<div class="row">
     <div id="infoPaciente">
       <h3 style="text-align:center">Identificação do Paciente</h3>
+      	<div class="lastUpdate"></div>
 		<table class="detail-view" id="yw0" >
 			<tr class="even">
 				<th>Nome</th><td class='nome'></td>
@@ -67,55 +74,95 @@
 		<div class='aviso'></div>
 		<div class='link'></div>
 	</div>
-    <div style="float:left; margin-right:12px;">
+    <div class="row" style="margin-right:12px;">
 		<?php echo $form->labelEx($model,'paciente_r'); ?>
 		<?php 
       if($model->isNewRecord){
-        $this->widget('ext.devAutoComplete', array(
+       		$this->widget('ext.devAutoComplete', array(
                 'model'=>$model,
-                  'attribute'=>'paciente_r',
-          'name'=>'paciente_autocomplete',
-          'value'=>$model->isNewRecord ? '': $model->pacienteR->nome,
-                  'sourceUrl'=> $this->createUrl('paciente/getPacientesAC'),
-                  // additional javascript options for the autocomplete plugin
-          'options'=>array(
-            'minLength'=>'1',
-            //'showAnim'=>'fold',
-            //'select'=>$this->renderPartial('../paciente/viewInfo', array('model'=>Paciente::model()->find(array('select'=>'*','condition'=>'id=:id','params'=>array(':id'=>1)))),true)
-                'select'=>'js:function(event, ui) {
-              $("#infoPaciente").css("display","block");
-              $("#infoPaciente th").css("text-align","right");
-              $("#infoPaciente .nome").html(ui.item.nome);
-              $("#infoPaciente .hc").html(ui.item.hc);
-              $("#infoPaciente .mae").html(ui.item.nome_mae);
-              $("#infoPaciente .hc_mae").html(ui.item.hc_mae);
-              $("#infoPaciente .nascimento").html(ui.item.data_nascimento);
-              $("#infoPaciente .sexo").html(ui.item.sexo);
-              $("#infoPaciente .endereco").html(ui.item.endereco);
-              $("#infoPaciente .cidade").html(ui.item.cidade);
-              $("#infoPaciente .tel_fixo").html(ui.item.telefone_fixo);
-              $("#infoPaciente .tel_movel").html(ui.item.telefone_movel);
-              $("#infoPaciente .tel_trab").html(ui.item.telefone_trabalho);
-              
-              if(ui.item.triagem_id != null){
-                $("#infoPaciente .aviso").html("<div style=\"color:red;\">Este paciente já possui triagem cadastrada!</div>");
-                $("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('triagem/update').'&id=\'+ui.item.triagem_id+\'">Editar dados de triagem do paciente</a>\');
-              }else{
-                $("#infoPaciente .aviso").empty();
-                $("#infoPaciente .link").empty();
-              }
-                }'
-          ),
-              
-                  'htmlOptions'=>array('size'=>45)
-              ));
+                'attribute'=>'paciente_r',
+         		'name'=>'paciente_r',
+          		'value'=>$model->isNewRecord ? '': $model->pacienteR->nome,
+                'sourceUrl'=> $this->createUrl('paciente/getPacientesAC'),
+                'htmlOptions'=>array('size'=>65),
+          		'options'=>array(
+            		'minLength'=>'1',
+            		'showAnim'=>'fold',
+          			
+               		'select'=>'js:function(event, ui) {
+          				$("#Triagem_paciente_r").val(ui.item.id);//linha mto importante é o que faz funcionar o autocomplete heheheh
+          				
+			            $("#infoPaciente").css("display","block");
+			            $("#infoPaciente th").css("text-align","right");
+			          	$("#infoPaciente .lastUpdate").html(ui.item.last_update);
+			            $("#infoPaciente .nome").html(ui.item.nome);
+			            $("#infoPaciente .hc").html(ui.item.hc);
+			            $("#infoPaciente .mae").html(ui.item.nome_mae);
+			            $("#infoPaciente .hc_mae").html(ui.item.hc_mae);
+			            $("#infoPaciente .nascimento").html(ui.item.data_nascimento);
+			            $("#infoPaciente .sexo").html(ui.item.sexo);
+			            $("#infoPaciente .endereco").html(ui.item.endereco);
+			            $("#infoPaciente .cidade").html(ui.item.cidade);
+			            $("#infoPaciente .tel_fixo").html(ui.item.telefone_fixo);
+			            $("#infoPaciente .tel_movel").html(ui.item.telefone_movel);
+			            $("#infoPaciente .tel_trab").html(ui.item.telefone_trabalho);
+		              
+			            if(ui.item.triagem_id != null){
+			            	$("#infoPaciente .aviso").html("<div style=\"color:red;\">Este paciente já possui triagem cadastrada!</div>");
+			            }else{
+			            	$("#infoPaciente .aviso").empty();
+			            	$("#infoPaciente .link").empty();
+			            }
+		          		$("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('paciente/update').'&id=\'+ui.item.id+\'">Atualizar dados cadastrais</a>\');
+		       		}'
+				),
+       			
+              	
+           	));
             }else{
-              echo $form->textField($model->pacienteR,'nome',array('size'=>45,'disabled'=>'disabled'));
+              echo $form->textField($model->pacienteR,'nome',array('size'=>60,'disabled'=>'disabled'));
             }
         ?>
 		<?php echo $form->error($model,'paciente_r'); ?>
 	</div>
-
+	</div><br/>
+	
+	<div class="row">
+    <div style="float:left; margin-right:12px;">
+			<?php echo $form->labelEx($model,'peso'); ?>
+			<?php echo $form->textField($model,'peso',array('size'=>10)). '<br/><span class="help">Ex: 200</span>'; ?>
+			<?php echo $form->error($model,'peso'); ?>
+		</div>
+		<div style="float:left; margin-right:12px;">
+			<?php echo $form->labelEx($model,'apgar_1'); ?>
+			<?php echo $form->textField($model,'apgar_1',array('size'=>10)). '<br/><span class="help">Ex: 1</span>'; ?>
+			<?php echo $form->error($model,'apgar_1'); ?>
+		</div>
+		<div style="float:left;  margin-right:12px;">
+			<?php echo $form->labelEx($model,'apgar_5'); ?>
+			<?php echo $form->textField($model,'apgar_5',array('size'=>10)). '<br/><span class="help">Ex: 2</span>'; ?>
+			<?php echo $form->error($model,'apgar_5'); ?>
+		</div>
+		<div style="float:left;  margin-right:12px;">
+			<?php echo $form->labelEx($model,'apgar_10'); ?>
+			<?php echo $form->textField($model,'apgar_10',array('size'=>10)). '<br/><span class="help">Ex: 2</span>'; ?>
+			<?php echo $form->error($model,'apgar_10'); ?>
+		</div>
+		<div>
+			<?php echo $form->labelEx($model,'apgar_15'); ?>
+			<?php echo $form->textField($model,'apgar_15',array('size'=>10)). '<br/><span class="help">Ex: 2</span>'; ?>
+			<?php echo $form->error($model,'apgar_15'); ?>
+		</div>
+	</div><br/>
+	
+	
+	
+	<div class="row">
+		<div style="float:left; margin-right:12px;">
+			<?php echo $form->labelEx($model,'metodo_avaliacao'); ?>
+			<?php echo $form->dropDownList($model, 'metodo_avaliacao',array(''=>'Selecione','capurro' => 'Capurro', 'new_ballard' => 'New Ballard','ecografia' => 'Ecografia', 'amenorreia' => 'Amenorréia')). '<br/><span class="help">Ex: Capurro</span>'; ?>
+			<?php echo $form->error($model,'metodo_avaliacao'); ?>
+		</div>
 		<div>
 			<label>Idade Gestacional</label>
 			<div style="float:left; margin-right:12px;">
@@ -145,44 +192,11 @@
 				</div>
 			</div>
 		</div>
-	</div><br/>
-	
-	<div class="row">
-    <div style="float:left; margin-right:12px;">
-			<?php echo $form->labelEx($model,'peso'); ?>
-			<?php echo $form->textField($model,'peso',array('size'=>10)). '<br/><span class="help">Ex: 200</span>'; ?>
-			<?php echo $form->error($model,'peso'); ?>
-		</div>
-		<div style="float:left; margin-right:12px;">
-			<?php echo $form->labelEx($model,'apgar_1'); ?>
-			<?php echo $form->textField($model,'apgar_1',array('size'=>10)). '<br/><span class="help">Ex: 1</span>'; ?>
-			<?php echo $form->error($model,'apgar_1'); ?>
-		</div>
-		<div style="float:left;  margin-right:12px;">
-			<?php echo $form->labelEx($model,'apgar_5'); ?>
-			<?php echo $form->textField($model,'apgar_5',array('size'=>10)). '<br/><span class="help">Ex: 2</span>'; ?>
-			<?php echo $form->error($model,'apgar_5'); ?>
-		</div>
-		<div>
-			<?php echo $form->labelEx($model,'apgar_10'); ?>
-			<?php echo $form->textField($model,'apgar_10',array('size'=>10)). '<br/><span class="help">Ex: 2</span>'; ?>
-			<?php echo $form->error($model,'apgar_10'); ?>
-		</div>
-	</div>
-	
-	
-	
-	<div class="row">
-		<div style="float:left; margin-right:12px;">
-			<?php echo $form->labelEx($model,'metodo_avaliacao'); ?>
-			<?php echo $form->dropDownList($model, 'metodo_avaliacao',array(''=>'Selecione','capurro' => 'Capurro', 'new_ballard' => 'New Ballard')). '<br/><span class="help">Ex: Capurro</span>'; ?>
-			<?php echo $form->error($model,'metodo_avaliacao'); ?>
-		</div>
-		<div>
+		<!-- div>
 			<?php echo $form->labelEx($model,'avaliacao_score'); ?>
 			<?php echo $form->textField($model,'avaliacao_score' ,array('size'=>10)). '<br/><span class="help">Ex: 60</span>'; ?>
 			<?php echo $form->error($model,'avaliacao_score'); ?>
-		</div>
+		</div-->
 	</div><br/>
 
 	<div class="row">
@@ -208,13 +222,18 @@
 	<div class="row">
 		<div style="float:left; margin-right:12px;">
 			<?php echo $form->labelEx($model,'tipo_exame'); ?>
-			<?php echo $form->dropDownList($model, 'tipo_exame',array(''=>'Selecione','peate-a' => 'PEATE-A', 'eoa' => 'EOA')). '<br/><span class="help">Ex: PEATE-A</span>'; ?>
+			<?php echo $form->dropDownList($model, 'tipo_exame',array(''=>'Selecione','peate-a' => 'PEATE-A', 'eoat' => 'EOAt', 'eoa-pd' => 'EOA-PD')). '<br/><span class="help">Ex: PEATE-A</span>'; ?>
 			<?php echo $form->error($model,'tipo_exame'); ?>
 		</div>
+		<div style="float:left; margin-right:12px;">
+			<?php echo $form->labelEx($model,'resultado_esquerdo'); ?>
+			<?php echo $form->dropDownList($model, 'resultado_esquerdo',array(''=>'Selecione','passou' => 'Passou', 'falhou' => 'Falhou')). '<br/><span class="help">Ex: Passou</span>'; ?>
+			<?php echo $form->error($model,'resultado_esquerdo'); ?>
+		</div>
 		<div>
-			<?php echo $form->labelEx($model,'resultado'); ?>
-			<?php echo $form->dropDownList($model, 'resultado',array(''=>'Selecione','passou' => 'Passou', 'falhou' => 'Falhou')). '<br/><span class="help">Ex: Passou</span>'; ?>
-			<?php echo $form->error($model,'resultado'); ?>
+			<?php echo $form->labelEx($model,'resultado_direito'); ?>
+			<?php echo $form->dropDownList($model, 'resultado_direito',array(''=>'Selecione','passou' => 'Passou', 'falhou' => 'Falhou')). '<br/><span class="help">Ex: Passou</span>'; ?>
+			<?php echo $form->error($model,'resultado_direito'); ?>
 		</div>
 	</div>
 

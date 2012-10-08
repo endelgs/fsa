@@ -31,6 +31,7 @@
 <style>
 	.linha{}
 	.alinhamento{display:inline-block;}
+	.direita{float: right;}
 	.margem{ margin-right:15px;}
 	.item50{width:50%;}
 	.item40{width:40%;}
@@ -38,6 +39,10 @@
 	.item20{width:20%;}
 	.item10{width:10%;}
 </style>
+
+<div class='direita'>
+	última atualização <?php echo $model->last_update ;?>
+</div>
 <p class='linha'>
 	<div class="alinhamento">
 		<b><span>Genética:</span></b> <?php echo CHtml::encode($model->genetica); ?>

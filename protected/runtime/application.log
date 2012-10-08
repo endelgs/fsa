@@ -6014,3 +6014,1844 @@ REQUEST_URI=/dev/fsa/index.php?r=paciente/view&id=2
 in /home/endel/www/fsa/protected/views/paciente/view.php (44)
 in /home/endel/www/fsa/protected/controllers/PacienteController.php (56)
 in /home/endel/www/fsa/index.php (13)
+2012/10/08 10:43:15 [error] [exception.CException] exception 'CException' with message 'A propriedade "Triagem.last_update" não está definida.' in /var/www/yii/framework/base/CComponent.php:131
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(144): CComponent->__get('last_update')
+#1 /var/www/saudeAuditivaSVN/protected/views/triagem/view.php(29): CActiveRecord->__get('last_update')
+#2 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/saudeA...')
+#3 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/saudeA...', Array, true)
+#4 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/saudeA...', Array, true)
+#5 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('view', Array, true)
+#6 /var/www/saudeAuditivaSVN/protected/controllers/TriagemController.php(56): CController->render('view', Array)
+#7 [internal function]: TriagemController->actionView('6')
+#8 /var/www/yii/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(TriagemController), Array)
+#9 /var/www/yii/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(TriagemController), Object(ReflectionMethod), Array)
+#10 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#11 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#13 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#14 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#17 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('view')
+#19 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('triagem/view')
+#20 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#21 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=triagem/view&id=6
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/admin
+---
+2012/10/08 11:26:32 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y - %G:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:26:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y - %G:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('\')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=%5C
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:26:34 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y - %G:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:26:34 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y - %G:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('T')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=T
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:26:36 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y - %G:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:26:36 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y - %G:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Tes')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Tes
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:26:46 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y %G") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:26:46 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y %G") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('T')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=T
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:26:47 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y %G") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:26:47 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y %G") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Te')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Te
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:26:58 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:26:58 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('T')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=T
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:26:59 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:26:59 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Tes')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Tes
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:29:27 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:29:27 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('T')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=T
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:29:28 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:29:28 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Te')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Te
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:29:30 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:29:30 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Tessasd')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Tessasd
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:32:00 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (170)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:32:00 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(170): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('T')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=T
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:32:01 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (170)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:32:01 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(170): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Te')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Te
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:32:02 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (170)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:32:02 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(170): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Tes')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Tes
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:32:16 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (170)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:32:16 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(170): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('T')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=T
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:32:17 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (170)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:32:17 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(170): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Te')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Te
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:32:18 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (170)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:32:18 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(170): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Tes')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Tes
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:32:24 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (169)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:32:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(169): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('T')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=T
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:32:25 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (169)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:32:25 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT
+			date_format(last_update, "%d/%m/%Y") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(169): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Tes')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Tes
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:35:55 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y - %H:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:35:55 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y - %H:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('T')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=T
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:35:56 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y - %H:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:35:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y - %H:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Te')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Te
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:35:56 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y - %H:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:35:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%d/%m/%Y - %H:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Tes')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Tes
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:36:04 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(last_update, "%d/%m/%Y - %H:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (170)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:36:04 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(last_update, "%d/%m/%Y - %H:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(170): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('T')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=T
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:36:06 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(last_update, "%d/%m/%Y - %H:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (170)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:36:06 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(last_update, "%d/%m/%Y - %H:%i") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(170): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Tes')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Tes
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:37:55 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%a., %b %D, %Y. %l: %i %p") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:37:55 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%a., %b %D, %Y. %l: %i %p") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('T')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=T
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:37:56 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%a., %b %D, %Y. %l: %i %p") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:37:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%a., %b %D, %Y. %l: %i %p") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Te')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Te
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:37:57 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%a., %b %D, %Y. %l: %i %p") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:37:57 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%a., %b %D, %Y. %l: %i %p") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Tes')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Tes
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:38:07 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%a., %b %D, %Y. %l: %i %p") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:38:07 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%a., %b %D, %Y. %l: %i %p") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('T')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=T
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=genetica/create
+---
+2012/10/08 11:38:08 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%a., %b %D, %Y. %l: %i %p") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:38:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%a., %b %D, %Y. %l: %i %p") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Te')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Te
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=genetica/create
+---
+2012/10/08 11:38:08 [error] [system.db.CDbCommand] Falha ao executar CDbCommand::fetchAll(): SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. A declaração SQL executada foi: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%a., %b %D, %Y. %l: %i %p") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC.
+in /var/www/saudeAuditivaSVN/protected/models/Paciente.php (171)
+in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php (64)
+in /var/www/saudeAuditivaSVN/index.php (13)
+2012/10/08 11:38:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'last_update' in field list is ambiguous. The SQL statement executed was: 
+		SELECT 
+			*,
+			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(last_update, "%a., %b %D, %Y. %l: %i %p") as last_update,
+			CONCAT(hc,' - ',nome) as label,
+			triagem.id as triagem_id,
+			genetica.id as genetica_id
+		FROM 
+			paciente
+			left join triagem on triagem.paciente_r=paciente.id
+			left join genetica on genetica.paciente_r=paciente.id
+		WHERE 
+			nome LIKE :qterm OR hc LIKE :qterm GROUP BY paciente.id ORDER BY paciente.nome ASC' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/saudeAuditivaSVN/protected/models/Paciente.php(171): CDbCommand->queryAll()
+#2 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(64): Paciente::pacienteAutoComplete('Tes')
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): PacienteController->actionGetPacientesAC()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('getPacientesAC')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/getPac...')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/getPacientesAC&term=Tes
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=genetica/create
+---
+2012/10/08 11:44:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php:168
+Stack trace:
+#0 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(101): PacienteController->loadModel('null')
+#1 [internal function]: PacienteController->actionUpdate('null')
+#2 /var/www/yii/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(PacienteController), Array)
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(PacienteController), Object(ReflectionMethod), Array)
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('update')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/update')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/update&id=null
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=genetica/create
+---
+2012/10/08 11:45:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php:168
+Stack trace:
+#0 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(101): PacienteController->loadModel('null')
+#1 [internal function]: PacienteController->actionUpdate('null')
+#2 /var/www/yii/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(PacienteController), Array)
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(PacienteController), Object(ReflectionMethod), Array)
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('update')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/update')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/update&id=null
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=genetica/create
+---
+2012/10/08 11:46:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php:168
+Stack trace:
+#0 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(101): PacienteController->loadModel('null')
+#1 [internal function]: PacienteController->actionUpdate('null')
+#2 /var/www/yii/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(PacienteController), Array)
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(PacienteController), Object(ReflectionMethod), Array)
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('update')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/update')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/update&id=null
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=genetica/create
+---
+2012/10/08 11:47:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /var/www/saudeAuditivaSVN/protected/controllers/TriagemController.php:157
+Stack trace:
+#0 /var/www/saudeAuditivaSVN/protected/controllers/TriagemController.php(90): TriagemController->loadModel('null')
+#1 [internal function]: TriagemController->actionUpdate('null')
+#2 /var/www/yii/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(TriagemController), Array)
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(TriagemController), Object(ReflectionMethod), Array)
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('update')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('triagem/update')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=triagem/update&id=null
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:47:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php:168
+Stack trace:
+#0 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(101): PacienteController->loadModel('null')
+#1 [internal function]: PacienteController->actionUpdate('null')
+#2 /var/www/yii/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(PacienteController), Array)
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(PacienteController), Object(ReflectionMethod), Array)
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('update')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/update')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/update&id=null
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 11:49:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php:168
+Stack trace:
+#0 /var/www/saudeAuditivaSVN/protected/controllers/PacienteController.php(101): PacienteController->loadModel('null')
+#1 [internal function]: PacienteController->actionUpdate('null')
+#2 /var/www/yii/framework/web/actions/CAction.php(107): ReflectionMethod->invokeArgs(Object(PacienteController), Array)
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(48): CAction->runWithParamsInternal(Object(PacienteController), Object(ReflectionMethod), Array)
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('update')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('paciente/update')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=paciente/update&id=null
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=genetica/create
+---
+2012/10/08 14:38:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Não foi possível resolver a requisição "igg".' in /var/www/yii/framework/web/CWebApplication.php:287
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('igg')
+#1 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=igg
+---
+2012/10/08 15:01:48 [error] [exception.CException] exception 'CException' with message 'A propriedade "Triagem.resultado" não está definida.' in /var/www/yii/framework/base/CComponent.php:131
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(144): CComponent->__get('resultado')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2158): CActiveRecord->__get('resultado')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1515): CHtml::resolveValue(Object(Triagem), 'resultado')
+#3 /var/www/yii/framework/web/widgets/CActiveForm.php(764): CHtml::activeDropDownList(Object(Triagem), 'resultado', Array, Array)
+#4 /var/www/saudeAuditivaSVN/protected/views/triagem/_form.php(223): CActiveForm->dropDownList(Object(Triagem), 'resultado', Array)
+#5 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/saudeA...')
+#6 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/saudeA...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/saudeA...', Array, true)
+#8 /var/www/saudeAuditivaSVN/protected/views/triagem/create.php(14): CController->renderPartial('_form', Array)
+#9 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/saudeA...')
+#10 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/saudeA...', Array, true)
+#11 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/saudeA...', Array, true)
+#12 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('create', Array, true)
+#13 /var/www/saudeAuditivaSVN/protected/controllers/TriagemController.php(80): CController->render('create', Array)
+#14 /var/www/yii/framework/web/actions/CInlineAction.php(50): TriagemController->actionCreate()
+#15 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#16 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#17 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#18 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#19 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#20 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#21 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#22 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#23 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('create')
+#24 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('triagem/create')
+#25 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#26 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#27 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=triagem/create
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=paciente/create
+---
+2012/10/08 15:08:27 [error] [exception.CException] exception 'CException' with message 'A propriedade "Triagem.resultado" não está definida.' in /var/www/yii/framework/base/CComponent.php:131
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(144): CComponent->__get('resultado')
+#1 /var/www/yii/framework/validators/CStringValidator.php(80): CActiveRecord->__get('resultado')
+#2 /var/www/yii/framework/validators/CValidator.php(214): CStringValidator->validateAttribute(Object(Triagem), 'resultado')
+#3 /var/www/yii/framework/base/CModel.php(158): CValidator->validate(Object(Triagem), NULL)
+#4 /var/www/yii/framework/db/ar/CActiveRecord.php(795): CModel->validate(NULL)
+#5 /var/www/saudeAuditivaSVN/protected/controllers/TriagemController.php(74): CActiveRecord->save()
+#6 /var/www/yii/framework/web/actions/CInlineAction.php(50): TriagemController->actionCreate()
+#7 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#8 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#9 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#10 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#11 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#12 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#13 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#14 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('create')
+#16 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('triagem/create')
+#17 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#18 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=triagem/create
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 15:15:30 [error] [exception.CException] exception 'CException' with message 'A propriedade "Triagem.pacienteID" não está definida.' in /var/www/yii/framework/base/CComponent.php:131
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(144): CComponent->__get('pacienteID')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2158): CActiveRecord->__get('pacienteID')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1887): CHtml::resolveValue(Object(Triagem), 'pacienteID')
+#3 /var/www/yii/framework/web/helpers/CHtml.php(1332): CHtml::activeInputField('hidden', Object(Triagem), 'pacienteID', Array)
+#4 /var/www/saudeAuditivaSVN/protected/extensions/devAutoComplete.php(22): CHtml::activeHiddenField(Object(Triagem), 'pacienteID')
+#5 /var/www/yii/framework/web/CBaseController.php(174): devAutoComplete->run()
+#6 /var/www/saudeAuditivaSVN/protected/views/triagem/_form.php(119): CBaseController->widget('ext.devAutoComp...', Array)
+#7 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/saudeA...')
+#8 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/saudeA...', Array, true)
+#9 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/saudeA...', Array, true)
+#10 /var/www/saudeAuditivaSVN/protected/views/triagem/create.php(14): CController->renderPartial('_form', Array)
+#11 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/saudeA...')
+#12 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/saudeA...', Array, true)
+#13 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/saudeA...', Array, true)
+#14 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('create', Array, true)
+#15 /var/www/saudeAuditivaSVN/protected/controllers/TriagemController.php(80): CController->render('create', Array)
+#16 /var/www/yii/framework/web/actions/CInlineAction.php(50): TriagemController->actionCreate()
+#17 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#18 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#19 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#20 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#21 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#22 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#23 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#24 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('create')
+#26 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('triagem/create')
+#27 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#28 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#29 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=triagem/create
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 15:16:43 [error] [php] Trying to get property of non-object (/var/www/saudeAuditivaSVN/protected/views/triagem/_form.php:83)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(870): TriagemController->renderFile()
+#1 /var/www/saudeAuditivaSVN/protected/views/triagem/create.php(14): TriagemController->renderPartial()
+#2 /var/www/yii/framework/web/CBaseController.php(127): require()
+#3 /var/www/yii/framework/web/CBaseController.php(96): TriagemController->renderInternal()
+#4 /var/www/yii/framework/web/CController.php(870): TriagemController->renderFile()
+#5 /var/www/yii/framework/web/CController.php(783): TriagemController->renderPartial()
+#6 /var/www/saudeAuditivaSVN/protected/controllers/TriagemController.php(80): TriagemController->render()
+#7 /var/www/yii/framework/web/actions/CInlineAction.php(50): TriagemController->actionCreate()
+#8 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(134): TriagemController->runAction()
+#10 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(1146): CAccessControlFilter->filter()
+#12 /var/www/yii/framework/web/filters/CInlineFilter.php(59): TriagemController->filterAccessControl()
+#13 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter()
+#14 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#15 /var/www/yii/framework/web/CController.php(266): TriagemController->runActionWithFilters()
+#16 /var/www/yii/framework/web/CWebApplication.php(283): TriagemController->run()
+#17 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController()
+#18 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /var/www/saudeAuditivaSVN/index.php(13): CWebApplication->run()
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=triagem/create
+in /var/www/saudeAuditivaSVN/protected/views/triagem/_form.php (83)
+in /var/www/saudeAuditivaSVN/protected/views/triagem/create.php (14)
+in /var/www/saudeAuditivaSVN/protected/controllers/TriagemController.php (80)
+2012/10/08 15:16:59 [error] [exception.CException] exception 'CException' with message 'A propriedade "Triagem.1" não está definida.' in /var/www/yii/framework/base/CComponent.php:131
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(144): CComponent->__get('1')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2158): CActiveRecord->__get('1')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1887): CHtml::resolveValue(Object(Triagem), '1')
+#3 /var/www/yii/framework/web/helpers/CHtml.php(1332): CHtml::activeInputField('hidden', Object(Triagem), '1', Array)
+#4 /var/www/saudeAuditivaSVN/protected/extensions/devAutoComplete.php(22): CHtml::activeHiddenField(Object(Triagem), '1')
+#5 /var/www/yii/framework/web/CBaseController.php(174): devAutoComplete->run()
+#6 /var/www/saudeAuditivaSVN/protected/views/triagem/_form.php(119): CBaseController->widget('ext.devAutoComp...', Array)
+#7 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/saudeA...')
+#8 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/saudeA...', Array, true)
+#9 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/saudeA...', Array, true)
+#10 /var/www/saudeAuditivaSVN/protected/views/triagem/create.php(14): CController->renderPartial('_form', Array)
+#11 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/saudeA...')
+#12 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/saudeA...', Array, true)
+#13 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/saudeA...', Array, true)
+#14 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('create', Array, true)
+#15 /var/www/saudeAuditivaSVN/protected/controllers/TriagemController.php(80): CController->render('create', Array)
+#16 /var/www/yii/framework/web/actions/CInlineAction.php(50): TriagemController->actionCreate()
+#17 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#18 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#19 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#20 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#21 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#22 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#23 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#24 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('create')
+#26 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('triagem/create')
+#27 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#28 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#29 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=triagem/create
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---
+2012/10/08 17:17:04 [error] [exception.CException] exception 'CException' with message 'A propriedade "Triagem.Triagem_paciente_r" não está definida.' in /var/www/yii/framework/base/CComponent.php:131
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(144): CComponent->__get('Triagem_pacient...')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2158): CActiveRecord->__get('Triagem_pacient...')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1887): CHtml::resolveValue(Object(Triagem), 'Triagem_pacient...')
+#3 /var/www/yii/framework/web/helpers/CHtml.php(1332): CHtml::activeInputField('hidden', Object(Triagem), 'Triagem_pacient...', Array)
+#4 /var/www/saudeAuditivaSVN/protected/extensions/devAutoComplete.php(22): CHtml::activeHiddenField(Object(Triagem), 'Triagem_pacient...')
+#5 /var/www/yii/framework/web/CBaseController.php(174): devAutoComplete->run()
+#6 /var/www/saudeAuditivaSVN/protected/views/triagem/_form.php(119): CBaseController->widget('ext.devAutoComp...', Array)
+#7 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/saudeA...')
+#8 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/saudeA...', Array, true)
+#9 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/saudeA...', Array, true)
+#10 /var/www/saudeAuditivaSVN/protected/views/triagem/create.php(14): CController->renderPartial('_form', Array)
+#11 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/saudeA...')
+#12 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/saudeA...', Array, true)
+#13 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/saudeA...', Array, true)
+#14 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('create', Array, true)
+#15 /var/www/saudeAuditivaSVN/protected/controllers/TriagemController.php(80): CController->render('create', Array)
+#16 /var/www/yii/framework/web/actions/CInlineAction.php(50): TriagemController->actionCreate()
+#17 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#18 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#19 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#20 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#21 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#22 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#23 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#24 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('create')
+#26 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('triagem/create')
+#27 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#28 /var/www/saudeAuditivaSVN/index.php(13): CApplication->run()
+#29 {main}
+REQUEST_URI=/saudeAuditivaSVN/index.php?r=triagem/create
+HTTP_REFERER=http://localhost/saudeAuditivaSVN/index.php?r=triagem/create
+---

@@ -21,7 +21,13 @@
 			border:solid thin grey;
 			background-color:#efefef;
 			padding: 5px 10px 5px 10px;
-      width:320px;
+     		 width:320px;
+		}
+		#infoPaciente .lastUpdate{
+			font-style: italic;
+			text-align: center;
+			margin-bottom: 10px;
+			margin-top: -15px;
 		}
 	</style>
 	<p class="note">Campos marcados com <span class="required">*</span> são obrigatórios.</p>
@@ -32,6 +38,7 @@
     
     <div id="infoPaciente">
     <h3 style="text-align:center">Identificação do Paciente</h3>
+    	<div class="lastUpdate"></div>
 		<table class="detail-view" id="yw0" >
 			<tr class="even">
 				<th>Nome</th><td class='nome'></td>
@@ -85,6 +92,7 @@
                 	'select'=>'js:function(event, ui) {
                 		$("#infoPaciente").css("display","block");
                 		$("#infoPaciente th").css("text-align","right");
+                		$("#infoPaciente .lastUpdate").html(ui.item.last_update);
                 		$("#infoPaciente .nome").html(ui.item.nome);
                 		$("#infoPaciente .hc").html(ui.item.hc);
                 		$("#infoPaciente .mae").html(ui.item.nome_mae);
@@ -98,13 +106,15 @@
                 		$("#infoPaciente .tel_trab").html(ui.item.telefone_trabalho);
                 		
                 		if(ui.item.genetica_id != null){
-                      $("#infoPaciente .aviso").html("<div style=\"color:red;\">Este paciente já possui genética cadastrada!</div>");
-                      $("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('paciente/update').'&id=\'+ui.item.genetica_id+\'">Editar genética do paciente</a>\');
-                    }else{
-                      $("#infoPaciente .aviso").empty();
-                      $("#infoPaciente .link").empty();
-                    }
-                	}'
+	                      $("#infoPaciente .aviso").html("<div style=\"color:red;\">Este paciente já possui genética cadastrada!</div>");
+	                      
+	                    }else{
+	                      $("#infoPaciente .aviso").empty();
+	                      $("#infoPaciente .link").empty();
+	    				}
+                		
+                		$("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('paciente/update').'&id=\'+ui.item.pacienteID+\'">Atualizar dados cadastrais</a>\');
+               		}'
                 ),
                 'htmlOptions'=>array('size'=>45),
             ));}else{

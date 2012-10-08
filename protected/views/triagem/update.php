@@ -14,7 +14,17 @@ $this->menu=array(
 	array('label'=>'Gerenciar Triagem', 'url'=>array('admin')),
 );
 ?>
+<style>
+	.alinhamento{display:inline-block;}
+	.direita{float: right;}
+	.esquerda{float:left;}
+	
+</style>
 
-<h1>Editar dados de triagem de <?php echo $model->pacienteR->nome; ?></h1>
+
+<div>
+	<div class='alinhamento'><h1>Editar dados de triagem de <?php echo $model->pacienteR->nome; ?></h1></div>
+	<div class='alinhamento direita'>última atualização: <i><?php echo $model->last_update; ?></i></div>
+</div>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

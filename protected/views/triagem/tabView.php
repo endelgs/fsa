@@ -11,13 +11,16 @@ $model->tipo_exame = strtoupper($model->tipo_exame);
 <style>
 	.linha{}
 	.alinhamento{display:inline-block;}
+	.direita{float: right;}
 	.item50{width:50%;}
 	.item40{width:40%;}
 	.item30{width:30%;}
 	.item20{width:20%;}
 	.item10{width:10%;}
 </style>
-
+<div class='direita'>
+	última atualização <?php echo $model->last_update ;?>
+</div>
 <p class='linha'>
 	<div class="item30 alinhamento">
 		<b><span>Peso:</span></b> <?php echo CHtml::encode($model->peso); ?>
@@ -66,6 +69,9 @@ $model->tipo_exame = strtoupper($model->tipo_exame);
 		<b><span>Tipo exame:</span></b> <?php echo CHtml::encode($model->tipo_exame); ?>
 	</div>
 	<div class="item30 alinhamento">
-		<b><span>Resultado:</span></b> <?php echo CHtml::encode($model->resultado); ?>
+		<b><span>Resultado Ouvido Esquerdo:</span></b> <?php echo CHtml::encode($model->resultado_esquerdo); ?>
+	</div>
+	<div class="item30 alinhamento">
+		<b><span>Resultado Ouvido Direito:</span></b> <?php echo CHtml::encode($model->resultado_direito); ?>
 	</div>
 </p>

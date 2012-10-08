@@ -57,7 +57,8 @@ or <b>=</b>) no começo de cada valor de busca para especificar como a comparaç
 		'termo',
 		'crescimento',
 		'tipo_exame',
-		'resultado',
+		'resultado_esquerdo',
+		'resultado_direito',
 		'indicadores_risco',
 		'paciente_r',
 		*/

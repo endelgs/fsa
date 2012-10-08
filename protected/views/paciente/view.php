@@ -11,6 +11,8 @@ $this->breadcrumbs=array(
 <style>
 	.linha{}
 	.alinhamento{display:inline-block;}
+	.direita{float: right;}
+	.esquerda{float:left;}
 	.item50{width:50%;}
 	.item40{width:40%;}
 	.item30{width:30%;}
@@ -26,7 +28,10 @@ $this->breadcrumbs=array(
 	}
 </style>
 
-<h2>Perfil completo de <?php echo $model->nome; ?></h2>
+<div>
+	<div class='alinhamento'><h2>Perfil completo de <?php echo $model->nome; ?></h2></div>
+	<div class='alinhamento direita'>última atualização: <i><?php echo $model->last_update; ?></i></div>
+</div>
 <p class='linha'>
 		<div class="item50 alinhamento">
 			<span>Nome:</span><b> <?php echo CHtml::encode($model->nome); ?></b>

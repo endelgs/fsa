@@ -4,11 +4,7 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-<h1>Bem-vindo ao sistema de registro de pacientes.</h1>
-
-<p>Este sistema foi desenvolvido para auxiliar na organização e dar agilidade 
-em processos cotidianos dentro da UTI neonatal do Hospital das Clínicas da Unicamp.</p>
-
+<h1>Bem-vindo ao sistema de gerenciamento de dados do Programa de Saúde Auditiva</h1>
 
 </p>
 <h3>O que você deseja fazer?</h3>

@@ -16,8 +16,10 @@
  * @property string $telefone_fixo
  * @property string $telefone_movel
  * @property string $telefone_trabalho
+ * @property string $last_update
  *
  * The followings are the available model relations:
+ * @property Genetica[] $geneticas
  * @property Triagem[] $triagems
  */
 class Paciente extends CActiveRecord
@@ -48,7 +50,7 @@ class Paciente extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nome, hc, nome_mae, hc_mae, data_nascimento, sexo, endereco, cidade, telefone_fixo, telefone_movel, telefone_trabalho', 'required'),
+			array('nome, hc, nome_mae, hc_mae, data_nascimento', 'required'),
 			array('hc, hc_mae', 'numerical', 'integerOnly'=>true),
 			array('nome, nome_mae', 'length', 'max'=>250),
 			array('sexo', 'length', 'max'=>9),
@@ -69,7 +71,8 @@ class Paciente extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'triagemR' => array(self::HAS_MANY, 'Triagem', 'paciente_r'),
+			'geneticas' => array(self::HAS_MANY, 'Genetica', 'paciente_r'),
+			'triagems' => array(self::HAS_MANY, 'Triagem', 'paciente_r'),
 		);
 	}
 
@@ -91,6 +94,7 @@ class Paciente extends CActiveRecord
 			'telefone_fixo' => 'Telefone Fixo',
 			'telefone_movel' => 'Telefone Móvel',
 			'telefone_trabalho' => 'Telefone Trabalho',
+			'last_update' => 'Última Atualização',
 		);
 	}
 
@@ -117,6 +121,8 @@ class Paciente extends CActiveRecord
 		$criteria->compare('telefone_fixo',$this->telefone_fixo,true);
 		$criteria->compare('telefone_movel',$this->telefone_movel,true);
 		$criteria->compare('telefone_trabalho',$this->telefone_trabalho,true);
+		$criteria->compare('last_update',$this->last_update,true);
+		
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -126,6 +132,7 @@ class Paciente extends CActiveRecord
 	protected function afterFind(){
 		parent::afterFind();
 		$this->data_nascimento=date('d/m/Y', strtotime(str_replace("-", "", $this->data_nascimento)));
+		$this->last_update=date('d/m/Y - G:i', strtotime(str_replace("-", "", $this->last_update)))."h";
 	}
 	
 	protected function beforeSave(){
@@ -140,8 +147,19 @@ class Paciente extends CActiveRecord
 	public static function pacienteAutoComplete($name='') {
 		$sql = '
 		SELECT 
-			*,
+			paciente.id,
+			paciente.nome,
+			paciente.hc,
+			paciente.hc_mae,
+			paciente.nome_mae,
+			paciente.sexo,
+			paciente.endereco,
+			paciente.cidade,
+			paciente.telefone_fixo,
+			paciente.telefone_movel,
+			paciente.telefone_trabalho,
 			date_format(data_nascimento, "%d/%m/%Y") as data_nascimento,
+			date_format(paciente.last_update, "%d/%m/%Y - %H:%i h") as last_update,
 			CONCAT(hc,\' - \',nome) as label,
 			triagem.id as triagem_id,
 			genetica.id as genetica_id
@@ -153,9 +171,6 @@ class Paciente extends CActiveRecord
 			nome LIKE :qterm OR hc LIKE :qterm';
 		$sql .= ' GROUP BY paciente.id';
 		$sql .= ' ORDER BY paciente.nome ASC';
-		
-		
-		
 		
 		$command = Yii::app()->db->createCommand($sql);
 		$qterm = $name.'%';

@@ -54,8 +54,12 @@
 	<?php echo CHtml::encode($data->tipo_exame); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('resultado')); ?>:</b>
-	<?php echo CHtml::encode($data->resultado); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('resultado_esquerdo')); ?>:</b>
+	<?php echo CHtml::encode($data->resultado_esquerdo); ?>
+	<br />
+	
+	<b><?php echo CHtml::encode($data->getAttributeLabel('resultado_direito')); ?>:</b>
+	<?php echo CHtml::encode($data->resultado_direito); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('indicadores_risco')); ?>:</b>

@@ -70,6 +70,7 @@ class GeneticaController extends Controller
 		if(isset($_POST['Genetica']))
 		{
 			$model->attributes=$_POST['Genetica'];
+			$model->last_update=new CDbExpression('NOW()');
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -94,6 +95,7 @@ class GeneticaController extends Controller
 		if(isset($_POST['Genetica']))
 		{
 			$model->attributes=$_POST['Genetica'];
+			$model->last_update=new CDbExpression('NOW()');
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
