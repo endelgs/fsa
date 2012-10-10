@@ -53,6 +53,7 @@ class ServicoSocialController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+      'provider' => new CActiveDataProvider('ServicoSocialIrmao',array('criteria' => array('condition' => 'servico_social_r='.$id)))
 		));
 	}
 
@@ -77,6 +78,7 @@ class ServicoSocialController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+      //'provider' => new CActiveDataProvider('ServicoSocialIrmao',array('criteria' => array('condition' => 'servico_social_r='.$id)));
 		));
 	}
 

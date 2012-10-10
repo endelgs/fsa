@@ -268,6 +268,9 @@
 	</div>
 
 	<?php
+      $woProvider = new CActiveDataProvider('ServicoSocialIrmao', array(
+        'criteria'=>$model->ID,
+    ));
 		$this->widget('ext.htmltableui.htmlTableUi',array(
 		    'ajaxUrl'=>'servicoSocialIrmao/create',
 		    'arProvider'=>'',    
@@ -278,9 +281,6 @@
 		    'enableSort'=>true,
 		    'extra'=>'Additional Information',
 		    'formTitle'=>'Editar Dados Irmão',
-		    'rows'=>array(
-		    	array('Joao','23','Superior Completo','Desenvolvedor Web','R$800,00'),
-		    ),
 		    'sortColumn'=>2,
 		    'sortOrder'=>'desc',
 		    'title'=>'Irmãos',
@@ -295,7 +295,7 @@
 	</div>
 	<?php
 		$this->widget('ext.htmltableui.htmlTableUi',array(
-		    'ajaxUrl'=>'servicoSocialIrmao/create',
+		    'ajaxUrl'=>'servicoSocialIrmao/update',
 		    'arProvider'=>'',    
 		    'collapsed'=>false,
 		    'columns'=>array('Nome','Idade','Escolaridade','Profissão','Salário'),
@@ -304,9 +304,6 @@
 		    'enableSort'=>true,
 		    'extra'=>'Additional Information',
 		    'formTitle'=>'Editar Dados Irmão',
-		    'rows'=>array(
-		    	array('Joao','23','Superior Completo','Desenvolvedor Web','R$800,00'),
-		    ),
 		    'sortColumn'=>2,
 		    'sortOrder'=>'desc',
 		    'title'=>'Irmãos',

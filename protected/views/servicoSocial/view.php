@@ -112,20 +112,17 @@ $this->breadcrumbs=array(
 		</div>
 	</div>
 
-	<?php
+	<?php    
+  print_r($provider);
 		$this->widget('ext.htmltableui.htmlTableUi',array(
-		    'ajaxUrl'=>'servicoSocialIrmao/create',
-		    'arProvider'=>'',    
+		    'ajaxUrl'=>'servicoSocialIrmao/updateDataGrid',
+		    'arProvider'=> $provider,    
 		    'collapsed'=>false,
-		    'columns'=>array('Nome','Idade','Escolaridade','Profissão','Salário'),
 		    'cssFile'=>'',
 		    'editable'=>true,
 		    'enableSort'=>true,
 		    'extra'=>'Additional Information',
 		    'formTitle'=>'Editar Dados Irmão',
-		    'rows'=>array(
-		    	array('Joao','23','Superior Completo','Desenvolvedor Web','R$800,00'),
-		    ),
 		    'sortColumn'=>2,
 		    'sortOrder'=>'desc',
 		    'title'=>'Irmãos',

@@ -28,7 +28,7 @@ class ServicoSocialIrmaoController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','updateDataGrid'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -74,9 +74,6 @@ class ServicoSocialIrmaoController extends Controller
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
 	}
 
 	/**
@@ -87,7 +84,7 @@ class ServicoSocialIrmaoController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
+    file_put_contents(dirname(__FILE__).'post.txt',print_r($_POST,1));
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
@@ -102,6 +99,16 @@ class ServicoSocialIrmaoController extends Controller
 			'model'=>$model,
 		));
 	}
+  public function actionUpdateDataGrid(){
+    //file_put_contents(dirname(__FILE__).'post.txt',print_r($_POST,1));
+    $i = 0;
+    while(isset($_POST['row-'.$i])){
+      $model = $this->loadModel($_POST['row-'.$i]['id']);
+      $model->attributes = $_POST['row-'.$i];
+			$model->save();
+      $i++;
+    }
+  }
 
 	/**
 	 * Deletes a particular model.
