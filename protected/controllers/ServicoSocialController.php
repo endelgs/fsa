@@ -70,6 +70,7 @@ class ServicoSocialController extends Controller
 		if(isset($_POST['ServicoSocial']))
 		{
 			$model->attributes=$_POST['ServicoSocial'];
+			$model->last_update=new CDbExpression('NOW()');
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

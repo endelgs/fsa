@@ -29,9 +29,8 @@
  * @property integer $renda_per_capita
  * @property string $beneficio_social
  * @property string $outros_situacao_economica
- * @property string $casa_propria
+ * @property string $casa_tipo
  * @property string $casa_alugada
- * @property string $casa_cedida
  * @property string $casa_outros
  * @property string $tipo_construcao
  * @property integer $n_comodos
@@ -74,16 +73,17 @@ class ServicoSocial extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nome_mae, data_nascimento_mae, escolaridade_mae, profissao_mae, local_trabalho_mae, telefone_trabalho_mae, nome_pai, data_nascimento_pai, escolaridade_pai, profissao_pai, local_trabalho_pai, telefone_trabalho_pai, responsavel_crianca, familia, familia_outros, uniao, uniao_outro, residentes_familia, renda_total, quem_contribui, n_pessoas_casa, renda_per_capita, beneficio_social, outros_situacao_economica, casa_propria, casa_alugada, casa_cedida, casa_outros, tipo_construcao, n_comodos, transporte_utilizado, convenio_medico, centro_saude, sintese_atendimento, last_update, paciente_r', 'required'),
+			array('nome_mae, data_nascimento_mae, escolaridade_mae, profissao_mae, local_trabalho_mae, telefone_trabalho_mae, nome_pai, data_nascimento_pai, escolaridade_pai, profissao_pai, local_trabalho_pai, telefone_trabalho_pai, responsavel_crianca, familia, familia_outros, uniao, residentes_familia, renda_total, quem_contribui, n_pessoas_casa, renda_per_capita, casa_tipo, tipo_construcao, n_comodos, transporte_utilizado, sintese_atendimento, paciente_r', 'required'),
 			array('n_pessoas_casa, renda_per_capita, n_comodos, paciente_r', 'numerical', 'integerOnly'=>true),
-			array('nome_mae, escolaridade_mae, profissao_mae, local_trabalho_mae, nome_pai, escolaridade_pai, profissao_pai, local_trabalho_pai, responsavel_crianca, familia_outros, uniao_outro, quem_contribui, beneficio_social, outros_situacao_economica, casa_cedida, casa_outros, tipo_construcao, transporte_utilizado, convenio_medico, centro_saude', 'length', 'max'=>250),
+			array('nome_mae, escolaridade_mae, profissao_mae, local_trabalho_mae, nome_pai, escolaridade_pai, profissao_pai, local_trabalho_pai, responsavel_crianca, familia_outros, uniao_outro, quem_contribui, beneficio_social, outros_situacao_economica, casa_outros, tipo_construcao, transporte_utilizado, convenio_medico, centro_saude', 'length', 'max'=>250),
 			array('telefone_trabalho_mae, telefone_trabalho_pai', 'length', 'max'=>15),
 			array('familia', 'length', 'max'=>8),
 			array('uniao, renda_total, casa_alugada', 'length', 'max'=>10),
-			array('residentes_familia, casa_propria', 'length', 'max'=>5),
+			array('residentes_familia', 'length', 'max'=>5),
+			array('casa_tipo', 'length', 'max'=>7),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, nome_mae, data_nascimento_mae, escolaridade_mae, profissao_mae, local_trabalho_mae, telefone_trabalho_mae, nome_pai, data_nascimento_pai, escolaridade_pai, profissao_pai, local_trabalho_pai, telefone_trabalho_pai, responsavel_crianca, familia, familia_outros, uniao, uniao_outro, residentes_familia, renda_total, quem_contribui, n_pessoas_casa, renda_per_capita, beneficio_social, outros_situacao_economica, casa_propria, casa_alugada, casa_cedida, casa_outros, tipo_construcao, n_comodos, transporte_utilizado, convenio_medico, centro_saude, sintese_atendimento, last_update, paciente_r', 'safe', 'on'=>'search'),
+			array('id, nome_mae, data_nascimento_mae, escolaridade_mae, profissao_mae, local_trabalho_mae, telefone_trabalho_mae, nome_pai, data_nascimento_pai, escolaridade_pai, profissao_pai, local_trabalho_pai, telefone_trabalho_pai, responsavel_crianca, familia, familia_outros, uniao, uniao_outro, residentes_familia, renda_total, quem_contribui, n_pessoas_casa, renda_per_capita, beneficio_social, outros_situacao_economica, casa_tipo, casa_alugada, casa_outros, tipo_construcao, n_comodos, transporte_utilizado, convenio_medico, centro_saude, sintese_atendimento, last_update, paciente_r', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -97,6 +97,7 @@ class ServicoSocial extends CActiveRecord
 		return array(
 			'irmaoServicoSocials' => array(self::HAS_MANY, 'IrmaoServicoSocial', 'servico_social_r'),
 			'residentesFamiliaServicoSocials' => array(self::HAS_MANY, 'ResidentesFamiliaServicoSocial', 'servico_social_r'),
+			'pacienteR' => array(self::BELONGS_TO, 'Paciente', 'paciente_r'),
 		);
 	}
 
@@ -107,42 +108,41 @@ class ServicoSocial extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'nome_mae' => 'Nome Mae',
-			'data_nascimento_mae' => 'Data Nascimento Mae',
-			'escolaridade_mae' => 'Escolaridade Mae',
-			'profissao_mae' => 'Profissao Mae',
-			'local_trabalho_mae' => 'Local Trabalho Mae',
-			'telefone_trabalho_mae' => 'Telefone Trabalho Mae',
-			'nome_pai' => 'Nome Pai',
-			'data_nascimento_pai' => 'Data Nascimento Pai',
-			'escolaridade_pai' => 'Escolaridade Pai',
-			'profissao_pai' => 'Profissao Pai',
-			'local_trabalho_pai' => 'Local Trabalho Pai',
-			'telefone_trabalho_pai' => 'Telefone Trabalho Pai',
-			'responsavel_crianca' => 'Responsavel Crianca',
-			'familia' => 'Familia',
-			'familia_outros' => 'Familia Outros',
-			'uniao' => 'Uniao',
-			'uniao_outro' => 'Uniao Outro',
-			'residentes_familia' => 'Residentes Familia',
+			'nome_mae' => 'Nome da Mãe',
+			'data_nascimento_mae' => 'Data de Nascimento',
+			'escolaridade_mae' => 'Escolaridade',
+			'profissao_mae' => 'Profissão',
+			'local_trabalho_mae' => 'Local de Trabalho',
+			'telefone_trabalho_mae' => 'Telefone de Trabalho',
+			'nome_pai' => 'Nome do Pai',
+			'data_nascimento_pai' => 'Data de Nascimento',
+			'escolaridade_pai' => 'Escolaridade',
+			'profissao_pai' => 'Profissão',
+			'local_trabalho_pai' => 'Local de Trabalho',
+			'telefone_trabalho_pai' => 'Telefone de Trabalho',
+			'responsavel_crianca' => 'Responsável pela Criança',
+			'familia' => 'Família',
+			'familia_outros' => 'Outros',
+			'uniao' => 'União',
+			'uniao_outro' => 'Outros',
+			'residentes_familia' => 'Há pessoas residindo com a família?',
 			'renda_total' => 'Renda Total',
 			'quem_contribui' => 'Quem Contribui',
-			'n_pessoas_casa' => 'N Pessoas Casa',
+			'n_pessoas_casa' => 'Nº de pessoas na casa',
 			'renda_per_capita' => 'Renda Per Capita',
-			'beneficio_social' => 'Beneficio Social',
-			'outros_situacao_economica' => 'Outros Situacao Economica',
-			'casa_propria' => 'Casa Propria',
+			'beneficio_social' => 'Benefício Social',
+			'outros_situacao_economica' => 'Outros',
+			'casa_tipo' => 'Casa',
 			'casa_alugada' => 'Casa Alugada',
-			'casa_cedida' => 'Casa Cedida',
 			'casa_outros' => 'Casa Outros',
-			'tipo_construcao' => 'Tipo Construcao',
-			'n_comodos' => 'N Comodos',
-			'transporte_utilizado' => 'Transporte Utilizado',
-			'convenio_medico' => 'Convenio Medico',
-			'centro_saude' => 'Centro Saude',
-			'sintese_atendimento' => 'Sintese Atendimento',
+			'tipo_construcao' => 'Tipo de Construção',
+			'n_comodos' => 'Nº de Cômodos',
+			'transporte_utilizado' => 'Tipo de transporte utilizado para vir ao CEPRE',
+			'convenio_medico' => 'Convênio Médico Particular',
+			'centro_saude' => 'Centro de Saúde',
+			'sintese_atendimento' => 'Síntese do Atendimento',
 			'last_update' => 'Last Update',
-			'paciente_r' => 'Paciente R',
+			'paciente_r' => 'Paciente',
 		);
 	}
 
@@ -182,9 +182,8 @@ class ServicoSocial extends CActiveRecord
 		$criteria->compare('renda_per_capita',$this->renda_per_capita);
 		$criteria->compare('beneficio_social',$this->beneficio_social,true);
 		$criteria->compare('outros_situacao_economica',$this->outros_situacao_economica,true);
-		$criteria->compare('casa_propria',$this->casa_propria,true);
+		$criteria->compare('casa_tipo',$this->casa_tipo,true);
 		$criteria->compare('casa_alugada',$this->casa_alugada,true);
-		$criteria->compare('casa_cedida',$this->casa_cedida,true);
 		$criteria->compare('casa_outros',$this->casa_outros,true);
 		$criteria->compare('tipo_construcao',$this->tipo_construcao,true);
 		$criteria->compare('n_comodos',$this->n_comodos);

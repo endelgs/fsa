@@ -24,6 +24,9 @@
 }
 
 .alinhamento{float:left;margin-right: 12px;}
+
+#yw0{width:500px;float:left;}
+#yw1{width:500px;float:left;}
 </style>
 <div class="form">
 
@@ -91,6 +94,8 @@
 		                'options'=>array(
 		                	'minLength'=>'1',
 		                	'select'=>'js:function(event, ui) {
+		                		$("#ServicoSocial_paciente_r").val(ui.item.id);//linha mto importante é o que faz funcionar o autocomplete heheheh
+		                		
 		                		$("#infoPaciente").css("display","block");
 		                		$("#infoPaciente th").css("text-align","right");
 		                		$("#infoPaciente .lastUpdate").html("última atualização em "+ui.item.last_update);
@@ -263,133 +268,140 @@
 	</div>
 
 	<?php
-		/*$this->widget('zii.widgets.grid.CGridView', array(
-		    'id' => 'my-model-grid',
-		    'dataProvider' => ServicoSocialIrmao::model(),
-		    'filter' => $model,
-		    'columns' => array(
-		        'nome',
-		        array(
-		            'name' => 'nome',
-		            'value' => '$data->nome',
-		            'filter' => Html::listData(ServicoSocialIrmao::model()->findAll(),'id','nome'),
-		        ),
+		$this->widget('ext.htmltableui.htmlTableUi',array(
+		    'ajaxUrl'=>'servicoSocialIrmao/create',
+		    'arProvider'=>'',    
+		    'collapsed'=>false,
+		    'columns'=>array('Nome','Idade','Escolaridade','Profissão','Salário'),
+		    'cssFile'=>'',
+		    'editable'=>true,
+		    'enableSort'=>true,
+		    'extra'=>'Additional Information',
+		    'formTitle'=>'Editar Dados Irmão',
+		    'rows'=>array(
+		    	array('Joao','23','Superior Completo','Desenvolvedor Web','R$800,00'),
 		    ),
-		));*/
+		    'sortColumn'=>2,
+		    'sortOrder'=>'desc',
+		    'title'=>'Irmãos',
+		));
 	?>
-	
+	<br/>
+	<div style="width:500px"><hr/></div>
 	<div class="row">
-		<?php echo $form->labelEx($model,'residentes_familia'); ?>
-		<?php echo $form->textField($model,'residentes_familia',array('size'=>5,'maxlength'=>5)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+		<div class="alinhamento"><?php echo $form->labelEx($model,'residentes_familia'); ?></div>
+		<?php echo $form->checkBox($model,'residentes_familia',array('value'=>'true', 'uncheckValue'=>'false')); ?>
 		<?php echo $form->error($model,'residentes_familia'); ?>
 	</div>
-
+	<?php
+		$this->widget('ext.htmltableui.htmlTableUi',array(
+		    'ajaxUrl'=>'servicoSocialIrmao/create',
+		    'arProvider'=>'',    
+		    'collapsed'=>false,
+		    'columns'=>array('Nome','Idade','Escolaridade','Profissão','Salário'),
+		    'cssFile'=>'',
+		    'editable'=>true,
+		    'enableSort'=>true,
+		    'extra'=>'Additional Information',
+		    'formTitle'=>'Editar Dados Irmão',
+		    'rows'=>array(
+		    	array('Joao','23','Superior Completo','Desenvolvedor Web','R$800,00'),
+		    ),
+		    'sortColumn'=>2,
+		    'sortOrder'=>'desc',
+		    'title'=>'Irmãos',
+		));
+	?>
+	<br/>
+	<div style="width:500px"><hr/></div>
+	<h2>Situação Econômica</h2>
 	<div class="row">
-		<?php echo $form->labelEx($model,'renda_total'); ?>
-		<?php echo $form->textField($model,'renda_total',array('size'=>10,'maxlength'=>10)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
-		<?php echo $form->error($model,'renda_total'); ?>
+		<div  class="alinhamento">
+			<?php echo $form->labelEx($model,'renda_total'); ?>
+			<?php echo $form->textField($model,'renda_total',array('size'=>10,'maxlength'=>10)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+			<?php echo $form->error($model,'renda_total'); ?>
+		</div>
+		<div>
+			<?php echo $form->labelEx($model,'quem_contribui'); ?>
+			<?php echo $form->textField($model,'quem_contribui',array('size'=>56,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+			<?php echo $form->error($model,'quem_contribui'); ?>
+		</div>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'quem_contribui'); ?>
-		<?php echo $form->textField($model,'quem_contribui',array('size'=>60,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
-		<?php echo $form->error($model,'quem_contribui'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'n_pessoas_casa'); ?>
-		<?php echo $form->textField($model,'n_pessoas_casa'). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
-		<?php echo $form->error($model,'n_pessoas_casa'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'renda_per_capita'); ?>
-		<?php echo $form->textField($model,'renda_per_capita'). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
-		<?php echo $form->error($model,'renda_per_capita'); ?>
+		<div class="alinhamento">
+			<?php echo $form->labelEx($model,'n_pessoas_casa'); ?>
+			<?php echo $form->textField($model,'n_pessoas_casa',array('size'=>20)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+			<?php echo $form->error($model,'n_pessoas_casa'); ?>
+		</div>
+		<div>
+			<?php echo $form->labelEx($model,'renda_per_capita'); ?>
+			<?php echo $form->textField($model,'renda_per_capita',array('size'=>50)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+			<?php echo $form->error($model,'renda_per_capita'); ?>
+		</div>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'beneficio_social'); ?>
-		<?php echo $form->textField($model,'beneficio_social',array('size'=>60,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+		<?php echo $form->textField($model,'beneficio_social',array('size'=>77,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
 		<?php echo $form->error($model,'beneficio_social'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'outros_situacao_economica'); ?>
-		<?php echo $form->textField($model,'outros_situacao_economica',array('size'=>60,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+		<?php echo $form->textField($model,'outros_situacao_economica',array('size'=>77,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
 		<?php echo $form->error($model,'outros_situacao_economica'); ?>
 	</div>
-
+	<br/>
+	<div style="width:500px"><hr/></div>
+	<h2>Habitação</h2>
 	<div class="row">
-		<?php echo $form->labelEx($model,'casa_propria'); ?>
-		<?php echo $form->textField($model,'casa_propria',array('size'=>5,'maxlength'=>5)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
-		<?php echo $form->error($model,'casa_propria'); ?>
+		<?php echo $form->labelEx($model,'casa_tipo'); ?>
+		<?php echo $form->radioButton($model, 'casa_tipo', array('value'=>'propria','uncheckValue'=>null))." Própria";?>
+		<?php echo $form->radioButton($model, 'casa_tipo', array('value'=>'alugada','uncheckValue'=>null))." Alugada";?>
+		<?php echo $form->textField($model,'casa_alugada',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->radioButton($model, 'casa_tipo', array('value'=>'cedida','uncheckValue'=>null))." Cedida";?>
+		<?php echo $form->textField($model,'casa_outros',array('size'=>28,'maxlength'=>250)); ?>
 	</div>
-
 	<div class="row">
-		<?php echo $form->labelEx($model,'casa_alugada'); ?>
-		<?php echo $form->textField($model,'casa_alugada',array('size'=>10,'maxlength'=>10)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
-		<?php echo $form->error($model,'casa_alugada'); ?>
+		<div class="alinhamento">
+			<?php echo $form->labelEx($model,'tipo_construcao'); ?>
+			<?php echo $form->textField($model,'tipo_construcao',array('size'=>55,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+			<?php echo $form->error($model,'tipo_construcao'); ?>
+		</div>
+	
+		<div>
+			<?php echo $form->labelEx($model,'n_comodos'); ?>
+			<?php echo $form->textField($model,'n_comodos',array('size'=>13)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+			<?php echo $form->error($model,'n_comodos'); ?>
+		</div>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'casa_cedida'); ?>
-		<?php echo $form->textField($model,'casa_cedida',array('size'=>60,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
-		<?php echo $form->error($model,'casa_cedida'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'casa_outros'); ?>
-		<?php echo $form->textField($model,'casa_outros',array('size'=>60,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
-		<?php echo $form->error($model,'casa_outros'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'tipo_construcao'); ?>
-		<?php echo $form->textField($model,'tipo_construcao',array('size'=>60,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
-		<?php echo $form->error($model,'tipo_construcao'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'n_comodos'); ?>
-		<?php echo $form->textField($model,'n_comodos'). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
-		<?php echo $form->error($model,'n_comodos'); ?>
-	</div>
-
+	<br/>
+	<div style="width:500px"><hr/></div>
+	<h2>Outros</h2>
 	<div class="row">
 		<?php echo $form->labelEx($model,'transporte_utilizado'); ?>
-		<?php echo $form->textField($model,'transporte_utilizado',array('size'=>60,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+		<?php echo $form->textField($model,'transporte_utilizado',array('size'=>77,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
 		<?php echo $form->error($model,'transporte_utilizado'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'convenio_medico'); ?>
-		<?php echo $form->textField($model,'convenio_medico',array('size'=>60,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+		<?php echo $form->textField($model,'convenio_medico',array('size'=>77,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
 		<?php echo $form->error($model,'convenio_medico'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'centro_saude'); ?>
-		<?php echo $form->textField($model,'centro_saude',array('size'=>60,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+		<?php echo $form->textField($model,'centro_saude',array('size'=>77,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
 		<?php echo $form->error($model,'centro_saude'); ?>
 	</div>
-
+	<br/>
+	<div style="width:500px"><hr/></div>
+	<h2><?php echo $form->labelEx($model,'sintese_atendimento'); ?></h2>
 	<div class="row">
-		<?php echo $form->labelEx($model,'sintese_atendimento'); ?>
-		<?php echo $form->textArea($model,'sintese_atendimento',array('rows'=>6, 'cols'=>50)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+		<?php echo $form->textArea($model,'sintese_atendimento',array('rows'=>6, 'cols'=>60)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
 		<?php echo $form->error($model,'sintese_atendimento'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'last_update'); ?>
-		<?php echo $form->textField($model,'last_update'). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
-		<?php echo $form->error($model,'last_update'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'paciente_r'); ?>
-		<?php echo $form->textField($model,'paciente_r'). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
-		<?php echo $form->error($model,'paciente_r'); ?>
 	</div>
 
 	<div class="row buttons">

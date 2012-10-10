@@ -91,6 +91,8 @@
 		                'options'=>array(
 		                	'minLength'=>'1',
 		                	'select'=>'js:function(event, ui) {
+		                		$("#Genetica_paciente_r").val(ui.item.id);//linha mto importante é o que faz funcionar o autocomplete heheheh
+		                		
 		                		$("#infoPaciente").css("display","block");
 		                		$("#infoPaciente th").css("text-align","right");
 		                		$("#infoPaciente .lastUpdate").html("última atualização em "+ui.item.last_update);

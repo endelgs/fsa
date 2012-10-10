@@ -21,6 +21,15 @@ class SiteController extends Controller
 		);
 	}
 
+	public function actionHandleHtmlTable(){
+		sleep(2);
+		if(isset($_POST)){
+			//return the POST variable back
+			//the widget will show an alert() with this data
+			print_r($_POST);
+		}
+	}
+	
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
