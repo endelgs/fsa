@@ -1,0 +1,29 @@
+Array
+(
+    [id] => yw0
+    [title] => Irmãos
+    [subtitle] => 
+    [extra] => Additional Information
+    [columns] => Array
+        (
+            [0] => id
+            [1] => nome
+            [2] => escolaridade
+            [3] => profissao
+            [4] => salario
+            [5] => servico_social_r
+        )
+
+    [row-0] => Array
+        (
+            [id] => 2
+            [nome] => Joãosss
+            [escolaridade] => Superior Completo
+            [profissao] => Programadors
+            [salario] => 2000
+            [servico_social_r] => 1
+        )
+
+    [footer] => 
+    [timezone] => 3
+)
