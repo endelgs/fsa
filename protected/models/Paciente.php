@@ -50,7 +50,7 @@ class Paciente extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nome, hc, nome_mae, hc_mae, data_nascimento', 'required'),
+			array('nome, nome_mae, hc_mae, data_nascimento', 'required'),
 			array('hc, hc_mae', 'numerical', 'integerOnly'=>true),
 			array('nome, nome_mae', 'length', 'max'=>250),
 			array('sexo', 'length', 'max'=>9),

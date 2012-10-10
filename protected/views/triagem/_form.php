@@ -94,7 +94,7 @@
           				
 			            $("#infoPaciente").css("display","block");
 			            $("#infoPaciente th").css("text-align","right");
-			          	$("#infoPaciente .lastUpdate").html(ui.item.last_update);
+			          	$("#infoPaciente .lastUpdate").html("última atualização em "+ui.item.last_update);
 			            $("#infoPaciente .nome").html(ui.item.nome);
 			            $("#infoPaciente .hc").html(ui.item.hc);
 			            $("#infoPaciente .mae").html(ui.item.nome_mae);

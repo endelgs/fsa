@@ -51,7 +51,7 @@
             	),
             	array('label'=>'Assistência Social',
             		'items'=>array(
-            			array('label'=>'Cadastrar dados de assistência social*'),
+            			array('label'=>'Cadastrar dados de assistência social', 'url'=>array('servicoSocial/create')),
             			array('label'=>'Gerenciar dados de assistência social*'),
             		),
             	),
@@ -62,6 +62,7 @@
             		),
             	),
             	array('label'=>'Agenda*'),
+            	array('label'=>'Monitoramento', 'url'=>array('/paciente/admin')),
             	array('label'=>'Sair do sistema', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
             ),
     )); ?>
