@@ -1,21 +1,14 @@
 <?php
-/* @var $this GeneticaController */
-/* @var $model Genetica */
-
-$this->breadcrumbs=array(
-	'Serviço Social'=>array('admin'),
-	$model->pacienteR->nome,
-);
+/* @var $this ServicoSocialController */
+/* @var $model ServicoSocial */
 
 $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
  ?>
  
 <style>
 	.linha{}
-	.alinhamento{float:left;}
+	.alinhamento{display:inline-block;}
 	.direita{float: right;}
-	.esquerda{float:left;}
-	.margem{ margin-right:15px;}
 	.item50{width:50%;}
 	.item40{width:40%;}
 	.item30{width:30%;}
@@ -23,18 +16,16 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 	.item10{width:10%;}
 </style>
 
-<div>
-	<div class='alinhamento'><h1>Dados de Serviço Social do Paciente: <?php echo $model->pacienteR->nome; ?></h1></div>
-	<div class='alinhamento direita'>última atualização: <i><?php echo $model->last_update; ?></i></div>
+<div class='direita'>
+	última atualização <?php echo $model->last_update ;?>
 </div>
-<br/><br/><br/>
 <h2>Situação Familiar</h2>
 	<p class="row">
 		<div class="alinhamento item50">
 			<b><span>Nome da Mãe:</span></b> <?php echo CHtml::encode($model->nome_mae); ?>
 		</div>
 
-		<div>
+		<div class="alinhamento">
 			<b><span>Data Nascimento:</span></b> <?php echo CHtml::encode($model->data_nascimento_mae); ?>
 		</div>
 	</p>
@@ -44,7 +35,7 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 			<b><span>Escolaridade:</span></b> <?php echo CHtml::encode($model->escolaridade_mae); ?>
 		</div>
 
-		<div>
+		<div class="alinhamento">
 			<b><span>Profissão:</span></b> <?php echo CHtml::encode($model->profissao_mae); ?>
 		</div>
 	</p>
@@ -54,7 +45,7 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 			<b><span>Local de trabalho:</span></b> <?php echo CHtml::encode($model->local_trabalho_mae); ?>
 		</div>
 
-		<div>
+		<div class="alinhamento">
 			<b><span>Telefone do Trabalho:</span></b> <?php echo CHtml::encode($model->telefone_trabalho_mae); ?>
 		</div>
 	</p>
@@ -65,7 +56,7 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 			<b><span>Nome do Pai:</span></b> <?php echo CHtml::encode($model->nome_pai); ?>
 		</div>
 	
-		<div>
+		<div class="alinhamento">
 			<b><span>Data Nascimento:</span></b> <?php echo CHtml::encode($model->data_nascimento_pai); ?>
 		</div>
 	</p>
@@ -75,7 +66,7 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 			<b><span>Escolaridade:</span></b> <?php echo CHtml::encode($model->escolaridade_pai); ?>
 		</div>
 
-		<div>
+		<div class="alinhamento">
 			<b><span>Profissão do Pai:</span></b> <?php echo CHtml::encode($model->profissao_pai); ?>
 		</div>
 	</p>
@@ -84,7 +75,7 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 		<div class="alinhamento item50">
 			<b><span>Local de trabalho:</span></b> <?php echo CHtml::encode($model->local_trabalho_pai); ?>
 		</div>
-		<div>
+		<div class="alinhamento">
 			<b><span>Telefone do trabalho:</span></b> <?php echo CHtml::encode($model->telefone_trabalho_pai); ?>
 		</div>
 	</p>
@@ -109,7 +100,7 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 		<div class="alinhamento item50">
 			<b><span>União:</span></b> <?php echo CHtml::encode($model->uniao); ?>
 		</div>
-		<div>
+		<div class="alinhamento">
 			<b><span>Outro:</span></b> <?php echo CHtml::encode($model->uniao_outro); ?>
 		</div>
 	</p>
@@ -168,7 +159,7 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 		<div  class="alinhamento item50">
 			<b><span>Renda Total:</span></b> <?php echo CHtml::encode($model->renda_total); ?>
 		</div>
-		<div>
+		<div class="alinhamento">
 			<b><span>Quem contribui:</span></b> <?php echo CHtml::encode($model->quem_contribui); ?>
 		</div>
 	</p>
@@ -177,7 +168,7 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 		<div class="alinhamento item50">
 			<b><span>Nº pessoas na casa:</span></b> <?php echo CHtml::encode($model->n_pessoas_casa); ?>
 		</div>
-		<div>
+		<div class="alinhamento">
 			<b><span>Renda per Capita:</span></b> <?php echo CHtml::encode($model->renda_per_capita); ?>
 		</div>
 	</p>
@@ -209,7 +200,7 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 			<b><span>Tipo de Construção:</span></b> <?php echo CHtml::encode($model->tipo_construcao); ?>
 		</div>
 	
-		<div>
+		<div class="alinhamento">
 			<b><span>Nº de Cômodos:</span></b> <?php echo CHtml::encode($model->n_comodos); ?>
 		</div>
 	</p>

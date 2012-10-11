@@ -3,18 +3,33 @@
 /* @var $model ServicoSocial */
 
 $this->breadcrumbs=array(
-	'Servico Socials'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
+	'Serviço Social'=>array('index'),
+	$model->pacienteR->nome=>array('view','id'=>$model->id),
 	'Editar',
 );
 
 $this->menu=array(
-	array('label'=>'Inserir ServicoSocial', 'url'=>array('create')),
-	array('label'=>'Visualizar ServicoSocial', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Gerenciar ServicoSocial', 'url'=>array('admin')),
+	array('label'=>'Inserir Serviço Social', 'url'=>array('create')),
+	array('label'=>'Visualizar Serviço Social', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Gerenciar Serviço Social', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Editar ServicoSocial <?php echo $model->id; ?></h1>
+<style>
+	.alinhamento{display:inline-block;}
+	.direita{float: right;}
+	.esquerda{float:left;}
+</style>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+
+<div>
+	<div class='alinhamento'><h1>Editar dados de Serviço Social de <?php echo $model->pacienteR->nome; ?></h1></div>
+	<div class='alinhamento direita'>última atualização: <i><?php echo $model->last_update; ?></i></div>
+</div><br/><br/><br/>
+
+<?php echo $this->renderPartial('_form', array(
+		'model'=>$model,
+		'modelServicoSocialIrmao'=>$modelServicoSocialIrmao,'validatedIrmaos'=>$validatedIrmaos,
+		'modelServicoSocialResidentes'=>$modelServicoSocialResidentes,'validatedIrmaos'=>$validatedResidentes
+		)
+	); ?>

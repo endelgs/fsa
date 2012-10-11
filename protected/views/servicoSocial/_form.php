@@ -25,7 +25,9 @@
 
 .alinhamento{float:left;margin-right: 12px;}
 
-#yw0{width:500px;float:left;}
+.irmaos_copy .row{display: inline-block; margin-right: 12px; padding-right: 12px;}
+.residentes_copy .row{display: inline-block; margin-right: 12px; padding-right: 12px;}
+
 #yw1{width:500px;float:left;}
 </style>
 <div class="form">
@@ -37,7 +39,7 @@
 
 	<p class="note">Campos marcados com <span class="required">*</span> são obrigatórios.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+	<?php echo $form->errorSummary(array_merge(array($model))); ?>
 
 	<div class="row">
     	<div id="infoPaciente">
@@ -111,8 +113,8 @@
 		                		$("#infoPaciente .tel_movel").html(ui.item.telefone_movel);
 		                		$("#infoPaciente .tel_trab").html(ui.item.telefone_trabalho);
 		                		
-		                		if(ui.item.genetica_id != null){
-			                      $("#infoPaciente .aviso").html("<div style=\"color:red;\">Este paciente já possui genética cadastrada!</div>");
+		                		if(ui.item.servico_social_id_id != null){
+			                      $("#infoPaciente .aviso").html("<div style=\"color:red;\">Este paciente já possui dados de serviço social cadastrados!</div>");
 			                      
 			                    }else{
 			                      $("#infoPaciente .aviso").empty();
@@ -266,49 +268,55 @@
 			<?php echo $form->error($model,'uniao_outro'); ?>
 		</div>
 	</div>
-
-	<?php
-      $woProvider = new CActiveDataProvider('ServicoSocialIrmao', array(
-        'criteria'=>$model->ID,
-    ));
-		$this->widget('ext.htmltableui.htmlTableUi',array(
-		    'ajaxUrl'=>'servicoSocialIrmao/create',
-		    'arProvider'=>'',    
-		    'collapsed'=>false,
-		    'columns'=>array('Nome','Idade','Escolaridade','Profissão','Salário'),
-		    'cssFile'=>'',
-		    'editable'=>true,
-		    'enableSort'=>true,
-		    'extra'=>'Additional Information',
-		    'formTitle'=>'Editar Dados Irmão',
-		    'sortColumn'=>2,
-		    'sortOrder'=>'desc',
-		    'title'=>'Irmãos',
-		));
-	?>
 	<br/>
 	<div style="width:500px"><hr/></div>
+	<div class="row">
+		<h2>Irmãos</h2>
+		<?php
+			$irmaoForm = array(
+				'elements'=>array(
+					'nome'=>array('type'=>'text','size'=>18),
+					'idade'=>array('type'=>'text','size'=>1),
+					'escolaridade'=>array('type'=>'text','size'=>15),
+					'profissao'=>array('type'=>'text','size'=>20),
+					'salario'=>array('type'=>'text','size'=>5),
+				)
+			);
+			$this->widget('ext.multimodelform.MultiModelForm',array(
+				'id' => 'irmaos', //the unique widget id
+				'formConfig' => $irmaoForm, //the form configuration array
+				'model' => $modelServicoSocialIrmao, //instance of the form model
+				'data' => $modelServicoSocialIrmao->findAll('servico_social_r=:servico_social_r', array(':servico_social_r'=>$model->id)),
+			));
+		?>
+	</div>
+	<br/>
+	<div style="width:500px"><hr/></div>
+	<h2>Residentes com a família</h2>
 	<div class="row">
 		<div class="alinhamento"><?php echo $form->labelEx($model,'residentes_familia'); ?></div>
 		<?php echo $form->checkBox($model,'residentes_familia',array('value'=>'true', 'uncheckValue'=>'false')); ?>
 		<?php echo $form->error($model,'residentes_familia'); ?>
 	</div>
-	<?php
-		$this->widget('ext.htmltableui.htmlTableUi',array(
-		    'ajaxUrl'=>'servicoSocialIrmao/update',
-		    'arProvider'=>'',    
-		    'collapsed'=>false,
-		    'columns'=>array('Nome','Idade','Escolaridade','Profissão','Salário'),
-		    'cssFile'=>'',
-		    'editable'=>true,
-		    'enableSort'=>true,
-		    'extra'=>'Additional Information',
-		    'formTitle'=>'Editar Dados Irmão',
-		    'sortColumn'=>2,
-		    'sortOrder'=>'desc',
-		    'title'=>'Irmãos',
-		));
-	?>
+	<div class="row">
+		<?php
+			$residentesForm= array(
+				'elements'=>array(
+					'nome'=>array('type'=>'text','size'=>18),
+					'idade'=>array('type'=>'text','size'=>1),
+					'parentesco'=>array('type'=>'text','size'=>15),
+					'profissao'=>array('type'=>'text','size'=>20),
+					'salario'=>array('type'=>'text','size'=>5),
+				)
+			);
+			$this->widget('ext.multimodelform.MultiModelForm',array(
+				'id' => 'residentes', //the unique widget id
+				'formConfig' => $residentesForm, //the form configuration array
+				'model' => $modelServicoSocialResidentes, //instance of the form model
+				'data' => $modelServicoSocialResidentes->findAll('servico_social_r=:servico_social_r', array(':servico_social_r'=>$model->id)),
+			));
+		?>
+	</div>
 	<br/>
 	<div style="width:500px"><hr/></div>
 	<h2>Situação Econômica</h2>

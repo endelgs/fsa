@@ -1,6 +1,6 @@
 <?php
 
-class ServicoSocialController extends Controller
+class ServicoSocialResidentesController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -53,8 +53,6 @@ class ServicoSocialController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
-      		'modelIrmao' => new ServicoSocialIrmao,
-			'modelResidente' => new ServicoSocialResidentes,
 		));
 	}
 
@@ -62,49 +60,23 @@ class ServicoSocialController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate(){
-
-		Yii::import('ext.multimodelform.MultiModelForm');
-		
-		$model=new ServicoSocial;
-		
-		$modelServicoSocialIrmao=new ServicoSocialIrmao;
-		$validatedIrmaos = array('nome','idade','escolaridade','profissao','salario');
-		
-		$modelServicoSocialResidentes=new ServicoSocialResidentes;
-		$validatedResidentes = array('nome','idade','parentesco','profissao','salario');
-		
+	public function actionCreate()
+	{
+		$model=new ServicoSocialResidentes;
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
-		if(isset($_POST['ServicoSocial'])){
-			$model->attributes=$_POST['ServicoSocial'];
-			$model->last_update=new CDbExpression('NOW()');
-			
-			if(MultiModelForm::validate($modelServicoSocialIrmao,$validatedIrmaos,$deleteItems) && MultiModelForm::validate($modelServicoSocialResidentes,$validatedResidentes,$deleteItems) && $model->save()){
-			
-				$masterValues = array('servico_social_r'=>$model->id);
-				if (MultiModelForm::save($modelServicoSocialIrmao,$validatedIrmaos,$deleteItems,$masterValues) && MultiModelForm::save($modelServicoSocialResidentes,$validatedResidentes,$deleteItems,$masterValues)){
-					$this->redirect(array('view','id'=>$model->id));
-				}
-			}
-			
-			/*if($model->save()){
-				$modelServicoSocialIrmao->servico_social_r=$model->id;
-				$modelServicoSocialIrmao->save();
-				
+		if(isset($_POST['ServicoSocialResidentes']))
+		{
+			$model->attributes=$_POST['ServicoSocialResidentes'];
+			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
-			}*/
 		}
 
-		$this->render('create',
-			array(
-				'model'=>$model,
-				'modelServicoSocialIrmao' => $modelServicoSocialIrmao,'validatedIrmaos' => $validatedIrmaos,
-				'modelServicoSocialResidentes' => $modelServicoSocialResidentes,'validatedResidentes' => $validatedResidentes,
-			)
-		);
+		$this->render('create',array(
+			'model'=>$model,
+		));
 	}
 
 	/**
@@ -112,37 +84,23 @@ class ServicoSocialController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id){
-		Yii::import('ext.multimodelform.MultiModelForm');
-		
+	public function actionUpdate($id)
+	{
 		$model=$this->loadModel($id);
-		
-		$modelServicoSocialIrmao=new ServicoSocialIrmao;
-		$validatedIrmaos = array('nome','idade','escolaridade','profissao','salario');
-		
-		$modelServicoSocialResidentes=new ServicoSocialResidentes;
-		$validatedResidentes = array('nome','idade','parentesco','profissao','salario');
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
-		if(isset($_POST['ServicoSocial'])){
-			$model->attributes=$_POST['ServicoSocial'];
-			
-			$masterValues = array('servico_social_r'=>$model->id);
-			
-			if(MultiModelForm::save($modelServicoSocialIrmao,$validatedMembers,$deleteMembers,$masterValues) && MultiModelForm::save($modelServicoSocialResidentes,$validatedResidentes,$deleteItems,$masterValues) && $model->save()){
+		if(isset($_POST['ServicoSocialResidentes']))
+		{
+			$model->attributes=$_POST['ServicoSocialResidentes'];
+			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
-			}
 		}
-		
-		$this->render('update',
-			array(
-				'model'=>$model,
-				'modelServicoSocialIrmao' => $modelServicoSocialIrmao,'validatedIrmaos' => $validatedIrmaos,
-				'modelServicoSocialResidentes' => $modelServicoSocialResidentes,'validatedResidentes' => $validatedResidentes,
-			)
-		);
+
+		$this->render('update',array(
+			'model'=>$model,
+		));
 	}
 
 	/**
@@ -164,7 +122,7 @@ class ServicoSocialController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('ServicoSocial');
+		$dataProvider=new CActiveDataProvider('ServicoSocialResidentes');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -175,10 +133,10 @@ class ServicoSocialController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new ServicoSocial('search');
+		$model=new ServicoSocialResidentes('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['ServicoSocial']))
-			$model->attributes=$_GET['ServicoSocial'];
+		if(isset($_GET['ServicoSocialResidentes']))
+			$model->attributes=$_GET['ServicoSocialResidentes'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -192,7 +150,7 @@ class ServicoSocialController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=ServicoSocial::model()->findByPk($id);
+		$model=ServicoSocialResidentes::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -204,7 +162,7 @@ class ServicoSocialController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='servico-social-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='servico-social-residentes-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

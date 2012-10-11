@@ -1,14 +1,14 @@
 <?php
-/* @var $this ServicoSocialController */
-/* @var $model ServicoSocial */
+/* @var $this ServicoSocialResidentesController */
+/* @var $model ServicoSocialResidentes */
 
 $this->breadcrumbs=array(
-	'Serviço Social'=>array('index'),
+	'Servico Social Residentes'=>array('index'),
 	'Gerenciar',
 );
 
 $this->menu=array(
-	array('label'=>'Cadastrar dados de serviço social', 'url'=>array('create')),
+	array('label'=>'Inserir ServicoSocialResidentes', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -17,7 +17,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('servico-social-grid', {
+	$.fn.yiiGridView.update('servico-social-residentes-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -25,7 +25,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Gerenciar Servico Socials</h1>
+<h1>Gerenciar Servico Social Residentes</h1>
 
 <p>
 Você pode usar operadores de comparação (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -40,49 +40,20 @@ or <b>=</b>) no começo de cada valor de busca para especificar como a comparaç
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'servico-social-grid',
+	'id'=>'servico-social-residentes-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
   'emptyText' => 'Não há registros a serem exibidos.',
   'summaryText' => 'Mostrando {start}-{end} de {count} registro(s).',
 	'columns'=>array(
 		'id',
-		'nome_mae',
-		'data_nascimento_mae',
-		'escolaridade_mae',
-		'profissao_mae',
-		'local_trabalho_mae',
+		'nome',
+		'idade',
+		'parentesco',
+		'profissao',
+		'salario',
 		/*
-		'telefone_trabalho_mae',
-		'nome_pai',
-		'data_nascimento_pai',
-		'escolaridade_pai',
-		'profissao_pai',
-		'local_trabalho_pai',
-		'telefone_trabalho_pai',
-		'responsavel_crianca',
-		'familia',
-		'uniao_legal',
-		'unicao_outro',
-		'residentes_familia',
-		'renda_total',
-		'quem_contribui',
-		'n_pessoas_casa',
-		'renda_per_capita',
-		'beneficio_social',
-		'outros_situacao_economica',
-		'casa_propria',
-		'casa_alugada',
-		'casa_cedida',
-		'casa_outros',
-		'tipo_construcao',
-		'n_comodos',
-		'transporte_utilizado',
-		'convenio_medico',
-		'centro_saude',
-		'sintese_atendimento',
-		'last_update',
-		'paciente_r',
+		'servico_social_r',
 		*/
 		array(
 			'class'=>'CButtonColumn',

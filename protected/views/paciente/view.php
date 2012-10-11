@@ -81,7 +81,13 @@ else $tabGenetica="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastr
 
 $tabProtese="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastrados. ".CHtml::link(CHtml::encode("Cadastrar agora*"), array('paciente/admin'))."</h5>";
 
-$tabServicoSocial="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastrados. ".CHtml::link(CHtml::encode("Cadastrar agora*"), array('paciente/admin'))."</h5>";
+$modelServicoSocial = ServicoSocial::model()->find(array('select'=>'*','condition'=>'paciente_r=:id','params'=>array(':id'=>$model->id)));
+
+if($modelServicoSocial != null)$tabServicoSocial=$aTabs['Serviço Social']=$this->renderPartial('../servicoSocial/tabView', array('model'=>$modelServicoSocial,'modelIrmao' => new ServicoSocialIrmao,'modelResidente' => new ServicoSocialResidentes,),true);
+else $tabServicoSocial="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastrados. ".CHtml::link(CHtml::encode("Cadastrar agora"), array('servicoSocial/create'))."</h5>";
+
+
+
 
 
 $this->widget('zii.widgets.jui.CJuiTabs', array(

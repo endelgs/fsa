@@ -198,4 +198,23 @@ class ServicoSocial extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	protected function afterFind(){
+		parent::afterFind();
+		$this->data_nascimento_mae=date('d/m/Y', strtotime(str_replace("-", "", $this->data_nascimento_mae)));
+		$this->data_nascimento_pai=date('d/m/Y', strtotime(str_replace("-", "", $this->data_nascimento_pai)));
+		$this->last_update=date('d/m/Y - G:i', strtotime(str_replace("-", "", $this->last_update)))."h";
+	}
+	
+	protected function beforeSave(){
+		if(parent::beforeSave()){
+			$data_mae = explode("/",$this->data_nascimento_mae);
+			$this->data_nascimento_mae=implode(array_reverse($data_mae));
+			
+			$data_pai = explode("/",$this->data_nascimento_pai);
+			$this->data_nascimento_pai=implode(array_reverse($data_pai));
+			return TRUE;
+		}
+		else return false;
+	}
 }

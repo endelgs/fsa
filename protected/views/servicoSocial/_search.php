@@ -86,20 +86,6 @@
 		<?php echo $form->textField($model,'familia',array('size'=>8,'maxlength'=>8)); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'uniao_consensual'); ?>
-		<?php echo $form->textField($model,'uniao_consensual',array('size'=>5,'maxlength'=>5)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'uniao_legal'); ?>
-		<?php echo $form->textField($model,'uniao_legal',array('size'=>5,'maxlength'=>5)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'unicao_outro'); ?>
-		<?php echo $form->textField($model,'unicao_outro',array('size'=>5,'maxlength'=>5)); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'residentes_familia'); ?>
@@ -137,18 +123,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'casa_propria'); ?>
-		<?php echo $form->textField($model,'casa_propria',array('size'=>5,'maxlength'=>5)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'casa_alugada'); ?>
 		<?php echo $form->textField($model,'casa_alugada',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'casa_cedida'); ?>
-		<?php echo $form->textField($model,'casa_cedida',array('size'=>60,'maxlength'=>250)); ?>
 	</div>
 
 	<div class="row">

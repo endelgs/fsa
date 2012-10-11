@@ -162,11 +162,13 @@ class Paciente extends CActiveRecord
 			date_format(paciente.last_update, "%d/%m/%Y - %H:%i h") as last_update,
 			CONCAT(hc,\' - \',nome) as label,
 			triagem.id as triagem_id,
-			genetica.id as genetica_id
+			genetica.id as genetica_id,
+			servico_social.id as servico_social_id
 		FROM 
 			paciente
 			left join triagem on triagem.paciente_r=paciente.id
 			left join genetica on genetica.paciente_r=paciente.id
+			left join servico_social on servico_social.paciente_r=paciente.id
 		WHERE 
 			nome LIKE :qterm OR hc LIKE :qterm';
 		$sql .= ' GROUP BY paciente.id';

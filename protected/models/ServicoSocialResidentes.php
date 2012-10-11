@@ -1,12 +1,13 @@
 <?php
 
 /**
- * This is the model class for table "irmao_servico_social".
+ * This is the model class for table "residentes_familia_servico_social".
  *
- * The followings are the available columns in table 'irmao_servico_social':
+ * The followings are the available columns in table 'residentes_familia_servico_social':
  * @property integer $id
  * @property string $nome
- * @property string $escolaridade
+ * @property integer $idade
+ * @property string $parentesco
  * @property string $profissao
  * @property string $salario
  * @property integer $servico_social_r
@@ -14,12 +15,12 @@
  * The followings are the available model relations:
  * @property ServicoSocial $servicoSocialR
  */
-class ServicoSocialIrmao extends CActiveRecord
+class ServicoSocialResidentes extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return ServicoSocialIrmao the static model class
+	 * @return ServicoSocialResidentes the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -31,7 +32,7 @@ class ServicoSocialIrmao extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'irmao_servico_social';
+		return 'residentes_familia_servico_social';
 	}
 
 	/**
@@ -42,13 +43,13 @@ class ServicoSocialIrmao extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nome, idade, escolaridade, profissao, salario', 'required'),
-			array('servico_social_r', 'numerical', 'integerOnly'=>true),
-			array('nome, escolaridade, profissao', 'length', 'max'=>250),
+			array('nome, idade, parentesco, profissao, salario', 'required'),
+			array('idade, servico_social_r', 'numerical', 'integerOnly'=>true),
+			array('nome, parentesco, profissao', 'length', 'max'=>250),
 			array('salario', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, nome, escolaridade, profissao, salario, servico_social_r', 'safe', 'on'=>'search'),
+			array('id, nome, idade, parentesco, profissao, salario, servico_social_r', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,10 +74,10 @@ class ServicoSocialIrmao extends CActiveRecord
 			'id' => 'ID',
 			'nome' => 'Nome',
 			'idade' => 'Idade',
-			'escolaridade' => 'Escolaridade',
+			'parentesco' => 'Parentesco',
 			'profissao' => 'Profissão',
-			'salario' => 'Salário',
-			'servico_social_r' => 'Serviço Social',
+			'salario' => 'Salário ou outros rendimentos',
+			'servico_social_r' => 'Servico Social',
 		);
 	}
 
@@ -93,7 +94,8 @@ class ServicoSocialIrmao extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('nome',$this->nome,true);
-		$criteria->compare('escolaridade',$this->escolaridade,true);
+		$criteria->compare('idade',$this->idade);
+		$criteria->compare('parentesco',$this->parentesco,true);
 		$criteria->compare('profissao',$this->profissao,true);
 		$criteria->compare('salario',$this->salario,true);
 		$criteria->compare('servico_social_r',$this->servico_social_r);

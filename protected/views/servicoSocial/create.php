@@ -3,15 +3,17 @@
 /* @var $model ServicoSocial */
 
 $this->breadcrumbs=array(
-	'Servico Socials'=>array('index'),
-	'Inserir',
+	'Serviço Social'=>array('index'),
+	'Cadastrar dados de serviço social',
 );
 
-$this->menu=array(
-	array('label'=>'Gerenciar ServicoSocial', 'url'=>array('admin')),
-);
 ?>
 
-<h1>Inserir ServicoSocial</h1>
+<h1>Cadastrar dados de serviço social</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array(
+		'model'=>$model,
+		'modelServicoSocialIrmao'=>$modelServicoSocialIrmao,'validatedIrmaos'=>$validatedIrmaos,
+		'modelServicoSocialResidentes'=>$modelServicoSocialResidentes,'validatedIrmaos'=>$validatedResidentes
+		)
+	); ?>
