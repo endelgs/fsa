@@ -11,8 +11,6 @@
 #infoPaciente{
 	float:right;
 	display:none;
-	position:absolute;
-	right:340px;
 	text-align:right;
 	border:solid thin grey;
 	background-color:#efefef;
@@ -29,6 +27,8 @@
 
 .alinhamento{float:left;margin-right: 12px;}
 .coluna{
+	width: 550px;
+	display: inline-block;
 }
 </style>
 <div class="form">
@@ -81,7 +81,7 @@
 		<div class='aviso'></div>
 		<div class='link'></div>
 	</div>
-
+<div class="coluna">
 	<div class="row">
 		<?php echo $form->labelEx($model,'paciente_r'); ?>
 		<?php /* echo $form->dropDownList($model,'paciente_r', CHtml::listData(Paciente::model()->findAll(), 'id', 'nome'), array('empty'=>'Selecione um Paciente')). '<br/><span class="help">Ex: João da Silva</span>'; */?>
@@ -292,7 +292,7 @@
 			</tr>
 		</table>
 	</div>
-	
+</div>	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Inserir' : 'Salvar'); ?>
 	</div>

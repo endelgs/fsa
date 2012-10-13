@@ -11,8 +11,6 @@
 #infoPaciente{
 	float:right;
 	display:none;
-	position:absolute;
-	right:340px;
 	text-align:right;
 	border:solid thin grey;
 	background-color:#efefef;
@@ -29,7 +27,8 @@
 
 .alinhamento{float:left;margin-right: 12px;}
 .coluna{
-width: 500px;
+	width: 550px;
+	display: inline-block;
 }
 </style>
 <div class="form">
@@ -42,7 +41,7 @@ width: 500px;
 	<p class="note">Campos marcados com <span class="required">*</span> são obrigatórios.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-<div class="coluna">
+
 	<div id="infoPaciente">
 	    	<h3 style="text-align:center">Identificação do Paciente</h3>
 	    	<div class="lastUpdate"></div>
@@ -82,7 +81,7 @@ width: 500px;
 			<div class='aviso'></div>
 			<div class='link'></div>
 		</div>
-	
+	<div class="coluna">
 		<div class="row">
 			<?php echo $form->labelEx($model,'paciente_r'); ?>
 			<?php /* echo $form->dropDownList($model,'paciente_r', CHtml::listData(Paciente::model()->findAll(), 'id', 'nome'), array('empty'=>'Selecione um Paciente')). '<br/><span class="help">Ex: João da Silva</span>'; */?>

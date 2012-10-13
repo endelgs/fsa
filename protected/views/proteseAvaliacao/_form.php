@@ -6,19 +6,17 @@
 <style type="text/css">
 .help{font-size:9px;font-style:italic;}
 .larguraDefault{
-	width: 600px;
+	width: 550px;
 }
 #infoPaciente{
 	float:right;
 	display:none;
-	position:absolute;
-	right:340px;
+	position:relative;
 	text-align:right;
 	border:solid thin grey;
 	background-color:#efefef;
 	padding: 5px 10px 5px 10px;
 	width:320px;
-	z-index:100;
 }
 #infoPaciente .lastUpdate{
 	font-style: italic;
@@ -29,6 +27,8 @@
 
 .alinhamento{float:left;margin-right: 12px;}
 .coluna{
+	width: 550px;
+	display: inline-block;
 }
 </style>
 <div class="form">
@@ -42,7 +42,7 @@
 
 	<?php echo $form->errorSummary($model); ?>
 	
-	<div class="coluna">
+	
 		<div id="infoPaciente">
 	    	<h3 style="text-align:center">Identificação do Paciente</h3>
 	    	<div class="lastUpdate"></div>
@@ -82,7 +82,7 @@
 			<div class='aviso'></div>
 			<div class='link'></div>
 		</div>
-	
+	<div class="coluna">
 		<div class="row">
 			<?php echo $form->labelEx($model,'paciente_r'); ?>
 			<?php /* echo $form->dropDownList($model,'paciente_r', CHtml::listData(Paciente::model()->findAll(), 'id', 'nome'), array('empty'=>'Selecione um Paciente')). '<br/><span class="help">Ex: João da Silva</span>'; */?>
@@ -126,10 +126,10 @@
 		                		$("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('paciente/update').'&id=\'+ui.item.pacienteID+\'">Atualizar dados cadastrais</a>\');
 		               		}'
 		                ),
-		                'htmlOptions'=>array('size'=>78),
+		                'htmlOptions'=>array('size'=>70),
 		            ));
     			}else{
-		        	echo $form->textField($model->pacienteR,'nome',array('size'=>45,'disabled'=>'disabled'));
+		        	echo $form->textField($model->pacienteR,'nome',array('size'=>30,'disabled'=>'disabled'));
 		        }
        	 	?>
 			<?php echo $form->error($model,'paciente_r'); ?>
@@ -472,7 +472,7 @@
 			<?php echo $form->textArea($model,'laudo_audiologico',array('rows'=>6, 'cols'=>60)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
 			<?php echo $form->error($model,'laudo_audiologico'); ?>
 		</div>
-		
+</div>
 		<div class="row buttons">
 			<?php echo CHtml::submitButton($model->isNewRecord ? 'Inserir' : 'Salvar'); ?>
 		</div>
