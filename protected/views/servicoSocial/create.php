@@ -13,7 +13,9 @@ $this->breadcrumbs=array(
 
 <?php echo $this->renderPartial('_form', array(
 		'model'=>$model,
-		'modelServicoSocialIrmao'=>$modelServicoSocialIrmao,'validatedIrmaos'=>$validatedIrmaos,
-		'modelServicoSocialResidentes'=>$modelServicoSocialResidentes,'validatedIrmaos'=>$validatedResidentes
-		)
-	); ?>
+		'modelServicoSocialIrmao'=>$modelServicoSocialIrmao,
+		'validatedIrmaos'=>$validatedIrmaos,
+		'modelServicoSocialResidentes'=>$modelServicoSocialResidentes,
+		'validatedIrmaos'=>$validatedResidentes
+	)
+); ?>

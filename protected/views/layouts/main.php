@@ -57,7 +57,11 @@
             	),
             	array('label'=>'Prótese',
             		'items'=>array(
-            			array('label'=>'Cadastrar dados de prótese*'),
+            			array('label'=>'Cadastrar avaliação de prótese', 'url'=>array('proteseAvaliacao/create')),
+            			array('label'=>'Cadastrar prescrição de prótese', 'url'=>array('protesePrescricao/create')),
+            			array('label'=>'Cadastrar verificação de prótese', 'url'=>array('proteseVerificacao/create')),
+            			array('label'=>'Cadastrar validação de prótese', 'url'=>array('proteseValidacao/create')),
+            			array('label'=>'Cadastrar anexo de prótese', 'url'=>array('proteseAnexo/create')),
             			array('label'=>'Agenda de próteses*'),
             		),
             	),
