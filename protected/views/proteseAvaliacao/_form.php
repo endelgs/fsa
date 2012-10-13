@@ -30,6 +30,8 @@
 	width: 550px;
 	display: inline-block;
 }
+table tr td{text-align:center}
+table tr td.first,table tr th.first{text-align:right}
 </style>
 <div class="form">
 
@@ -266,6 +268,7 @@
 		<br/>
 		<div class="larguraDefault"><hr/></div>
 		<div class="row">
+      RECD (real ear coupler difference)
 			<table class="larguraDefault">
 				<tr>
 					<th>Orelha</th>
@@ -307,8 +310,8 @@
 		<div class="row">
 			<?php echo $form->labelEx($model,'reacao_sons'); ?>
 			<?php echo $form->radioButton($model, 'reacao_sons', array('value'=>'viva_voz','uncheckValue'=>null))." Viva Voz";?>
-			<?php echo $form->radioButton($model, 'reacao_sons', array('value'=>'voz_amplificada','uncheckValue'=>null))." Voz Amplificada à";?>
-			<?php echo $form->textField($model,'voz_amplificada',array('size'=>15,'maxlength'=>15)); ?>
+			<?php echo $form->radioButton($model, 'reacao_sons', array('value'=>'voz_amplificada','uncheckValue'=>null))." Voz Amplificada a";?>
+			<?php echo $form->textField($model,'voz_amplificada',array('size'=>15,'maxlength'=>15))." dB"; ?>
 			<?php echo $form->error($model,'reacao_sons'); ?>
 		</div>
 		<br/>
@@ -357,104 +360,104 @@
 			Observação do comportamento auditivo a sons não calibrados:
 			<table style="width:700px; text-align:center;">
 				<tr>
-					<th>Estímulos</th>
+					<th class="first">Estímulos</th>
 					<th>Não reação</th>
 					<th>Atenção ao Som</th>
 					<th>ROS ou LL*</th>
-					<th>Local </th>
-					<th>Local </th>
+					<th>Local ↑</th>
+					<th>Local ↓</th>
 					<th>R.C.P</th>
 					<th>Startle/habituação</th>
 				</tr>
 				<tr>
-					<td><?php echo $form->labelEx($model,'guizo_1'); ?></td>
+					<td class="first"><?php echo $form->labelEx($model,'guizo_1'); ?></td>
 					<td><?php echo $form->radioButton($model, 'guizo_1', array('value'=>'nao_reacao','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'guizo_1', array('value'=>'atencao_som','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'guizo_1', array('value'=>'ros_ll','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'guizo_1', array('value'=>'local_up','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'guizo_1', array('value'=>'local_down','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'guizo_1', array('value'=>'rcp','uncheckValue'=>null))?></td>
-					<th><?php echo $form->radioButton($model, 'guizo_1', array('value'=>'startle','uncheckValue'=>null))?></th>
+					<td><?php echo $form->radioButton($model, 'guizo_1', array('value'=>'startle','uncheckValue'=>null))?></td>
 				</tr>
 				<tr>
-					<td><?php echo $form->labelEx($model,'guizo_2'); ?></td>
+					<td class="first"><?php echo $form->labelEx($model,'guizo_2'); ?></td>
 					<td><?php echo $form->radioButton($model, 'guizo_2', array('value'=>'nao_reacao','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'guizo_2', array('value'=>'atencao_som','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'guizo_2', array('value'=>'ros_ll','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'guizo_2', array('value'=>'local_up','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'guizo_2', array('value'=>'local_down','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'guizo_2', array('value'=>'rcp','uncheckValue'=>null))?></td>
-					<th><?php echo $form->radioButton($model, 'guizo_2', array('value'=>'startle','uncheckValue'=>null))?></th>
+					<td><?php echo $form->radioButton($model, 'guizo_2', array('value'=>'startle','uncheckValue'=>null))?></td>
 				</tr>
 				<tr>
-					<td><?php echo $form->labelEx($model,'reco_reco'); ?></td>
+					<td class="first"><?php echo $form->labelEx($model,'reco_reco'); ?></td>
 					<td><?php echo $form->radioButton($model, 'reco_reco', array('value'=>'nao_reacao','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'reco_reco', array('value'=>'atencao_som','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'reco_reco', array('value'=>'ros_ll','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'reco_reco', array('value'=>'local_up','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'reco_reco', array('value'=>'local_down','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'reco_reco', array('value'=>'rcp','uncheckValue'=>null))?></td>
-					<th><?php echo $form->radioButton($model, 'reco_reco', array('value'=>'startle','uncheckValue'=>null))?></th>
+					<td><?php echo $form->radioButton($model, 'reco_reco', array('value'=>'startle','uncheckValue'=>null))?></td>
 				</tr>
 				<tr>
-					<td><?php echo $form->labelEx($model,'sino'); ?></td>
+					<td class="first"><?php echo $form->labelEx($model,'sino'); ?></td>
 					<td><?php echo $form->radioButton($model, 'sino', array('value'=>'nao_reacao','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'sino', array('value'=>'atencao_som','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'sino', array('value'=>'ros_ll','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'sino', array('value'=>'local_up','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'sino', array('value'=>'local_down','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'sino', array('value'=>'rcp','uncheckValue'=>null))?></td>
-					<th><?php echo $form->radioButton($model, 'sino', array('value'=>'startle','uncheckValue'=>null))?></th>
+					<td><?php echo $form->radioButton($model, 'sino', array('value'=>'startle','uncheckValue'=>null))?></td>
 				</tr>
 				<tr>
-					<td><?php echo $form->labelEx($model,'ganza'); ?></td>
+					<td class="first"><?php echo $form->labelEx($model,'ganza'); ?></td>
 					<td><?php echo $form->radioButton($model, 'ganza', array('value'=>'nao_reacao','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'ganza', array('value'=>'atencao_som','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'ganza', array('value'=>'ros_ll','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'ganza', array('value'=>'local_up','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'ganza', array('value'=>'local_down','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'ganza', array('value'=>'rcp','uncheckValue'=>null))?></td>
-					<th><?php echo $form->radioButton($model, 'ganza', array('value'=>'startle','uncheckValue'=>null))?></th>
+					<td><?php echo $form->radioButton($model, 'ganza', array('value'=>'startle','uncheckValue'=>null))?></td>
 				</tr>
 				<tr>
-					<td><?php echo $form->labelEx($model,'black_black'); ?></td>
+					<td class="first"><?php echo $form->labelEx($model,'black_black'); ?></td>
 					<td><?php echo $form->radioButton($model, 'black_black', array('value'=>'nao_reacao','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'black_black', array('value'=>'atencao_som','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'black_black', array('value'=>'ros_ll','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'black_black', array('value'=>'local_up','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'black_black', array('value'=>'local_down','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'black_black', array('value'=>'rcp','uncheckValue'=>null))?></td>
-					<th><?php echo $form->radioButton($model, 'black_black', array('value'=>'startle','uncheckValue'=>null))?></th>
+					<td><?php echo $form->radioButton($model, 'black_black', array('value'=>'startle','uncheckValue'=>null))?></td>
 				</tr>
 				<tr>
-					<td><?php echo $form->labelEx($model,'agogo_pequeno'); ?></td>
+					<td class="first"><?php echo $form->labelEx($model,'agogo_pequeno'); ?></td>
 					<td><?php echo $form->radioButton($model, 'agogo_pequeno', array('value'=>'nao_reacao','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'agogo_pequeno', array('value'=>'atencao_som','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'agogo_pequeno', array('value'=>'ros_ll','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'agogo_pequeno', array('value'=>'local_up','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'agogo_pequeno', array('value'=>'local_down','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'agogo_pequeno', array('value'=>'rcp','uncheckValue'=>null))?></td>
-					<th><?php echo $form->radioButton($model, 'agogo_pequeno', array('value'=>'startle','uncheckValue'=>null))?></th>
+					<td><?php echo $form->radioButton($model, 'agogo_pequeno', array('value'=>'startle','uncheckValue'=>null))?></td>
 				</tr>
 				<tr>
-					<td><?php echo $form->labelEx($model,'agogo_grande'); ?></td>
+					<td class="first"><?php echo $form->labelEx($model,'agogo_grande'); ?></td>
 					<td><?php echo $form->radioButton($model, 'agogo_grande', array('value'=>'nao_reacao','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'agogo_grande', array('value'=>'atencao_som','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'agogo_grande', array('value'=>'ros_ll','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'agogo_grande', array('value'=>'local_up','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'agogo_grande', array('value'=>'local_down','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'agogo_grande', array('value'=>'rcp','uncheckValue'=>null))?></td>
-					<th><?php echo $form->radioButton($model, 'agogo_grande', array('value'=>'startle','uncheckValue'=>null))?></th>
+					<td><?php echo $form->radioButton($model, 'agogo_grande', array('value'=>'startle','uncheckValue'=>null))?></td>
 				</tr>
 				<tr>
-					<td><?php echo $form->labelEx($model,'prato'); ?></td>
+					<td class="first"><?php echo $form->labelEx($model,'prato'); ?></td>
 					<td><?php echo $form->radioButton($model, 'prato', array('value'=>'nao_reacao','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'prato', array('value'=>'atencao_som','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'prato', array('value'=>'ros_ll','uncheckValue'=>null));?></td>
 					<td><?php echo $form->radioButton($model, 'prato', array('value'=>'local_up','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'prato', array('value'=>'local_down','uncheckValue'=>null))?></td>
 					<td><?php echo $form->radioButton($model, 'prato', array('value'=>'rcp','uncheckValue'=>null))?></td>
-					<th><?php echo $form->radioButton($model, 'prato', array('value'=>'startle','uncheckValue'=>null))?></th>
+					<td><?php echo $form->radioButton($model, 'prato', array('value'=>'startle','uncheckValue'=>null))?></td>
 				</tr>
 			</table>
 				
