@@ -28,11 +28,11 @@ class TriagemController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','viewAgenda'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','agendarTriagem'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -53,6 +53,13 @@ class TriagemController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+		));
+	}
+	
+	public function actionViewAgenda($id)
+	{
+		$this->render('viewAgenda',array(
+				'model'=>$this->loadModel($id),
 		));
 	}
 
@@ -77,6 +84,22 @@ class TriagemController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+		));
+	}
+	
+	public function actionAgendarTriagem(){
+		$model=new Triagem;
+		if(isset($_POST['Triagem']))
+		{
+			
+			$model->attributes=$_POST['Triagem'];
+			$model->data_triagem=$_POST['Triagem']['data_triagem'];
+			$model->last_update=new CDbExpression('NOW()');
+			if($model->save(false))
+				$this->redirect(array('viewAgenda','id'=>$model->id));
+		}
+		$this->render('create',array(
+				'model'=>$model,
 		));
 	}
 

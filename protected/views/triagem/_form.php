@@ -5,15 +5,7 @@
 ?>
 <style type="text/css">
 .help{font-size:9px;font-style:italic;}  
-</style>
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'triagem-form',
-	'enableAjaxValidation'=>false,
-)); ?>
-	<style>
-		#infoPaciente{
+#infoPaciente{
 			float:right;
 			display:none;
 			position:relative;
@@ -29,7 +21,16 @@
 			margin-bottom: 10px;
 			margin-top: -15px;
 		}
-	</style>
+		.larguraDefault{width:500px;}
+		.alinhamento{float:left;margin-right: 12px;}
+		.coluna{width:550px; display:inline-block;}
+</style>
+<div class="form">
+
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'triagem-form',
+	'enableAjaxValidation'=>false,
+)); ?>
 	<p class="note">Campos marcados com <span class="required">*</span> são obrigatórios.</p>
 
 	<?php echo $form->errorSummary($model); ?>
@@ -74,6 +75,7 @@
 		<div class='aviso'></div>
 		<div class='link'></div>
 	</div>
+<div class="coluna">
     <div class="row" style="margin-right:12px;">
 		<?php echo $form->labelEx($model,'paciente_r'); ?>
 		<?php 
@@ -92,7 +94,7 @@
                		'select'=>'js:function(event, ui) {
           				$("#Triagem_paciente_r").val(ui.item.id);//linha mto importante é o que faz funcionar o autocomplete heheheh
           				
-			            $("#infoPaciente").css("display","block");
+			            $("#infoPaciente").css("display","inline-block");
 			            $("#infoPaciente th").css("text-align","right");
 			          	$("#infoPaciente .lastUpdate").html("última atualização em "+ui.item.last_update);
 			            $("#infoPaciente .nome").html(ui.item.nome);
@@ -124,9 +126,28 @@
             }
         ?>
 		<?php echo $form->error($model,'paciente_r'); ?>
-	</div>
 	</div><br/>
-	
+	<hr class="larguraDefault"/>
+	<div class="row">
+		<h5 class="alinhamento">Agendar triagem para:</h5>
+		
+		<?php echo CHtml::CheckBox('agenda_hoje',false, array('value'=>date("d/m/Y")))."Hoje"; ?>
+		<?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+		          'attribute'=>'data_triagem',
+		          'model' => $model,
+		          'value'=>$model->data_triagem,
+		          'language'=>'pt-BR',
+		          'options'=>array(
+		          	'showAnim'=>'fold',
+		         	'dateFormat'=>'dd/mm/yy',
+		           )
+		        ));
+			?>
+		<?php 
+			if($model->isNewRecord)echo CHtml::submitButton('Agendar',array('submit'=>Yii::app()->controller->createUrl('triagem/agendarTriagem'))); ?>
+		
+	</div>
+	<hr class="larguraDefault"/>
 	<div class="row">
     <div style="float:left; margin-right:12px;">
 			<?php echo $form->labelEx($model,'peso'); ?>
@@ -236,7 +257,7 @@
 			<?php echo $form->error($model,'resultado_direito'); ?>
 		</div>
 	</div>
-
+</div>
 	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Inserir' : 'Salvar'); ?>
@@ -245,3 +266,22 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+<script>
+	$("#agenda_hoje").click(function(){
+		var data = new Date();
+		var mes=(data.getMonth()+1)<=9?"0"+(data.getMonth()+1):(data.getMonth()+1);
+		var hoje=dia = data.getDate()+"/"+mes+"/"+data.getFullYear();
+		if($(this).attr('checked')=="checked")$("#Triagem_data_triagem").val(hoje);
+		else $("#Triagem_data_triagem").val("");
+	});
+	$("#Triagem_data_triagem").change(function(){
+		var data = new Date();
+		var mes=(data.getMonth()+1)<=9?"0"+(data.getMonth()+1):(data.getMonth()+1);
+		var hoje=dia = data.getDate()+"/"+mes+"/"+data.getFullYear();
+		$("#agenda_hoje").removeAttr('checked');
+		if(hoje==$(this).val())$("#agenda_hoje").attr('checked','checked');
+		
+		
+	});
+</script>

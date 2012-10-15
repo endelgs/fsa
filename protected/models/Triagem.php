@@ -146,6 +146,15 @@ class Triagem extends CActiveRecord
 	
 	protected function afterFind(){
 		parent::afterFind();
+		$this->data_triagem=date('d/m/Y', strtotime(str_replace("-", "", $this->data_triagem)));
 		$this->last_update=date('d/m/Y - G:i', strtotime(str_replace("-", "", $this->last_update)))."h";
+	}
+	protected function beforeSave(){
+		if(parent::beforeSave()){
+			$data = explode("/",$this->data_triagem);
+			$this->data_triagem=implode(array_reverse($data));
+			return TRUE;
+		}
+		else return false;
 	}
 }
