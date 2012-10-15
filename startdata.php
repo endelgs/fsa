@@ -66,7 +66,7 @@ function boolean(){
   return (rand(0,1))?'true':'false';
 }
 function tExame(){
-  return (rand(0,1))?'peate-a':'eoa';
+  return (rand(0,1))?'peate-a':'eoat';
 }
 function eResultado(){
   return (rand(0,1))?'passou':'falhou';
@@ -75,13 +75,77 @@ function texto(){
   global $texto,$qT;
   return $texto[rand(0,$qT)];
 }
-$c = new mysqli("localhost","root","root","fcm");
+
+function textoCurto(){
+	global $texto,$qT;
+	return substr($texto[rand(0,$qT)],0,250);
+}
+function textoProtese(){
+	global $texto,$qT;
+	return substr($texto[rand(0,$qT)],0,5);
+}
+
+function ssFamilia(){
+	return (rand(0,1))?'adotiva':'legitima';
+}
+function ssUniao(){
+	return (rand(0,1))?'consensual':'legal';
+}
+function ssCasaTipo(){
+	$rand = rand(0,2);
+	switch($rand){
+	    case 0: return 'propria';
+	    case 1: return 'alugada';
+	    case 2: return 'cedida';
+	  }
+}
+function nmR(){
+	return (rand(0,1))?'audiometro_pediatrico':'campo_livre';
+}
+function reacaoSons(){
+	return (rand(0,1))?'viva_voz':'voz_amplificada';
+}
+function guizosSons(){
+	$rand = rand(0,6);
+	switch($rand){
+		case 0: return 'nao_reacao';
+		case 1: return 'atencao_som';
+		case 2: return 'ros_ll';
+		case 3: return 'local_up';
+		case 4: return 'local_down';
+		case 5: return 'rcp';
+		case 6: return 'startle';
+	}
+}
+function latenciaResp(){
+	return (rand(0,1))?'imediata':'lenta';
+}
+function movimentoCabeca(){
+	return (rand(0,1))?'90':'menor_90';
+}
+function ppTipo(){
+	$rand = rand(0,2);
+	switch($rand){
+		case 0: return 'od';
+		case 1: return 'oe';
+		case 2: return 'binaural';
+	}
+}
+
+
+$c = new mysqli("localhost","saudeaud_fcm","Z,NgT@eBFOUU","saudeaud_fcm");
 $c->query("SET NAMES 'utf8'");
+$c->query("DELETE FROM protese_anexo");
+$c->query("DELETE FROM protese_validacao");
+$c->query("DELETE FROM protese_verificacao");
+$c->query("DELETE FROM protese_prescricao");
+$c->query("DELETE FROM protese_avaliacao");
+$c->query("DELETE FROM servico_social");
 $c->query("DELETE FROM triagem");
 $c->query("DELETE FROM genetica");
 $c->query("DELETE FROM paciente");
 
-$sql = "INSERT INTO paciente (id,nome,hc,nome_mae,hc_mae,data_nascimento,sexo,endereco,cidade,telefone_fixo,telefone_movel,telefone_trabalho) VALUES ";
+$sql = "INSERT INTO paciente (id,nome,hc,nome_mae,hc_mae,data_nascimento,sexo,endereco,cidade,telefone_fixo,telefone_movel,telefone_trabalho,last_update) VALUES ";
 for($i = 0; $i<50; $i++){
   if($i%2){
     $nome = nomeF();
@@ -91,14 +155,14 @@ for($i = 0; $i<50; $i++){
     $sexo = 'masculino';
   }
   
-  $sql .= "\n('".($i+1)."','".$nome."','".codigoAlfa()."','".nomeF()."','".codigoAlfa()."','".dataSQL()."','".$sexo."','".endereco()."','".cidade()."','".telefone()."','".telefone()."','".telefone()."')";
+  $sql .= "\n('".($i+1)."','".$nome."','".codigoAlfa()."','".nomeF()."','".codigoAlfa()."','".dataSQL()."','".$sexo."','".endereco()."','".cidade()."','".telefone()."','".telefone()."','".telefone()."','".dataSQL()."')";
   if($i < 49) $sql .= ",";
 }
 $c->query($sql);
 
-$sql = "INSERT INTO triagem (peso,apgar_1,apgar_5,apgar_10,idade_semanas,idade_dias,metodo_avaliacao,avaliacao_score,termo,crescimento,tipo_exame,resultado,indicadores_risco,paciente_r) VALUES ";
+$sql = "INSERT INTO triagem VALUES ";
 for($i = 0; $i < 50; $i++){
-  $sql .="('".rand(1800,3800)."','".rand(10,100)."','".rand(10,100)."','".rand(10,100)."','".rand(30,40)."','".rand(0,28)."','".mAvaliacao()."','".rand(10,100)."','".termo()."','".crescimento()."','".tExame()."','".eResultado()."','".texto()."','". ($i+1) ."')";
+  $sql .="('".($i+1)."','".rand(1800,3800)."','".rand(10,100)."','".rand(10,100)."','".rand(10,100)."','".rand(10,100)."','".rand(30,40)."','".rand(0,28)."','".mAvaliacao()."','".rand(10,100)."','".termo()."','".crescimento()."','".tExame()."','".eResultado()."','".eResultado()."','".texto()."','".dataSQL()."','".dataSQL()."','". ($i+1) ."')";
   if($i < 49) $sql .= ",";
 }
 
@@ -106,8 +170,63 @@ $c->query($sql);
 
 $sql = "INSERT INTO genetica VALUES ";
 for($i = 0; $i < 50; $i++){
-  $sql .="('".($i+1)."','".texto()."','".texto()."','".texto()."','".texto()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".texto()."','".boolean()."','".texto()."','".boolean()."','".texto()."','".boolean()."','".texto()."','".boolean()."','".texto()."','".boolean()."','".texto()."','".texto()."','".texto()."',".($i+1).")";
+  $sql .="('".($i+1)."','".texto()."','".texto()."','".texto()."','".texto()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".boolean()."','".texto()."','".boolean()."','".texto()."','".boolean()."','".texto()."','".boolean()."','".texto()."','".boolean()."','".texto()."','".boolean()."','".texto()."','".texto()."','".texto()."','".dataSQL()."',".($i+1).")";
   if($i < 49) $sql .= ",";
+}
+
+$c->query($sql);
+
+$sql = "INSERT INTO servico_social VALUES";
+for($i = 0; $i < 50; $i++){
+	
+	$sql .="('".($i+1)."','".nomeF()."','".dataSQL()."','".texto()."','".texto()."','".texto()."','".telefone()."','".nomeM()."','".dataSQL()."','".texto()."','".texto()."','".texto()."','".telefone()."','".nomeF()."','".ssFamilia()."','".texto()."','".ssUniao()."','".texto()."','".boolean()."','".rand(500,2000)."','".texto()."','".rand(2,6)."','".rand(500,1500)."','".texto()."','".texto()."','".ssCasaTipo()."','".texto()."','".texto()."','".texto()."','".rand(1,8)."','".texto()."','".texto()."','".texto()."','".texto()."','".dataSQL()."',".($i+1).")";
+	if($i < 49) $sql .= ",";
+}
+
+$c->query($sql);
+
+
+$sql = "INSERT INTO protese_avaliacao VALUES";
+for($i = 0; $i < 50; $i++){
+
+	$sql .="('".($i+1)."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".nmR()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".reacaoSons()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".latenciaResp()."','".movimentoCabeca()."','".textoCurto()."','".dataSQL()."',".($i+1).")";
+	if($i < 49) $sql .= ",";
+}
+
+$c->query($sql);
+
+$sql = "INSERT INTO protese_prescricao VALUES";
+for($i = 0; $i < 50; $i++){
+
+	$sql .="('".($i+1)."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".dataSQL()."','".ppTipo()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".dataSQL()."',".($i+1).")";
+	if($i < 49) $sql .= ",";
+}
+
+$c->query($sql);
+
+$sql = "INSERT INTO protese_verificacao VALUES";
+for($i = 0; $i < 50; $i++){
+
+	$sql .="('".($i+1)."','".dataSQL()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".nmR()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".reacaoSons()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".latenciaResp()."','".movimentoCabeca()."','".dataSQL()."',".($i+1).")";
+	if($i < 49) $sql .= ",";
+}
+
+$c->query($sql);
+
+$sql = "INSERT INTO protese_validacao VALUES";
+for($i = 0; $i < 50; $i++){
+
+	$sql .="('".($i+1)."','".dataSQL()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".nmR()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".reacaoSons()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".textoProtese()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".guizosSons()."','".latenciaResp()."','".movimentoCabeca()."','".textoCurto()."','".dataSQL()."',".($i+1).")";
+	if($i < 49) $sql .= ",";
+}
+
+$c->query($sql);
+
+$sql = "INSERT INTO protese_anexo VALUES";
+for($i = 0; $i < 50; $i++){
+
+	$sql .="('".($i+1)."','".textoCurto()."','".textoCurto()."','".textoCurto()."',".rand(0,4).",'".textoCurto()."','".textoCurto()."','".textoCurto()."','".textoCurto()."',".rand(0,4).",'".textoCurto()."',".rand(0,4).",'".textoCurto()."',".rand(0,4).",'".textoCurto()."',".rand(0,4).",'".textoCurto()."',".rand(0,4).",'".textoCurto()."',".rand(0,4).",'".textoCurto()."',".rand(0,4).",'".textoCurto()."',".rand(0,4).",'".textoCurto()."',".rand(0,4).",'".dataSQL()."',".($i+1).")";
+	if($i < 49) $sql .= ",";
 }
 
 $c->query($sql);
