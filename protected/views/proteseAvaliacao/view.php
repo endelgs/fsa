@@ -6,6 +6,8 @@ $this->breadcrumbs=array(
 	'Avaliação de Prótese'=>array('index'),
 	$model->pacienteR->nome,
 );
+
+$model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º':'<90º';
 ?>
 <style>
 	.linha{}
@@ -52,15 +54,15 @@ $this->breadcrumbs=array(
 	</div>
 </div>
 
-<div class="row">
+<p class="row">
 	<b><span>imitanciometria:</span></b>
 	<?php echo CHtml::encode($model->imitanciometria); ?>
-</div>
+</p>
 
-<div class="row">
+<p class="row">
 	<b><span>otoscopia:</span></b>
 	<?php echo CHtml::encode($model->otoscopia); ?>
-</div>
+</p>
 <br/>
 <div class="larguraDefault"><hr/></div>
 <p class="row">
@@ -116,10 +118,10 @@ $this->breadcrumbs=array(
 </p>
 <br/>
 <div class="larguraDefault"><hr/></div>
-<div class="row">
+<p class="row">
 	<b><span>NMR Nível mínio de resposta (Audiometria pediátrica) :</span></b>
 	<?php echo CHtml::encode($model->nmr);?>
-</div>
+</p>
 
 <div class="row">
 	<table class="larguraDefault">
@@ -282,12 +284,16 @@ $this->breadcrumbs=array(
 		</tr>
 	</table>
 </div>
-<div class="row">
+<p class="row">
 	<b><span>Latência Resposta:</span></b>
 	<?php echo CHtml::encode($model->latencia_resposta);?>
-</div>
+</p>
+<p class="row">
+	<b><span>Grau de movimentação da cabeça:</span></b>
+	<?php echo CHtml::encode($model->grau_movimentacao_cabeca);?>
+</p>
 
-<div class="row">
+<p class="row">
 	<b><span>Laudo Audiológico:</span></b>
 	<?php echo CHtml::encode($model->laudo_audiologico); ?>
-</div>
+</p>

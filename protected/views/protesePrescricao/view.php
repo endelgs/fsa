@@ -13,58 +13,6 @@ $this->breadcrumbs=array(
 	<div class='alinhamento'><h1>Dados de Prescrição de Prótese: <?php echo $model->pacienteR->nome; ?></h1></div>
 	<div class='alinhamento direita'>última atualização: <i><?php echo $model->last_update; ?></i></div>
 </div>
-
-<div class="row">
-	<b><span>Data:</span></b>
-	<?php echo CHtml::encode($model->data); ?>
-</div>
-
-<div class="row">
-	<b><span>Tipo:</span></b>
-	<?php echo CHtml::encode($model->tipo); ?>
-</div>
-
-<div class="row">
-	<b><span>Modelo:</span></b>
-	<?php echo CHtml::encode($model->modelo); ?>
-</div>
-
-<div class="row">
-	<b><span>Material:</span></b>
-	<?php echo CHtml::encode($model->material); ?>
-</div>
-
-<div class="row">
-	<b><span>Modificação Acústica:</span></b>
-	<?php echo CHtml::encode($model->modificacao_acustica); ?>
-</div>
-<br/>
-	<div class="larguraDefault"><hr/></div>
-<div class="row">
-	Prótese Selecionada:
-	<table>
-		<tr>
-			<th>Orelha</th>
-			<th>Modelo</th>
-			<th>Marca</th>
-			<th>Cor</th>
-		</tr>
-		<tr>
-			<td>OD</td>
-			<td><?php echo CHtml::encode($model->od_modelo); ?></td>
-			<td><?php echo CHtml::encode($model->od_marca); ?></td>
-			<td><?php echo CHtml::encode($model->od_cor); ?></td>
-		</tr>
-		<tr>
-			<td>OE</td>
-			<td><?php echo CHtml::encode($model->oe_modelo); ?></td>
-			<td><?php echo CHtml::encode($model->oe_marca); ?></td>
-			<td><?php echo CHtml::encode($model->oe_cor); ?></td>
-		</tr>
-	</table>
-</div>
-<br/>
-<div class="larguraDefault"><hr/></div>
 <div class="row">
 	Prescrição pela DSL:
 	<table class="larguraDefault">
@@ -151,6 +99,55 @@ $this->breadcrumbs=array(
 			<td><?php echo CHtml::encode($model->oe_80_4000); ?></td>
 			<td><?php echo CHtml::encode($model->oe_80_6000); ?></td>
 			<td><?php echo CHtml::encode($model->oe_80_8000); ?></td>
+		</tr>
+	</table>
+</div>
+<p class="row">
+	<b><span>Data:</span></b>
+	<?php echo CHtml::encode($model->data); ?>
+</p>
+
+<p class="row">
+	<b><span>Tipo:</span></b>
+	<?php echo CHtml::encode($model->tipo); ?>
+</p>
+
+<p class="row">
+	<b><span>Modelo:</span></b>
+	<?php echo CHtml::encode($model->modelo); ?>
+</p>
+
+<p class="row">
+	<b><span>Material:</span></b>
+	<?php echo CHtml::encode($model->material); ?>
+</p>
+
+<p class="row">
+	<b><span>Modificação Acústica:</span></b>
+	<?php echo CHtml::encode($model->modificacao_acustica); ?>
+</p>
+<br/>
+	<div class="larguraDefault"><hr/></div>
+<div class="row">
+	Prótese Selecionada:
+	<table>
+		<tr>
+			<th>Orelha</th>
+			<th>Modelo</th>
+			<th>Marca</th>
+			<th>Cor</th>
+		</tr>
+		<tr>
+			<td>OD</td>
+			<td><?php echo CHtml::encode($model->od_modelo); ?></td>
+			<td><?php echo CHtml::encode($model->od_marca); ?></td>
+			<td><?php echo CHtml::encode($model->od_cor); ?></td>
+		</tr>
+		<tr>
+			<td>OE</td>
+			<td><?php echo CHtml::encode($model->oe_modelo); ?></td>
+			<td><?php echo CHtml::encode($model->oe_marca); ?></td>
+			<td><?php echo CHtml::encode($model->oe_cor); ?></td>
 		</tr>
 	</table>
 </div>

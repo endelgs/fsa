@@ -3,7 +3,7 @@
 /* @var $model ProtesePrescricao */
 
 $this->breadcrumbs=array(
-	'Protese Prescricaos'=>array('index'),
+	'Prescrição de Prótese'=>array('index'),
 	'Inserir',
 );
 
@@ -13,5 +13,4 @@ $this->menu=array(
 ?>
 
 <h1>Cadastrar dados de Prescrição de Prótese</h1>
-
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

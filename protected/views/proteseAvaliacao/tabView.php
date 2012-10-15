@@ -1,6 +1,8 @@
 <?php
-/* @var $this ServicoSocialController */
-/* @var $model ServicoSocial */
+/* @var $this ProteseAvaliacaoController */
+/* @var $model ProteseAvaliacaoSocial */
+
+$model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º':'<90º';
  ?>
  
 <style>
@@ -46,15 +48,15 @@
 	</div>
 </div>
 
-<div class="row">
+<p class="row">
 	<b><span>imitanciometria:</span></b>
 	<?php echo CHtml::encode($model->imitanciometria); ?>
-</div>
+</p>
 
-<div class="row">
+<p class="row">
 	<b><span>otoscopia:</span></b>
 	<?php echo CHtml::encode($model->otoscopia); ?>
-</div>
+</p>
 <br/>
 <div class="larguraDefault"><hr/></div>
 <p class="row">
@@ -276,12 +278,16 @@
 		</tr>
 	</table>
 </div>
-<div class="row">
+<p class="row">
 	<b><span>Latência Resposta:</span></b>
 	<?php echo CHtml::encode($model->latencia_resposta);?>
-</div>
+</p>
 
-<div class="row">
+<p class="row">
 	<b><span>Laudo Audiológico:</span></b>
 	<?php echo CHtml::encode($model->laudo_audiologico); ?>
-</div>
+</p>
+<p class="row">
+	<b><span>Grau de movimentação da cabeça:</span></b>
+	<?php echo CHtml::encode($model->grau_movimentacao_cabeca);?>
+</p>

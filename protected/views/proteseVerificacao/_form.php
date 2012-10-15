@@ -24,7 +24,7 @@
 	margin-bottom: 10px;
 	margin-top: -15px;
 }
-
+.primeiraTabela{width:500px;}
 .alinhamento{float:left;margin-right: 12px;}
 .coluna{
 	width: 550px;
@@ -134,7 +134,109 @@
 		<?php echo $form->error($model,'paciente_r'); ?>
 	</div>
 	
-	
+	<div class="row">
+		<?php echo $form->labelEx($model,'data'); ?>
+		<?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+	          'attribute'=>'data',
+	          'model' => $model,
+	          'value'=>$model->data,
+	          'language'=>'pt-BR',
+	          'options'=>array(
+	          	'showAnim'=>'fold',
+	         	'dateFormat'=>'dd/mm/yy',
+	           )
+	        ));
+		?>
+	</div>
+	<div class="row">
+		Ganho de inserção método direto:
+		<table class="primeiraTabela">
+			<tr>
+				<th>NPS</th>
+				<th>dB</th>
+				<th>250 Hz</th>
+				<th>500 Hz</th>
+				<th>1000 Hz</th>
+				<th>2000 Hz</th>
+				<th>3000 Hz</th>
+				<th>4000 Hz</th>
+				<th>6000 Hz</th>
+				<th>8000 Hz</th>
+			</tr>
+			<tr>
+				<td>OD</td>
+				<td>40</td>
+				<td><?php echo $form->textField($model,'od_40_250',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_40_250');?></td>
+				<td><?php echo $form->textField($model,'od_40_500',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_40_500');?></td>
+				<td><?php echo $form->textField($model,'od_40_1000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_40_1000');?></td>
+				<td><?php echo $form->textField($model,'od_40_2000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_40_2000');?></td>
+				<td><?php echo $form->textField($model,'od_40_3000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_40_3000');?></td>
+				<td><?php echo $form->textField($model,'od_40_4000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_40_4000');?></td>
+				<td><?php echo $form->textField($model,'od_40_6000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_40_6000');?></td>
+				<td><?php echo $form->textField($model,'od_40_8000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_40_8000');?></td>
+			</tr>
+			<tr>
+				<td>OD</td>
+				<td>60</td>
+				<td><?php echo $form->textField($model,'od_60_250',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_60_250');?></td>
+				<td><?php echo $form->textField($model,'od_60_500',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_60_500');?></td>
+				<td><?php echo $form->textField($model,'od_60_1000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_60_1000');?></td>
+				<td><?php echo $form->textField($model,'od_60_2000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_60_2000');?></td>
+				<td><?php echo $form->textField($model,'od_60_3000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_60_3000');?></td>
+				<td><?php echo $form->textField($model,'od_60_4000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_60_4000');?></td>
+				<td><?php echo $form->textField($model,'od_60_6000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_60_6000');?></td>
+				<td><?php echo $form->textField($model,'od_60_8000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_60_8000');?></td>
+			</tr>
+			<tr>
+				<td>OD</td>
+				<td>80</td>
+				<td><?php echo $form->textField($model,'od_80_250',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_80_250');?></td>
+				<td><?php echo $form->textField($model,'od_80_500',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_80_500');?></td>
+				<td><?php echo $form->textField($model,'od_80_1000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_80_1000');?></td>
+				<td><?php echo $form->textField($model,'od_80_2000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_80_2000');?></td>
+				<td><?php echo $form->textField($model,'od_80_3000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_80_3000');?></td>
+				<td><?php echo $form->textField($model,'od_80_4000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_80_4000');?></td>
+				<td><?php echo $form->textField($model,'od_80_6000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_80_6000');?></td>
+				<td><?php echo $form->textField($model,'od_80_8000',array('size'=>1,'maxlength'=>250)).$form->error($model,'od_80_8000');?></td>
+			</tr>
+			<tr>
+				<td>OE</td>
+				<td>40</td>
+				<td><?php echo $form->textField($model,'oe_40_250',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_40_250');?></td>
+				<td><?php echo $form->textField($model,'oe_40_500',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_40_500');?></td>
+				<td><?php echo $form->textField($model,'oe_40_1000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_40_1000');?></td>
+				<td><?php echo $form->textField($model,'oe_40_2000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_40_2000');?></td>
+				<td><?php echo $form->textField($model,'oe_40_3000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_40_3000');?></td>
+				<td><?php echo $form->textField($model,'oe_40_4000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_40_4000');?></td>
+				<td><?php echo $form->textField($model,'oe_40_6000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_40_6000');?></td>
+				<td><?php echo $form->textField($model,'oe_40_8000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_40_8000');?></td>
+			</tr>
+			<tr>
+				<td>OE</td>
+				<td>60</td>
+				<td><?php echo $form->textField($model,'oe_60_250',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_60_250');?></td>
+				<td><?php echo $form->textField($model,'oe_60_500',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_60_500');?></td>
+				<td><?php echo $form->textField($model,'oe_60_1000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_60_1000');?></td>
+				<td><?php echo $form->textField($model,'oe_60_2000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_60_2000');?></td>
+				<td><?php echo $form->textField($model,'oe_60_3000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_60_3000');?></td>
+				<td><?php echo $form->textField($model,'oe_60_4000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_60_4000');?></td>
+				<td><?php echo $form->textField($model,'oe_60_6000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_60_6000');?></td>
+				<td><?php echo $form->textField($model,'oe_60_8000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_60_8000');?></td>
+			</tr>
+			<tr>
+				<td>OE</td>
+				<td>80</td>
+				<td><?php echo $form->textField($model,'oe_80_250',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_80_250');?></td>
+				<td><?php echo $form->textField($model,'oe_80_500',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_80_500');?></td>
+				<td><?php echo $form->textField($model,'oe_80_1000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_80_1000');?></td>
+				<td><?php echo $form->textField($model,'oe_80_2000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_80_2000');?></td>
+				<td><?php echo $form->textField($model,'oe_80_3000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_80_3000');?></td>
+				<td><?php echo $form->textField($model,'oe_80_4000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_80_4000');?></td>
+				<td><?php echo $form->textField($model,'oe_80_6000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_80_6000');?></td>
+				<td><?php echo $form->textField($model,'oe_80_8000',array('size'=>1,'maxlength'=>250)).$form->error($model,'oe_80_8000');?></td>
+			</tr>
+		</table>
+	</div>
 	<div class="row">
 		<?php echo $form->labelEx($model,'nmr'); ?>
 		<?php echo $form->radioButton($model, 'nmr', array('value'=>'audiometro_pediatrico','uncheckValue'=>null))." Audiometro Pediátrico";?>
@@ -220,95 +322,7 @@
 	</div>
 	<br/>
 	<div class="larguraDefault"><hr/></div>
-	<div class="row">
-		Ganho de inserção método direto:
-		<table class="larguraDefault">
-			<tr>
-				<th>NPS</th>
-				<th></th>
-				<th>250 Hz</th>
-				<th>500 Hz</th>
-				<th>1000 Hz</th>
-				<th>2000 Hz</th>
-				<th>3000 Hz</th>
-				<th>4000 Hz</th>
-				<th>6000 Hz</th>
-				<th>8000 Hz</th>
-			</tr>
-			<tr>
-				<td>OD</td>
-				<td>40 dB</td>
-				<td><?php echo $form->textField($model,'od_40_250',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_40_250');?></td>
-				<td><?php echo $form->textField($model,'od_40_500',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_40_500');?></td>
-				<td><?php echo $form->textField($model,'od_40_1000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_40_1000');?></td>
-				<td><?php echo $form->textField($model,'od_40_2000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_40_2000');?></td>
-				<td><?php echo $form->textField($model,'od_40_3000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_40_3000');?></td>
-				<td><?php echo $form->textField($model,'od_40_4000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_40_4000');?></td>
-				<td><?php echo $form->textField($model,'od_40_6000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_40_6000');?></td>
-				<td><?php echo $form->textField($model,'od_40_8000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_40_8000');?></td>
-			</tr>
-			<tr>
-				<td>OD</td>
-				<td>60 dB</td>
-				<td><?php echo $form->textField($model,'od_60_250',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_60_250');?></td>
-				<td><?php echo $form->textField($model,'od_60_500',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_60_500');?></td>
-				<td><?php echo $form->textField($model,'od_60_1000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_60_1000');?></td>
-				<td><?php echo $form->textField($model,'od_60_2000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_60_2000');?></td>
-				<td><?php echo $form->textField($model,'od_60_3000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_60_3000');?></td>
-				<td><?php echo $form->textField($model,'od_60_4000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_60_4000');?></td>
-				<td><?php echo $form->textField($model,'od_60_6000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_60_6000');?></td>
-				<td><?php echo $form->textField($model,'od_60_8000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_60_8000');?></td>
-			</tr>
-			<tr>
-				<td>OD</td>
-				<td>80 dB</td>
-				<td><?php echo $form->textField($model,'od_80_250',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_80_250');?></td>
-				<td><?php echo $form->textField($model,'od_80_500',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_80_500');?></td>
-				<td><?php echo $form->textField($model,'od_80_1000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_80_1000');?></td>
-				<td><?php echo $form->textField($model,'od_80_2000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_80_2000');?></td>
-				<td><?php echo $form->textField($model,'od_80_3000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_80_3000');?></td>
-				<td><?php echo $form->textField($model,'od_80_4000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_80_4000');?></td>
-				<td><?php echo $form->textField($model,'od_80_6000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_80_6000');?></td>
-				<td><?php echo $form->textField($model,'od_80_8000',array('size'=>7,'maxlength'=>250)).$form->error($model,'od_80_8000');?></td>
-			</tr>
-			<tr>
-				<td>OE</td>
-				<td>40 dB</td>
-				<td><?php echo $form->textField($model,'oe_40_250',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_40_250');?></td>
-				<td><?php echo $form->textField($model,'oe_40_500',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_40_500');?></td>
-				<td><?php echo $form->textField($model,'oe_40_1000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_40_1000');?></td>
-				<td><?php echo $form->textField($model,'oe_40_2000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_40_2000');?></td>
-				<td><?php echo $form->textField($model,'oe_40_3000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_40_3000');?></td>
-				<td><?php echo $form->textField($model,'oe_40_4000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_40_4000');?></td>
-				<td><?php echo $form->textField($model,'oe_40_6000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_40_6000');?></td>
-				<td><?php echo $form->textField($model,'oe_40_8000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_40_8000');?></td>
-			</tr>
-			<tr>
-				<td>OE</td>
-				<td>60 dB</td>
-				<td><?php echo $form->textField($model,'oe_60_250',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_60_250');?></td>
-				<td><?php echo $form->textField($model,'oe_60_500',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_60_500');?></td>
-				<td><?php echo $form->textField($model,'oe_60_1000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_60_1000');?></td>
-				<td><?php echo $form->textField($model,'oe_60_2000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_60_2000');?></td>
-				<td><?php echo $form->textField($model,'oe_60_3000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_60_3000');?></td>
-				<td><?php echo $form->textField($model,'oe_60_4000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_60_4000');?></td>
-				<td><?php echo $form->textField($model,'oe_60_6000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_60_6000');?></td>
-				<td><?php echo $form->textField($model,'oe_60_8000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_60_8000');?></td>
-			</tr>
-			<tr>
-				<td>OE</td>
-				<td>80 dB</td>
-				<td><?php echo $form->textField($model,'oe_80_250',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_80_250');?></td>
-				<td><?php echo $form->textField($model,'oe_80_500',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_80_500');?></td>
-				<td><?php echo $form->textField($model,'oe_80_1000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_80_1000');?></td>
-				<td><?php echo $form->textField($model,'oe_80_2000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_80_2000');?></td>
-				<td><?php echo $form->textField($model,'oe_80_3000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_80_3000');?></td>
-				<td><?php echo $form->textField($model,'oe_80_4000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_80_4000');?></td>
-				<td><?php echo $form->textField($model,'oe_80_6000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_80_6000');?></td>
-				<td><?php echo $form->textField($model,'oe_80_8000',array('size'=>7,'maxlength'=>250)).$form->error($model,'oe_80_8000');?></td>
-			</tr>
-		</table>
-	</div>
+	
 	<br/>
 	<div class="larguraDefault"><hr/></div>
 	<div class="row">
@@ -418,14 +432,26 @@
 	</div>
 
 	<div class="row">
-			<?php echo $form->labelEx($model,'latencia_resposta'); ?>
-			<?php echo $form->radioButton($model, 'latencia_resposta', array('value'=>'imediata','uncheckValue'=>null)).' Imediata'; ?>
-			<?php echo $form->radioButton($model, 'latencia_resposta', array('value'=>'lenta','uncheckValue'=>null)).' Lenta'; ?>
-			<?php echo $form->error($model,'latencia_resposta'); ?>
-		</div>
+		<?php echo $form->labelEx($model,'latencia_resposta'); ?>
+		<?php echo $form->radioButton($model, 'latencia_resposta', array('value'=>'imediata','uncheckValue'=>null)).' Imediata'; ?>
+		<?php echo $form->radioButton($model, 'latencia_resposta', array('value'=>'lenta','uncheckValue'=>null)).' Lenta'; ?>
+		<?php echo $form->error($model,'latencia_resposta'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'grau_movimentacao_cabeca'); ?>
+		<?php echo $form->radioButton($model, 'grau_movimentacao_cabeca', array('value'=>'90','uncheckValue'=>null)).' 90º'; ?>
+		<?php echo $form->radioButton($model, 'grau_movimentacao_cabeca', array('value'=>'menor_90','uncheckValue'=>null)).' <90º'; ?>
+		<?php echo $form->error($model,'grau_movimentacao_cabeca'); ?>
+	</div>
 </div>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Inserir' : 'Salvar'); ?>
+		ou
+		<?php 
+			if($model->isNewRecord ){
+				echo CHtml::submitButton('Inserir e Ir para Validação',array('submit'=>Yii::app()->controller->createUrl('proteseVerificação/createProximoForm')));
+			}
+		?>
 	</div>
 
 <?php $this->endWidget(); ?>

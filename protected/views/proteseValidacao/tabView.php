@@ -1,6 +1,8 @@
 <?php
-/* @var $this ProteseVerificacaoController */
-/* @var $model ProteseVerificacao */
+/* @var $this ProteseValidacaoController */
+/* @var $model ProteseValidacao */
+
+$model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º':'<90º';
  ?>
  
 <style>
@@ -17,11 +19,14 @@
 <div class='direita'>
 	última atualização <?php echo $model->last_update ;?>
 </div>
-
-<div class="row">
+<p class="row">
+	<b><span>Data :</span></b>
+	<?php echo CHtml::encode($model->data);?>
+</p>
+<p class="row">
 	<b><span>NMR Nível mínio de resposta (Audiometria pediátrica) :</span></b>
 	<?php echo CHtml::encode($model->nmr);?>
-</div>
+</p>
 
 <div class="row">
 	<table class="larguraDefault">
@@ -236,7 +241,15 @@
 		</tr>
 	</table>
 </div>
-<div class="row">
+<p class="row">
 	<b><span>Latência Resposta:</span></b>
 	<?php echo CHtml::encode($model->latencia_resposta);?>
-</div>
+</p>
+<p class="row">
+	<b><span>Grau de movimentação da cabeça:</span></b>
+	<?php echo CHtml::encode($model->grau_movimentacao_cabeca);?>
+</p>
+<p class="row">
+	<b><span>Estágio de desenvolvimento auditivo:</span></b>
+	<?php echo CHtml::encode($model->estagio_desenvolvimento);?>
+</p>

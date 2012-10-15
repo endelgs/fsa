@@ -32,7 +32,7 @@ class ProteseVerificacaoController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','createProximoForm'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -77,6 +77,25 @@ class ProteseVerificacaoController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+		));
+	}
+	public function actionCreateProximoForm()
+	{
+		$model=new ProteseVerificacao;
+	
+		// Uncomment the following line if AJAX validation is needed
+		$this->performAjaxValidation($model);
+	
+		if(isset($_POST['ProteseVerificacao']))
+		{
+			$model->attributes=$_POST['ProteseVerificacao'];
+			$model->last_update=new CDbExpression('NOW()');
+			if($model->save())
+				$this->redirect(array('proteseValidacao/create'));
+		}
+	
+		$this->render('create',array(
+				'model'=>$model,
 		));
 	}
 

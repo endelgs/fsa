@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'protese_validacao':
  * @property integer $id
+ * @property string $data
  * @property string $od_40_250
  * @property string $od_40_500
  * @property string $od_40_1000
@@ -86,6 +87,8 @@
  * @property string $agogo_grande
  * @property string $prato
  * @property string $latencia_resposta
+ * @property string $grau_movimentacao_cabeca
+ * @property string $estagio_desenvolvimento
  * @property string $last_update
  * @property integer $paciente_r
  */
@@ -117,16 +120,16 @@ class ProteseValidacao extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('od_40_250, od_40_500, od_40_1000, od_40_2000, od_40_3000, od_40_4000, od_40_6000, od_40_8000, od_60_250, od_60_500, od_60_1000, od_60_2000, od_60_3000, od_60_4000, od_60_6000, od_60_8000, od_80_250, od_80_500, od_80_1000, od_80_2000, od_80_3000, od_80_4000, od_80_6000, od_80_8000, oe_40_250, oe_40_500, oe_40_1000, oe_40_2000, oe_40_3000, oe_40_4000, oe_40_6000, oe_40_8000, oe_60_250, oe_60_500, oe_60_1000, oe_60_2000, oe_60_3000, oe_60_4000, oe_60_6000, oe_60_8000, oe_80_250, oe_80_500, oe_80_1000, oe_80_2000, oe_80_3000, oe_80_4000, oe_80_6000, oe_80_8000, nmr, nmr_500_od, nmr_1k_od, nmr_2k_od, nmr_4k_od, nmr_intensiade_od, nmr_500_oe, nmr_1k_oe, nmr_2k_oe, nmr_4k_oe, nmr_intensiade_oe, reacao_sons, voz_amplificada, sons_ling_s, sons_ling_ch, sons_ling_a, sons_ling_i, sons_ling_u, sons_ling_m, lrf_od, ldv_od, lrf_oe, ldv_oe, guizo_1, guizo_2, reco_reco, sino, ganza, black_black, agogo_pequeno, agogo_grande, prato, latencia_resposta, paciente_r', 'required'),
+			array('paciente_r', 'required'),
 			array('paciente_r', 'numerical', 'integerOnly'=>true),
 			array('od_40_250, od_40_500, od_40_1000, od_40_2000, od_40_3000, od_40_4000, od_40_6000, od_40_8000, od_60_250, od_60_500, od_60_1000, od_60_2000, od_60_3000, od_60_4000, od_60_6000, od_60_8000, od_80_250, od_80_500, od_80_1000, od_80_2000, od_80_3000, od_80_4000, od_80_6000, od_80_8000, oe_40_250, oe_40_500, oe_40_1000, oe_40_2000, oe_40_3000, oe_40_4000, oe_40_6000, oe_40_8000, oe_60_250, oe_60_500, oe_60_1000, oe_60_2000, oe_60_3000, oe_60_4000, oe_60_6000, oe_60_8000, oe_80_250, oe_80_500, oe_80_1000, oe_80_2000, oe_80_3000, oe_80_4000, oe_80_6000, oe_80_8000, nmr_500_od, nmr_1k_od, nmr_2k_od, nmr_4k_od, nmr_intensiade_od, nmr_500_oe, nmr_1k_oe, nmr_2k_oe, nmr_4k_oe, nmr_intensiade_oe, voz_amplificada, sons_ling_s, sons_ling_ch, sons_ling_a, sons_ling_i, sons_ling_u, sons_ling_m, lrf_od, ldv_od, lrf_oe, ldv_oe', 'length', 'max'=>250),
 			array('nmr', 'length', 'max'=>21),
 			array('reacao_sons', 'length', 'max'=>15),
 			array('guizo_1, guizo_2, reco_reco, sino, ganza, black_black, agogo_pequeno, agogo_grande, prato', 'length', 'max'=>11),
-			array('latencia_resposta', 'length', 'max'=>8),
+			array('latencia_resposta, grau_movimentacao_cabeca', 'length', 'max'=>8),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, od_40_250, od_40_500, od_40_1000, od_40_2000, od_40_3000, od_40_4000, od_40_6000, od_40_8000, od_60_250, od_60_500, od_60_1000, od_60_2000, od_60_3000, od_60_4000, od_60_6000, od_60_8000, od_80_250, od_80_500, od_80_1000, od_80_2000, od_80_3000, od_80_4000, od_80_6000, od_80_8000, oe_40_250, oe_40_500, oe_40_1000, oe_40_2000, oe_40_3000, oe_40_4000, oe_40_6000, oe_40_8000, oe_60_250, oe_60_500, oe_60_1000, oe_60_2000, oe_60_3000, oe_60_4000, oe_60_6000, oe_60_8000, oe_80_250, oe_80_500, oe_80_1000, oe_80_2000, oe_80_3000, oe_80_4000, oe_80_6000, oe_80_8000, nmr, nmr_500_od, nmr_1k_od, nmr_2k_od, nmr_4k_od, nmr_intensiade_od, nmr_500_oe, nmr_1k_oe, nmr_2k_oe, nmr_4k_oe, nmr_intensiade_oe, reacao_sons, voz_amplificada, sons_ling_s, sons_ling_ch, sons_ling_a, sons_ling_i, sons_ling_u, sons_ling_m, lrf_od, ldv_od, lrf_oe, ldv_oe, guizo_1, guizo_2, reco_reco, sino, ganza, black_black, agogo_pequeno, agogo_grande, prato, latencia_resposta, last_update, paciente_r', 'safe', 'on'=>'search'),
+			array('id, data, od_40_250, od_40_500, od_40_1000, od_40_2000, od_40_3000, od_40_4000, od_40_6000, od_40_8000, od_60_250, od_60_500, od_60_1000, od_60_2000, od_60_3000, od_60_4000, od_60_6000, od_60_8000, od_80_250, od_80_500, od_80_1000, od_80_2000, od_80_3000, od_80_4000, od_80_6000, od_80_8000, oe_40_250, oe_40_500, oe_40_1000, oe_40_2000, oe_40_3000, oe_40_4000, oe_40_6000, oe_40_8000, oe_60_250, oe_60_500, oe_60_1000, oe_60_2000, oe_60_3000, oe_60_4000, oe_60_6000, oe_60_8000, oe_80_250, oe_80_500, oe_80_1000, oe_80_2000, oe_80_3000, oe_80_4000, oe_80_6000, oe_80_8000, nmr, nmr_500_od, nmr_1k_od, nmr_2k_od, nmr_4k_od, nmr_intensiade_od, nmr_500_oe, nmr_1k_oe, nmr_2k_oe, nmr_4k_oe, nmr_intensiade_oe, reacao_sons, voz_amplificada, sons_ling_s, sons_ling_ch, sons_ling_a, sons_ling_i, sons_ling_u, sons_ling_m, lrf_od, ldv_od, lrf_oe, ldv_oe, guizo_1, guizo_2, reco_reco, sino, ganza, black_black, agogo_pequeno, agogo_grande, prato, latencia_resposta, grau_movimentacao_cabeca, estagio_desenvolvimento, last_update, paciente_r', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -149,6 +152,7 @@ class ProteseValidacao extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'data' => 'Data',
 			'od_40_250' => 'Od 40 250',
 			'od_40_500' => 'Od 40 500',
 			'od_40_1000' => 'Od 40 1000',
@@ -229,7 +233,9 @@ class ProteseValidacao extends CActiveRecord
 			'agogo_pequeno' => 'Agogo Pequeno',
 			'agogo_grande' => 'Agogo Grande',
 			'prato' => 'Prato',
-			'latencia_resposta' => 'Latencia Resposta',
+			'latencia_resposta' => 'Latência Resposta',
+			'grau_movimentacao_cabeca' => 'Grau de movimentação da cabeça',
+			'estagio_desenvolvimento' => 'Estágio de desenvolvimento auditivo',
 			'last_update' => 'Last Update',
 			'paciente_r' => 'Paciente',
 		);
@@ -247,6 +253,7 @@ class ProteseValidacao extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('data',$this->data,true);
 		$criteria->compare('od_40_250',$this->od_40_250,true);
 		$criteria->compare('od_40_500',$this->od_40_500,true);
 		$criteria->compare('od_40_1000',$this->od_40_1000,true);
@@ -328,6 +335,8 @@ class ProteseValidacao extends CActiveRecord
 		$criteria->compare('agogo_grande',$this->agogo_grande,true);
 		$criteria->compare('prato',$this->prato,true);
 		$criteria->compare('latencia_resposta',$this->latencia_resposta,true);
+		$criteria->compare('grau_movimentacao_cabeca',$this->grau_movimentacao_cabeca,true);
+		$criteria->compare('estagio_desenvolvimento',$this->estagio_desenvolvimento,true);
 		$criteria->compare('last_update',$this->last_update,true);
 		$criteria->compare('paciente_r',$this->paciente_r);
 
@@ -335,8 +344,20 @@ class ProteseValidacao extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
 	protected function afterFind(){
 		parent::afterFind();
+		$this->data=date('d/m/Y', strtotime(str_replace("-", "", $this->data)));
 		$this->last_update=date('d/m/Y - G:i', strtotime(str_replace("-", "", $this->last_update)))."h";
+	}
+	
+	protected function beforeSave(){
+		if(parent::beforeSave()){
+			$data = explode("/",$this->data);
+			$this->data=implode(array_reverse($data));
+				
+			return TRUE;
+		}
+		else return false;
 	}
 }

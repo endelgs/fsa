@@ -98,7 +98,7 @@ class ProtesePrescricao extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('od_40_250, od_40_500, od_40_1000, od_40_2000, od_40_3000, od_40_4000, od_40_6000, od_40_8000, od_60_250, od_60_500, od_60_1000, od_60_2000, od_60_3000, od_60_4000, od_60_6000, od_60_8000, od_80_250, od_80_500, od_80_1000, od_80_2000, od_80_3000, od_80_4000, od_80_6000, od_80_8000, oe_40_250, oe_40_500, oe_40_1000, oe_40_2000, oe_40_3000, oe_40_4000, oe_40_6000, oe_40_8000, oe_60_250, oe_60_500, oe_60_1000, oe_60_2000, oe_60_3000, oe_60_4000, oe_60_6000, oe_60_8000, oe_80_250, oe_80_500, oe_80_1000, oe_80_2000, oe_80_3000, oe_80_4000, oe_80_6000, oe_80_8000, data, tipo, modelo, material, modificacao_acustica, od_modelo, od_marca, od_cor, oe_modelo, oe_marca, oe_cor, paciente_r', 'required'),
+			array('paciente_r', 'required'),
 			array('paciente_r', 'numerical', 'integerOnly'=>true),
 			array('od_40_250, od_40_500, od_40_1000, od_40_2000, od_40_3000, od_40_4000, od_40_6000, od_40_8000, od_60_250, od_60_500, od_60_1000, od_60_2000, od_60_3000, od_60_4000, od_60_6000, od_60_8000, od_80_250, od_80_500, od_80_1000, od_80_2000, od_80_3000, od_80_4000, od_80_6000, od_80_8000, oe_40_250, oe_40_500, oe_40_1000, oe_40_2000, oe_40_3000, oe_40_4000, oe_40_6000, oe_40_8000, oe_60_250, oe_60_500, oe_60_1000, oe_60_2000, oe_60_3000, oe_60_4000, oe_60_6000, oe_60_8000, oe_80_250, oe_80_500, oe_80_1000, oe_80_2000, oe_80_3000, oe_80_4000, oe_80_6000, oe_80_8000, modelo, material, od_modelo, od_marca, od_cor, oe_modelo, oe_marca, oe_cor', 'length', 'max'=>250),
 			array('tipo', 'length', 'max'=>8),

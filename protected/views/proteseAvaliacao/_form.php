@@ -469,15 +469,27 @@ table tr td.first,table tr th.first{text-align:right}
 			<?php echo $form->radioButton($model, 'latencia_resposta', array('value'=>'lenta','uncheckValue'=>null)).' Lenta'; ?>
 			<?php echo $form->error($model,'latencia_resposta'); ?>
 		</div>
+		<div class="row">
+			<?php echo $form->labelEx($model,'grau_movimentacao_cabeca'); ?>
+			<?php echo $form->radioButton($model, 'grau_movimentacao_cabeca', array('value'=>'90','uncheckValue'=>null)).' 90º'; ?>
+			<?php echo $form->radioButton($model, 'grau_movimentacao_cabeca', array('value'=>'menor_90','uncheckValue'=>null)).' <90º'; ?>
+			<?php echo $form->error($model,'grau_movimentacao_cabeca'); ?>
+		</div>
 	
 		<div class="row">
 			<?php echo $form->labelEx($model,'laudo_audiologico'); ?>
-			<?php echo $form->textArea($model,'laudo_audiologico',array('rows'=>6, 'cols'=>60)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+			<?php echo $form->textArea($model,'laudo_audiologico',array('rows'=>6, 'cols'=>60)); ?>
 			<?php echo $form->error($model,'laudo_audiologico'); ?>
 		</div>
 </div>
 		<div class="row buttons">
 			<?php echo CHtml::submitButton($model->isNewRecord ? 'Inserir' : 'Salvar'); ?>
+			ou
+			<?php 
+				if($model->isNewRecord ){
+					echo CHtml::submitButton('Inserir e Ir para Prescrição',array('submit'=>Yii::app()->controller->createUrl('proteseAvaliacao/createProximoForm')));
+				}
+			?>
 		</div>
 	</div>
 <?php $this->endWidget(); ?>

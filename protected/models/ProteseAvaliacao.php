@@ -77,12 +77,12 @@
  * @property string $prato
  * @property string $latencia_resposta
  * @property string $laudo_audiologico
+ * @property string $grau_movimentacao_cabeca
  * @property string $last_update
  * @property integer $paciente_r
  *
  * The followings are the available model relations:
  * @property Paciente $pacienteR
- * @property ProtesePrescricao[] $protesePrescricaos
  */
 class ProteseAvaliacao extends CActiveRecord
 {
@@ -112,13 +112,13 @@ class ProteseAvaliacao extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nna_clique_od, nna_500_od, nna_1000_od, nna_cliquer_oe, nna_500_oe, nna_1000_oe, imitanciometria, otoscopia, pressao_od, complacencia_od, tipo_curva_od, pressao_oe, complacencia_oe, tipo_curva_oe, reipsi_500_od, reipsi_1k_od, reipsi_2k_od, reipsi_4k_od, reipsi_500_oe, reipsi_1k_oe, reipsi_2k_oe, reipsi_4k_oe, nmr, nmr_500_od, nmr_1k_od, nmr_2k_od, nmr_4k_od, nmr_intensiade_od, nmr_500_oe, nmr_1k_oe, nmr_2k_oe, nmr_4k_oe, nmr_intensiade_oe, recd_250_od, recd_500_od, recd_1000_od, recd_2000_od, recd_3000_od, recd_4000_od, recd_6000_od, recd_8000_od, recd_250_oe, recd_500_oe, recd_1000_oe, recd_2000_oe, recd_3000_oe, recd_4000_oe, recd_6000_oe, recd_8000_oe, reacao_sons, voz_amplificada, sons_ling_s, sons_ling_ch, sons_ling_a, sons_ling_i, sons_ling_u, sons_ling_m, lrf_od, ldv_od, lrf_oe, ldv_oe, guizo_1, guizo_2, reco_reco, sino, ganza, black_black, agogo_pequeno, agogo_grande, prato, latencia_resposta, laudo_audiologico, paciente_r', 'required'),
+			array('paciente_r', 'required'),
 			array('paciente_r', 'numerical', 'integerOnly'=>true),
 			array('nna_clique_od, nna_500_od, nna_1000_od, nna_cliquer_oe, nna_500_oe, nna_1000_oe, pressao_od, complacencia_od, tipo_curva_od, pressao_oe, complacencia_oe, tipo_curva_oe, reipsi_500_od, reipsi_1k_od, reipsi_2k_od, reipsi_4k_od, reipsi_500_oe, reipsi_1k_oe, reipsi_2k_oe, reipsi_4k_oe, nmr_500_od, nmr_1k_od, nmr_2k_od, nmr_4k_od, nmr_intensiade_od, nmr_500_oe, nmr_1k_oe, nmr_2k_oe, nmr_4k_oe, nmr_intensiade_oe, recd_250_od, recd_500_od, recd_1000_od, recd_2000_od, recd_3000_od, recd_4000_od, recd_6000_od, recd_8000_od, recd_250_oe, recd_500_oe, recd_1000_oe, recd_2000_oe, recd_3000_oe, recd_4000_oe, recd_6000_oe, recd_8000_oe, voz_amplificada, sons_ling_s, sons_ling_ch, sons_ling_a, sons_ling_i, sons_ling_u, sons_ling_m, lrf_od, ldv_od, lrf_oe, ldv_oe', 'length', 'max'=>250),
 			array('nmr', 'length', 'max'=>21),
 			array('reacao_sons', 'length', 'max'=>15),
 			array('guizo_1, guizo_2, reco_reco, sino, ganza, black_black, agogo_pequeno, agogo_grande, prato', 'length', 'max'=>11),
-			array('latencia_resposta', 'length', 'max'=>8),
+			array('latencia_resposta, grau_movimentacao_cabeca', 'length', 'max'=>8),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, nna_clique_od, nna_500_od, nna_1000_od, nna_cliquer_oe, nna_500_oe, nna_1000_oe, imitanciometria, otoscopia, pressao_od, complacencia_od, tipo_curva_od, pressao_oe, complacencia_oe, tipo_curva_oe, reipsi_500_od, reipsi_1k_od, reipsi_2k_od, reipsi_4k_od, reipsi_500_oe, reipsi_1k_oe, reipsi_2k_oe, reipsi_4k_oe, nmr, nmr_500_od, nmr_1k_od, nmr_2k_od, nmr_4k_od, nmr_intensiade_od, nmr_500_oe, nmr_1k_oe, nmr_2k_oe, nmr_4k_oe, nmr_intensiade_oe, recd_250_od, recd_500_od, recd_1000_od, recd_2000_od, recd_3000_od, recd_4000_od, recd_6000_od, recd_8000_od, recd_250_oe, recd_500_oe, recd_1000_oe, recd_2000_oe, recd_3000_oe, recd_4000_oe, recd_6000_oe, recd_8000_oe, reacao_sons, voz_amplificada, sons_ling_s, sons_ling_ch, sons_ling_a, sons_ling_i, sons_ling_u, sons_ling_m, lrf_od, ldv_od, lrf_oe, ldv_oe, guizo_1, guizo_2, reco_reco, sino, ganza, black_black, agogo_pequeno, agogo_grande, prato, latencia_resposta, laudo_audiologico, last_update, paciente_r', 'safe', 'on'=>'search'),
@@ -216,6 +216,7 @@ class ProteseAvaliacao extends CActiveRecord
 			'agogo_grande' => 'Agogô Grande',
 			'prato' => 'Prato',
 			'latencia_resposta' => 'Latência Resposta',
+			'grau_movimentacao_cabeca' => 'Grau de movimentação da cabeça',
 			'laudo_audiologico' => 'Laudo Audiológico',
 			'last_update' => 'Última atualização',
 			'paciente_r' => 'Paciente',
@@ -306,6 +307,7 @@ class ProteseAvaliacao extends CActiveRecord
 		$criteria->compare('prato',$this->prato,true);
 		$criteria->compare('latencia_resposta',$this->latencia_resposta,true);
 		$criteria->compare('laudo_audiologico',$this->laudo_audiologico,true);
+		$criteria->compare('grau_movimentacao_cabeca',$this->grau_movimentacao_cabeca,true);
 		$criteria->compare('last_update',$this->last_update,true);
 		$criteria->compare('paciente_r',$this->paciente_r);
 

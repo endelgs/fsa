@@ -113,7 +113,7 @@ $this->widget('zii.widgets.jui.CJuiTabs', array(
 		'Triagem'=>$tabTriagem,
 		'Genética'=>$tabGenetica,
 		'Avaliação de Prótese'=>$tabProteseAvaliacao,
-		'Prescrição de Prótese'=>$tabProteseAvaliacao,
+		'Prescrição de Prótese'=>$tabProtesePrescricao,
 		'Verificação de Prótese'=>$tabProteseVerificacao,
 		'Validação de Prótese'=>$tabProteseValidacao,
 		'Anexo de Prótese'=>$tabProteseAnexo,
