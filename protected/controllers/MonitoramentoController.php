@@ -71,7 +71,7 @@ class MonitoramentoController extends Controller
 		{
 			$model->attributes=$_POST['Monitoramento'];
 			//$model->last_update=new CDbExpression('NOW()');
-			die(print_r($_POST['Monitoramento']));
+			//die(print_r($_POST['Monitoramento']));
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
