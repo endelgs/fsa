@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 15/10/2012 às 19h29min
+-- Tempo de Geração: 24/10/2012 às 17h07min
 -- Versão do Servidor: 5.5.24
 -- Versão do PHP: 5.3.10-1ubuntu3.4
 
@@ -153,6 +153,71 @@ INSERT INTO `irmao_servico_social` (`id`, `nome`, `idade`, `escolaridade`, `prof
 (2, 'Teste', 10, 'Teste', 'Teste', '200', 7),
 (3, 'Teste 2', 20, 'Teste 2', 'Teste ', '800', 7),
 (4, 'Irmao', 10, 'Teste', 'Teste', '200', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `monitoramento`
+--
+
+CREATE TABLE IF NOT EXISTS `monitoramento` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `guizo` enum('o','rcp','s','a','pf','l','l_down','l_up') NOT NULL,
+  `sino` enum('o','rcp','s','a','pf','l','l_down','l_up') NOT NULL,
+  `agogo` enum('o','rcp','s','a','pf','l','l_down','l_up') NOT NULL,
+  `reacao_voz` enum('o','rcp','s','a','pf','l','l_down','l_up') NOT NULL,
+  `od_500` varchar(250) NOT NULL,
+  `od_1000` varchar(250) NOT NULL,
+  `od_2000` varchar(250) NOT NULL,
+  `od_4000` varchar(250) NOT NULL,
+  `oe_1000` varchar(250) NOT NULL,
+  `oe_2000` varchar(250) NOT NULL,
+  `oe_500` varchar(250) NOT NULL,
+  `oe_4000` varchar(250) NOT NULL,
+  `od_complacencia` varchar(250) NOT NULL,
+  `od_pressao` varchar(250) NOT NULL,
+  `od_volume` varchar(250) NOT NULL,
+  `od_gradiente` varchar(250) NOT NULL,
+  `od_curva_tipo` varchar(250) NOT NULL,
+  `oe_complacencia` varchar(250) NOT NULL,
+  `oe_pressao` varchar(250) NOT NULL,
+  `oe_volume` varchar(250) NOT NULL,
+  `oe_gradiente` varchar(250) NOT NULL,
+  `oe_curva_tipo` varchar(250) NOT NULL,
+  `da_tchau` enum('true','false') NOT NULL,
+  `joga_beijo` enum('true','false') NOT NULL,
+  `bate_palma` enum('true','false') NOT NULL,
+  `cade_chupeta` enum('true','false') NOT NULL,
+  `cade_mamae` enum('true','false') NOT NULL,
+  `cade_sapato` enum('true','false') NOT NULL,
+  `cade_cabelo` enum('true','false') NOT NULL,
+  `cade_mao` enum('true','false') NOT NULL,
+  `cade_pe` enum('true','false') NOT NULL,
+  `observacao` text NOT NULL,
+  `reipsi_500_od` varchar(250) NOT NULL,
+  `reipsi_1k_od` varchar(250) NOT NULL,
+  `reipsi_2k_od` varchar(250) NOT NULL,
+  `reipsi_4k_od` varchar(250) NOT NULL,
+  `reipsi_500_oe` varchar(250) NOT NULL,
+  `reipsi_1k_oe` varchar(250) NOT NULL,
+  `reipsi_2k_oe` varchar(250) NOT NULL,
+  `reipsi_4k_oe` varchar(250) NOT NULL,
+  `desenvolvimento_motor` text NOT NULL,
+  `desenvolvimento_auditivo` text NOT NULL,
+  `desenvolvimento_linguagem` text NOT NULL,
+  `last_update` datetime NOT NULL,
+  `paciente_r` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `paciente_r` (`paciente_r`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `monitoramento`
+--
+
+INSERT INTO `monitoramento` (`id`, `guizo`, `sino`, `agogo`, `reacao_voz`, `od_500`, `od_1000`, `od_2000`, `od_4000`, `oe_1000`, `oe_2000`, `oe_500`, `oe_4000`, `od_complacencia`, `od_pressao`, `od_volume`, `od_gradiente`, `od_curva_tipo`, `oe_complacencia`, `oe_pressao`, `oe_volume`, `oe_gradiente`, `oe_curva_tipo`, `da_tchau`, `joga_beijo`, `bate_palma`, `cade_chupeta`, `cade_mamae`, `cade_sapato`, `cade_cabelo`, `cade_mao`, `cade_pe`, `observacao`, `reipsi_500_od`, `reipsi_1k_od`, `reipsi_2k_od`, `reipsi_4k_od`, `reipsi_500_oe`, `reipsi_1k_oe`, `reipsi_2k_oe`, `reipsi_4k_oe`, `desenvolvimento_motor`, `desenvolvimento_auditivo`, `desenvolvimento_linguagem`, `last_update`, `paciente_r`) VALUES
+(1, 'o', 'rcp', 's', 'a', 'as', 'dad', 'sdasa', 'dasd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asda', 'sdas', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', 'asd', 'asdasdasd', 'asda', 'sda', 'sdasd', 'asda', 'asd', 'sdasd', '', '', '', '2012-10-24 11:32:37', 7),
+(2, 'o', 'rcp', 's', 'a', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 'true', 'true', 'true', 'true', 'true', '', 'true', 'true', 'true', '', '1', '1', '1', '1', '1', '1', '1', '1', '', '', '', '2012-10-24 16:32:55', 44);
 
 -- --------------------------------------------------------
 
@@ -1101,6 +1166,12 @@ ALTER TABLE `genetica`
 --
 ALTER TABLE `irmao_servico_social`
   ADD CONSTRAINT `irmao_servico_social_ibfk_1` FOREIGN KEY (`servico_social_r`) REFERENCES `servico_social` (`id`);
+
+--
+-- Restrições para a tabela `monitoramento`
+--
+ALTER TABLE `monitoramento`
+  ADD CONSTRAINT `monitoramento_ibfk_1` FOREIGN KEY (`paciente_r`) REFERENCES `paciente` (`id`);
 
 --
 -- Restrições para a tabela `protese_anexo`
