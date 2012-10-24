@@ -104,6 +104,9 @@ $modelServicoSocial = ServicoSocial::model()->find(array('select'=>'*','conditio
 if($modelServicoSocial != null)$tabServicoSocial=$aTabs['Serviço Social']=$this->renderPartial('../servicoSocial/tabView', array('model'=>$modelServicoSocial,'modelIrmao' => new ServicoSocialIrmao,'modelResidente' => new ServicoSocialResidentes,),true);
 else $tabServicoSocial="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastrados. ".CHtml::link(CHtml::encode("Cadastrar agora"), array('servicoSocial/create'))."</h5>";
 
+$modelMonitoramento = Monitoramento::model()->find(array('select'=>'*','condition'=>'paciente_r=:id','params'=>array(':id'=>$model->id)));
+if($modelMonitoramento != null)$tabMonitoramento=$aTabs['Monitoramento']=$this->renderPartial('../monitoramento/tabView', array('model'=>$modelMonitoramento),true);
+else $tabMonitoramento="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastrados. ".CHtml::link(CHtml::encode("Cadastrar agora"), array('monitoramento/create'))."</h5>";
 
 
 
@@ -117,7 +120,8 @@ $this->widget('zii.widgets.jui.CJuiTabs', array(
 		'Verificação de Prótese'=>$tabProteseVerificacao,
 		'Validação de Prótese'=>$tabProteseValidacao,
 		'Anexo de Prótese'=>$tabProteseAnexo,
-		'Serviço Social'=>$tabServicoSocial		
+		'Serviço Social'=>$tabServicoSocial,
+		'Monitoramento'=>$tabMonitoramento,	
 	)
 ));
 

@@ -66,7 +66,12 @@
             		),
             	),
             	array('label'=>'Agenda*'),
-            	array('label'=>'Monitoramento', 'url'=>array('/paciente/admin')),
+            	array('label'=>'Monitoramento',
+            		'items'=>array(
+            			array('label'=>'Cadastrar dados de monitoramento', 'url'=>array('monitoramento/create')),
+            			array('label'=>'Gerenciar dados de monitoramento', 'url'=>array('monitoramento/admin')),
+            		),
+            	),
             	array('label'=>'Sair do sistema', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
             ),
     )); ?>
