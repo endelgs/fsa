@@ -72,6 +72,12 @@
             			array('label'=>'Gerenciar dados de monitoramento', 'url'=>array('monitoramento/admin')),
             		),
             	),
+            	array('label'=>'Diagnóstico',
+            		'items'=>array(
+            			array('label'=>'Cadastrar diagnóstico', 'url'=>array('diagnostico/create')),
+            			array('label'=>'Gerenciar diagnósticos', 'url'=>array('diagnostico/admin')),
+            		),
+            	),
             	array('label'=>'Sair do sistema', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
             ),
     )); ?>
