@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 24/10/2012 às 17h07min
+-- Tempo de Geração: 30/10/2012 às 16h43min
 -- Versão do Servidor: 5.5.24
 -- Versão do PHP: 5.3.10-1ubuntu3.4
 
@@ -19,6 +19,143 @@ SET time_zone = "+00:00";
 --
 -- Banco de Dados: `saudeaud_fcm`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `diagnostico`
+--
+
+CREATE TABLE IF NOT EXISTS `diagnostico` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `consanguinidade` enum('true','false') NOT NULL,
+  `perda_auditiva_familia` enum('true','false') NOT NULL,
+  `preocupacao_familiar` enum('true','false') NOT NULL,
+  `alimentacao_neonato` enum('natural','mamadeira') NOT NULL,
+  `posicao_alimentacao` enum('deitado','sentado') NOT NULL,
+  `refluxo` enum('true','false') NOT NULL,
+  `dor_ouvido` enum('true','false') NOT NULL,
+  `barulho_alto_acorda` enum('true','false') NOT NULL,
+  `chora_ruido_alto` enum('true','false') NOT NULL,
+  `procurar_som_fora_visao` enum('true','false') NOT NULL,
+  `atento_voz_materna` enum('true','false') NOT NULL,
+  `reinternado` enum('true','false') NOT NULL,
+  `susto_ruido_alto` enum('true','false') NOT NULL,
+  `motivo` text NOT NULL,
+  `pesquisa_integridade` enum('80','100') NOT NULL,
+  `od_onda_1` varchar(250) NOT NULL,
+  `od_onda_3` varchar(250) NOT NULL,
+  `od_onda_5` varchar(250) NOT NULL,
+  `oe_onda_1` varchar(250) NOT NULL,
+  `oe_onda_3` varchar(250) NOT NULL,
+  `oe_onda_5` varchar(250) NOT NULL,
+  `od_interlatencia_1_3` varchar(250) NOT NULL,
+  `od_interlatencia_3_5` varchar(250) NOT NULL,
+  `od_interlatencia_1_5` varchar(250) NOT NULL,
+  `oe_interlatencia_1_3` varchar(250) NOT NULL,
+  `oe_interlatencia_3_5` varchar(250) NOT NULL,
+  `oe_interlatencia_1_5` varchar(250) NOT NULL,
+  `od_100` varchar(250) NOT NULL,
+  `od_90` varchar(250) NOT NULL,
+  `od_80` varchar(250) NOT NULL,
+  `od_70` varchar(250) NOT NULL,
+  `od_60` varchar(250) NOT NULL,
+  `od_50` varchar(250) NOT NULL,
+  `od_40` varchar(250) NOT NULL,
+  `od_30` varchar(250) NOT NULL,
+  `od_20` varchar(250) NOT NULL,
+  `oe_100` varchar(250) NOT NULL,
+  `oe_90` varchar(250) NOT NULL,
+  `oe_80` varchar(250) NOT NULL,
+  `oe_70` varchar(250) NOT NULL,
+  `oe_60` varchar(250) NOT NULL,
+  `oe_50` varchar(250) NOT NULL,
+  `oe_40` varchar(250) NOT NULL,
+  `oe_30` varchar(250) NOT NULL,
+  `oe_20` varchar(250) NOT NULL,
+  `conclusao_limiar_eletrofisiologico` text NOT NULL,
+  `interpico` enum('normal','alterada') NOT NULL,
+  `latencia` enum('normal','alterada') NOT NULL,
+  `limiar_eletrofisiologico` varchar(250) NOT NULL,
+  `od_1` varchar(250) NOT NULL,
+  `od_1_4` varchar(250) NOT NULL,
+  `od_2_0` varchar(250) NOT NULL,
+  `od_2_8` varchar(250) NOT NULL,
+  `od_4` varchar(250) NOT NULL,
+  `oe_1` varchar(250) NOT NULL,
+  `oe_1_4` varchar(250) NOT NULL,
+  `oe_2_0` varchar(250) NOT NULL,
+  `oe_2_8` varchar(250) NOT NULL,
+  `oe_4` varchar(250) NOT NULL,
+  `od_repro` varchar(250) NOT NULL,
+  `od_estab` varchar(250) NOT NULL,
+  `oe_repro` varchar(250) NOT NULL,
+  `oe_estab` varchar(250) NOT NULL,
+  `conclusao_transiente` enum('presente','ausente') NOT NULL,
+  `od_distorcao_1` varchar(250) NOT NULL,
+  `od_distorcao_1_4` varchar(250) NOT NULL,
+  `od_distorcao_2_0` varchar(250) NOT NULL,
+  `od_distorcao_2_8` varchar(250) NOT NULL,
+  `od_distorcao_4` varchar(250) NOT NULL,
+  `oe_distorcao_1` varchar(250) NOT NULL,
+  `oe_distorcao_1_4` varchar(250) NOT NULL,
+  `oe_distorcao_2_0` varchar(250) NOT NULL,
+  `oe_distorcao_2_8` varchar(250) NOT NULL,
+  `oe_distorcao_4` varchar(250) NOT NULL,
+  `od_distorcao_repro` varchar(250) NOT NULL,
+  `od_distorcao_estab` varchar(250) NOT NULL,
+  `oe_distorcao_repro` varchar(250) NOT NULL,
+  `oe_distorcao_estab` varchar(250) NOT NULL,
+  `distorcao_conclusao_1` enum('presente','ausente') NOT NULL,
+  `distorcao_conclusao_1_4` enum('presente','ausente') NOT NULL,
+  `distorcao_conclusao_2_0` enum('presente','ausente') NOT NULL,
+  `distorcao_conclusao_2_8` enum('presente','ausente') NOT NULL,
+  `distorcao_conclusao_4` enum('presente','ausente') NOT NULL,
+  `od_pressao` varchar(250) NOT NULL,
+  `od_complacencia` varchar(250) NOT NULL,
+  `od_tipo_curva` varchar(250) NOT NULL,
+  `oe_pressao` varchar(250) NOT NULL,
+  `oe_complacencia` varchar(250) NOT NULL,
+  `oe_tipo_curva` varchar(250) NOT NULL,
+  `od_reflexo_500` varchar(250) NOT NULL,
+  `od_reflexo_1000` varchar(250) NOT NULL,
+  `od_reflexo_2000` varchar(250) NOT NULL,
+  `od_reflexo_4000` varchar(250) NOT NULL,
+  `oe_reflexo_500` varchar(250) NOT NULL,
+  `oe_reflexo_1000` varchar(250) NOT NULL,
+  `oe_reflexo_2000` varchar(250) NOT NULL,
+  `oe_reflexo_4000` varchar(250) NOT NULL,
+  `guizo_lateral` enum('indireta','direta') NOT NULL,
+  `guizo__cima` enum('indireta','direta') NOT NULL,
+  `guizo_baixo` enum('indireta','direta') NOT NULL,
+  `sino_lateral` enum('indireta','direta') NOT NULL,
+  `sino_cima` enum('indireta','direta') NOT NULL,
+  `sino_baixo` enum('indireta','direta') NOT NULL,
+  `reflexo_cocleo_palpebral` enum('presente','ausente') NOT NULL,
+  `od_nmr_500` varchar(250) NOT NULL,
+  `od_nmr_1000` varchar(250) NOT NULL,
+  `od_nmr_2000` varchar(250) NOT NULL,
+  `od_nmr_3000` varchar(250) NOT NULL,
+  `od_nmr_4000` varchar(250) NOT NULL,
+  `oe_nmr_500` varchar(250) NOT NULL,
+  `oe_nmr_1000` varchar(250) NOT NULL,
+  `oe_nmr_2000` varchar(250) NOT NULL,
+  `oe_nmr_3000` varchar(250) NOT NULL,
+  `oe_nmr_4000` varchar(250) NOT NULL,
+  `conclusao_reflexo` text NOT NULL,
+  `conduta_reflexo` text NOT NULL,
+  `last_update` datetime NOT NULL,
+  `paciente_r` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `paciente_r` (`paciente_r`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `diagnostico`
+--
+
+INSERT INTO `diagnostico` (`id`, `consanguinidade`, `perda_auditiva_familia`, `preocupacao_familiar`, `alimentacao_neonato`, `posicao_alimentacao`, `refluxo`, `dor_ouvido`, `barulho_alto_acorda`, `chora_ruido_alto`, `procurar_som_fora_visao`, `atento_voz_materna`, `reinternado`, `susto_ruido_alto`, `motivo`, `pesquisa_integridade`, `od_onda_1`, `od_onda_3`, `od_onda_5`, `oe_onda_1`, `oe_onda_3`, `oe_onda_5`, `od_interlatencia_1_3`, `od_interlatencia_3_5`, `od_interlatencia_1_5`, `oe_interlatencia_1_3`, `oe_interlatencia_3_5`, `oe_interlatencia_1_5`, `od_100`, `od_90`, `od_80`, `od_70`, `od_60`, `od_50`, `od_40`, `od_30`, `od_20`, `oe_100`, `oe_90`, `oe_80`, `oe_70`, `oe_60`, `oe_50`, `oe_40`, `oe_30`, `oe_20`, `conclusao_limiar_eletrofisiologico`, `interpico`, `latencia`, `limiar_eletrofisiologico`, `od_1`, `od_1_4`, `od_2_0`, `od_2_8`, `od_4`, `oe_1`, `oe_1_4`, `oe_2_0`, `oe_2_8`, `oe_4`, `od_repro`, `od_estab`, `oe_repro`, `oe_estab`, `conclusao_transiente`, `od_distorcao_1`, `od_distorcao_1_4`, `od_distorcao_2_0`, `od_distorcao_2_8`, `od_distorcao_4`, `oe_distorcao_1`, `oe_distorcao_1_4`, `oe_distorcao_2_0`, `oe_distorcao_2_8`, `oe_distorcao_4`, `od_distorcao_repro`, `od_distorcao_estab`, `oe_distorcao_repro`, `oe_distorcao_estab`, `distorcao_conclusao_1`, `distorcao_conclusao_1_4`, `distorcao_conclusao_2_0`, `distorcao_conclusao_2_8`, `distorcao_conclusao_4`, `od_pressao`, `od_complacencia`, `od_tipo_curva`, `oe_pressao`, `oe_complacencia`, `oe_tipo_curva`, `od_reflexo_500`, `od_reflexo_1000`, `od_reflexo_2000`, `od_reflexo_4000`, `oe_reflexo_500`, `oe_reflexo_1000`, `oe_reflexo_2000`, `oe_reflexo_4000`, `guizo_lateral`, `guizo__cima`, `guizo_baixo`, `sino_lateral`, `sino_cima`, `sino_baixo`, `reflexo_cocleo_palpebral`, `od_nmr_500`, `od_nmr_1000`, `od_nmr_2000`, `od_nmr_3000`, `od_nmr_4000`, `oe_nmr_500`, `oe_nmr_1000`, `oe_nmr_2000`, `oe_nmr_3000`, `oe_nmr_4000`, `conclusao_reflexo`, `conduta_reflexo`, `last_update`, `paciente_r`) VALUES
+(1, 'true', 'false', 'false', 'mamadeira', 'sentado', 'false', 'true', 'true', 'true', 'true', 'false', 'true', 'false', '', '100', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'd', 'asd', 'asd', 'sda', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asda', 'asd', 'asd', '', 'normal', 'alterada', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'ausente', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'ausente', 'ausente', 'ausente', 'ausente', 'ausente', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'indireta', 'indireta', 'indireta', 'direta', 'direta', 'direta', 'ausente', 'asd', 'asd', 'asd', 'asda', 'da', 'asd', 'asd', 'asd', 'sdas', 'das', '', '', '2012-10-30 16:41:56', 7);
 
 -- --------------------------------------------------------
 
@@ -1154,6 +1291,12 @@ INSERT INTO `triagem` (`id`, `peso`, `apgar_1`, `apgar_5`, `apgar_10`, `apgar_15
 --
 -- Restrições para as tabelas dumpadas
 --
+
+--
+-- Restrições para a tabela `diagnostico`
+--
+ALTER TABLE `diagnostico`
+  ADD CONSTRAINT `diagnostico_ibfk_1` FOREIGN KEY (`paciente_r`) REFERENCES `paciente` (`id`);
 
 --
 -- Restrições para a tabela `genetica`
