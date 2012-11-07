@@ -112,6 +112,10 @@ $modelDiagnostico = Diagnostico::model()->find(array('select'=>'*','condition'=>
 if($modelDiagnostico != null)$tabDiagnostico=$aTabs['Diagnostico']=$this->renderPartial('../diagnostico/tabView', array('model'=>$modelDiagnostico),true);
 else $tabDiagnostico="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastrados. ".CHtml::link(CHtml::encode("Cadastrar agora"), array('diagnostico/create'))."</h5>";
 
+$modelOrl = Orl::model()->find(array('select'=>'*','condition'=>'paciente_r=:id','params'=>array(':id'=>$model->id)));
+if($modelOrl != null)$tabOrl=$aTabs['Orl']=$this->renderPartial('../orl/tabView', array('model'=>$modelOrl),true);
+else $tabOrl="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastrados. ".CHtml::link(CHtml::encode("Cadastrar agora"), array('orl/create'))."</h5>";
+
 
 $this->widget('zii.widgets.jui.CJuiTabs', array(
 	'tabs' => array(
@@ -125,6 +129,7 @@ $this->widget('zii.widgets.jui.CJuiTabs', array(
 		'Serviço Social'=>$tabServicoSocial,
 		'Monitoramento'=>$tabMonitoramento,	
 		'Diagnóstico'=>$tabDiagnostico,
+		'ORL'=>$tabOrl,
 	)
 ));
 

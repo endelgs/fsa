@@ -78,6 +78,12 @@
             			array('label'=>'Gerenciar diagnósticos', 'url'=>array('diagnostico/admin')),
             		),
             	),
+            	array('label'=>'ORL',
+            		'items'=>array(
+            			array('label'=>'Cadastrar ORL', 'url'=>array('orl/create')),
+            			array('label'=>'Gerenciar ORL', 'url'=>array('orl/admin')),
+            		),
+            	),
             	array('label'=>'Sair do sistema', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
             ),
     )); ?>
