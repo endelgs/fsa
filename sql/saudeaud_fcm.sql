@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 30/10/2012 às 16h43min
--- Versão do Servidor: 5.5.24
+-- Tempo de Geração: 07/11/2012 às 16h39min
+-- Versão do Servidor: 5.5.28
 -- Versão do PHP: 5.3.10-1ubuntu3.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -355,6 +355,36 @@ CREATE TABLE IF NOT EXISTS `monitoramento` (
 INSERT INTO `monitoramento` (`id`, `guizo`, `sino`, `agogo`, `reacao_voz`, `od_500`, `od_1000`, `od_2000`, `od_4000`, `oe_1000`, `oe_2000`, `oe_500`, `oe_4000`, `od_complacencia`, `od_pressao`, `od_volume`, `od_gradiente`, `od_curva_tipo`, `oe_complacencia`, `oe_pressao`, `oe_volume`, `oe_gradiente`, `oe_curva_tipo`, `da_tchau`, `joga_beijo`, `bate_palma`, `cade_chupeta`, `cade_mamae`, `cade_sapato`, `cade_cabelo`, `cade_mao`, `cade_pe`, `observacao`, `reipsi_500_od`, `reipsi_1k_od`, `reipsi_2k_od`, `reipsi_4k_od`, `reipsi_500_oe`, `reipsi_1k_oe`, `reipsi_2k_oe`, `reipsi_4k_oe`, `desenvolvimento_motor`, `desenvolvimento_auditivo`, `desenvolvimento_linguagem`, `last_update`, `paciente_r`) VALUES
 (1, 'o', 'rcp', 's', 'a', 'as', 'dad', 'sdasa', 'dasd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asda', 'sdas', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', 'asd', 'asdasdasd', 'asda', 'sda', 'sdasd', 'asda', 'asd', 'sdasd', '', '', '', '2012-10-24 11:32:37', 7),
 (2, 'o', 'rcp', 's', 'a', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 'true', 'true', 'true', 'true', 'true', '', 'true', 'true', 'true', '', '1', '1', '1', '1', '1', '1', '1', '1', '', '', '', '2012-10-24 16:32:55', 44);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `orl`
+--
+
+CREATE TABLE IF NOT EXISTS `orl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `diagnostico` text NOT NULL,
+  `qp` text NOT NULL,
+  `hpma` text NOT NULL,
+  `interrogatorio_complementar` text NOT NULL,
+  `antecedentes_pessoais` text NOT NULL,
+  `exame_orl` text NOT NULL,
+  `hd` text NOT NULL,
+  `exames_complementares_hd` text NOT NULL,
+  `conduta` text NOT NULL,
+  `last_update` datetime NOT NULL,
+  `paciente_r` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `paciente_r` (`paciente_r`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `orl`
+--
+
+INSERT INTO `orl` (`id`, `diagnostico`, `qp`, `hpma`, `interrogatorio_complementar`, `antecedentes_pessoais`, `exame_orl`, `hd`, `exames_complementares_hd`, `conduta`, `last_update`, `paciente_r`) VALUES
+(1, 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asdasd', '2012-11-07 16:37:28', 7);
 
 -- --------------------------------------------------------
 
@@ -1315,6 +1345,12 @@ ALTER TABLE `irmao_servico_social`
 --
 ALTER TABLE `monitoramento`
   ADD CONSTRAINT `monitoramento_ibfk_1` FOREIGN KEY (`paciente_r`) REFERENCES `paciente` (`id`);
+
+--
+-- Restrições para a tabela `orl`
+--
+ALTER TABLE `orl`
+  ADD CONSTRAINT `orl_ibfk_1` FOREIGN KEY (`paciente_r`) REFERENCES `paciente` (`id`);
 
 --
 -- Restrições para a tabela `protese_anexo`
