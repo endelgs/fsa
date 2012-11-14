@@ -61,3 +61,21 @@ $this->breadcrumbs=array(
 	<b><span>Conduta:</span></b>
 	<?php echo CHtml::encode($model->conduta);?>
 </p>
+<h2>Retorno</h2>
+<p>
+	<table>
+		<tr>
+			<th>HD</th>
+			<th>Evolução</th>
+		</tr>
+		<?php
+			$aRetornos=$modelOrlRetorno->findAll('orl_r=:orl_r', array(':orl_r'=>$model->id));
+			foreach($aRetornos as $retorno){
+				echo '<tr>
+					<td>'.CHtml::encode($retorno->hd).'</td>
+					<td>'.CHtml::encode($retorno->evolucao).'</td>';
+			}
+		?>
+	</table>
+
+</p>

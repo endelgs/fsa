@@ -291,7 +291,7 @@ class Diagnostico extends CActiveRecord
 			'sino_lateral' => 'Sino Lateral',
 			'sino_cima' => 'Sino Cima',
 			'sino_baixo' => 'Sino Baixo',
-			'reflexo_cocleo_palpebral' => 'Reflexo Cocleo Palpebral',
+			'reflexo_cocleo_palpebral' => 'Reflexo Cócleo Palpebral (agogô)',
 			'od_nmr_500' => 'Od Nmr 500',
 			'od_nmr_1000' => 'Od Nmr 1000',
 			'od_nmr_2000' => 'Od Nmr 2000',

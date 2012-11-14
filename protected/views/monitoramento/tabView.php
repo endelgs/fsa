@@ -108,7 +108,6 @@
 <div class="larguraDefault"><hr/></div>
 <p class="row">
 	<h3>IV - Atendimento de ordens</h3>
-	<p></p>
 	<table style="width:800px;">
 		<tr>
 			<th>Nível I - 9-12m</th>

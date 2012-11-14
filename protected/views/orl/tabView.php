@@ -54,3 +54,18 @@
 	<b><span>Conduta:</span></b>
 	<?php echo CHtml::encode($model->conduta);?>
 </p>
+<table>
+	<tr>
+		<th>HD</th>
+		<th>Evolução</th>
+	</tr>
+	<?php
+		$aRetornos=$modelOrlRetorno->findAll('orl_r=:orl_r', array(':orl_r'=>$model->id));
+		foreach($aRetornos as $retorno){
+			echo '<tr>
+				<td>'.CHtml::encode($retorno->hd).'</td>
+				<td>'.CHtml::encode($retorno->evolucao).'</td>
+			</tr>';
+		}
+	?>
+</table>

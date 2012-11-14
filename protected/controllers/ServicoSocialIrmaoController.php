@@ -84,7 +84,6 @@ class ServicoSocialIrmaoController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-    file_put_contents(dirname(__FILE__).'post.txt',print_r($_POST,1));
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 

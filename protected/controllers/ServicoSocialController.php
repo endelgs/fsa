@@ -118,10 +118,8 @@ class ServicoSocialController extends Controller
 		$model=$this->loadModel($id);
 		
 		$modelServicoSocialIrmao=new ServicoSocialIrmao;
-		$validatedIrmaos = array('nome','idade','escolaridade','profissao','salario');
 		
 		$modelServicoSocialResidentes=new ServicoSocialResidentes;
-		$validatedResidentes = array('nome','idade','parentesco','profissao','salario');
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);

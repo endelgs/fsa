@@ -355,6 +355,7 @@ class MultiModelForm extends CWidget
         if (!empty($validatedItems))
             foreach ($validatedItems as $item)
             {
+            	
                 if (!$doValidate) //assign $masterValues
                 {
                     if (!empty($masterValues))

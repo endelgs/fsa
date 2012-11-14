@@ -129,26 +129,6 @@
 	</div><br/>
 	<hr class="larguraDefault"/>
 	<div class="row">
-		<h5 class="alinhamento">Agendar triagem para:</h5>
-		
-		<?php echo CHtml::CheckBox('agenda_hoje',false, array('value'=>date("d/m/Y")))."Hoje"; ?>
-		<?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-		          'attribute'=>'data_triagem',
-		          'model' => $model,
-		          'value'=>$model->data_triagem,
-		          'language'=>'pt-BR',
-		          'options'=>array(
-		          	'showAnim'=>'fold',
-		         	'dateFormat'=>'dd/mm/yy',
-		           )
-		        ));
-			?>
-		<?php 
-			if($model->isNewRecord)echo CHtml::submitButton('Agendar',array('submit'=>Yii::app()->controller->createUrl('triagem/agendarTriagem'))); ?>
-		
-	</div>
-	<hr class="larguraDefault"/>
-	<div class="row">
     <div style="float:left; margin-right:12px;">
 			<?php echo $form->labelEx($model,'peso'); ?>
 			<?php echo $form->textField($model,'peso',array('size'=>10)). '<br/><span class="help">Ex: 200</span>'; ?>
@@ -267,21 +247,3 @@
 
 </div><!-- form -->
 
-<script>
-	$("#agenda_hoje").click(function(){
-		var data = new Date();
-		var mes=(data.getMonth()+1)<=9?"0"+(data.getMonth()+1):(data.getMonth()+1);
-		var hoje=dia = data.getDate()+"/"+mes+"/"+data.getFullYear();
-		if($(this).attr('checked')=="checked")$("#Triagem_data_triagem").val(hoje);
-		else $("#Triagem_data_triagem").val("");
-	});
-	$("#Triagem_data_triagem").change(function(){
-		var data = new Date();
-		var mes=(data.getMonth()+1)<=9?"0"+(data.getMonth()+1):(data.getMonth()+1);
-		var hoje=dia = data.getDate()+"/"+mes+"/"+data.getFullYear();
-		$("#agenda_hoje").removeAttr('checked');
-		if(hoje==$(this).val())$("#agenda_hoje").attr('checked','checked');
-		
-		
-	});
-</script>

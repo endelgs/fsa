@@ -122,7 +122,8 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 						<td>'.CHtml::encode($irmao->nome).'</td>
 						<td>'.CHtml::encode($irmao->idade).'</td>
 						<td>'.CHtml::encode($irmao->escolaridade).'</td>
-						<td>'.CHtml::encode($irmao->salario).'</td>';
+						<td>'.CHtml::encode($irmao->salario).'</td>
+					</tr>';
 				}
 			?>
 		</table>
@@ -147,7 +148,8 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 						<td>'.CHtml::encode($resi->nome).'</td>
 						<td>'.CHtml::encode($resi->idade).'</td>
 						<td>'.CHtml::encode($resi->parentesco).'</td>
-						<td>'.CHtml::encode($resi->salario).'</td>';
+						<td>'.CHtml::encode($resi->salario).'</td>
+					</tr>';
 				}
 			?>
 		</table>

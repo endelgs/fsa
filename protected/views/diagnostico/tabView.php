@@ -53,7 +53,7 @@
 	última atualização <?php echo $model->last_update ;?>
 </div>
 <br/>
-<h3>Anamnese</h3>
+<h3>I - Anamnese</h3>
 <hr/>
 <p class='linha'>
 	<div class="alinhamento">
@@ -117,16 +117,17 @@
 </p>
 <p class='linha'>
 	<div class="alinhamento">
-		<b><span>O neonato se assusta com ruídos altos?</span></b> <?php echo CHtml::encode($model->susto_ruido_alto); ?>
+		<b><span>Motivo</span></b> <?php echo CHtml::encode($model->motivo); ?>
 	</div>
 </p>
 <p class='linha'>
 	<div class="alinhamento">
-		<b><span>Motivo</span></b> <?php echo CHtml::encode($model->motivo); ?>
+		<b><span>O neonato se assusta com ruídos altos?</span></b> <?php echo CHtml::encode($model->susto_ruido_alto); ?>
 	</div>
 </p>
+
 <br/>
-<h3>POTENCIAL EVOCADO AUDITIVO DE TRONCO ENCEFÁLICO</h3>
+<h3>II - Potencial Evocado Auditivo de Tronco Encefálico</h3>
 <hr/>
 <p class='linha'>
 	<div class="alinhamento">
@@ -258,11 +259,11 @@
 	</div>
 </p>
 <br/>
-<h3>EMISSÕES OTOACÚSTICAS</h3>
+<h3>III - Emissões Otoacústicas</h3>
 <hr/>
 <p class='linha'>
 	<div class="alinhamento">
-		<b>TRANSIENTE - SNR (dB)</b>
+		<b>Transiente - SNR (dB)</b>
 		<table style="width:400px;">
 			<tr>
 				<th>Freq (KHz)</th>
@@ -422,7 +423,7 @@
 	</div>
 </p>
 <br/>
-<h3>IMITANCIOMETRIA</h3>
+<h3>IV - Imitanciometria</h3>
 <hr/>
 <p class='linha'>
 	<div class="alinhamento">
@@ -484,7 +485,7 @@
 	</div>
 </p>
 <br/>
-<h3>NÍVEL MÍNIMO DE RESPOSTA (AUDIOMETRIA PEDIÁTRICA) - NMR</h3>
+<h3>V - Nível Mínimo de Respota (Audiometria Pediátrica) - NMR</h3>
 <hr/>
 <p class='linha'>
 	<div class="alinhamento">
@@ -524,7 +525,7 @@
 	</div>
 </p>
 <br/>
-<h3>AVALIAÇÃO COMPORTAMENTAL</h3>
+<h3>VI - Avaliação Comportamental</h3>
 <hr/>
 <p class='linha'>
 	<div class="alinhamento">
@@ -553,7 +554,7 @@
 </p>
 <p class='linha'>
 	<div class="alinhamento">
-		<b><span>Reflexo Cocleo Palpebral:</span></b> <?php echo CHtml::encode($model->reflexo_cocleo_palpebral); ?>
+		<b><span>Reflexo Cócleo Palpebral (agogô):</span></b> <?php echo CHtml::encode($model->reflexo_cocleo_palpebral); ?>
 	</div>
 </p>
 <p class='linha'>

@@ -45,7 +45,8 @@ class Orl extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('diagnostico, qp, hpma, interrogatorio_complementar, antecedentes_pessoais, exame_orl, hd, exames_complementares_hd, conduta, paciente_r', 'required'),
+			array('paciente_r', 'required'),
+			array('diagnostico, qp, hpma, interrogatorio_complementar, antecedentes_pessoais, exame_orl, hd, exames_complementares_hd, conduta','length'),	
 			array('paciente_r', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

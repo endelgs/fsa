@@ -53,6 +53,7 @@ class OrlController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'modelOrlRetorno' => new OrlRetorno,
 		));
 	}
 
@@ -91,7 +92,11 @@ class OrlController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		Yii::import('ext.multimodelform.MultiModelForm');
+		
 		$model=$this->loadModel($id);
+		
+		$modelOrlRetorno=new OrlRetorno;
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
@@ -101,12 +106,16 @@ class OrlController extends Controller
 			$model->attributes=$_POST['Orl'];
 			$model->last_update=new CDbExpression('NOW()');
 			
-			if($model->save())
+			$masterValues = array('orl_r'=>$model->id);
+			
+			if(MultiModelForm::save($modelOrlRetorno,$validatedRetorno,$deleteItems,$masterValues) && $model->save()){
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
+			'modelOrlRetorno' => $modelOrlRetorno,'validatedRetorno' => $validatedRetorno,
 		));
 	}
 

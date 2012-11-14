@@ -158,6 +158,26 @@
 			<?php echo $form->textArea($model,'conduta',array('rows'=>6, 'cols'=>50)); ?>
 			<?php echo $form->error($model,'conduta'); ?>
 		</div>
+		
+		<?php if(!$model->isNewRecord){ ?>
+		<div class="row">
+			<h2>Retorno</h2>
+			<?php
+				$retornoForm = array(
+					'elements'=>array(
+						'hd'=>array('type'=>'text','size'=>20),
+						'evolucao'=>array('type'=>'text','size'=>20),
+					)
+				);
+				$this->widget('ext.multimodelform.MultiModelForm',array(
+					'id' => 'retorno', //the unique widget id
+					'formConfig' => $retornoForm, //the form configuration array
+					'model' => $modelOrlRetorno, //instance of the form model
+					'data' => $modelOrlRetorno->findAll('orl_r=:orl_r', array(':orl_r'=>$model->id)),
+				));
+			?>
+		<?php }?>
+		</div>
 	</div>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Inserir' : 'Salvar'); ?>

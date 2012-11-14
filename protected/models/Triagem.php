@@ -21,7 +21,6 @@
  * @property string $resultado_direito
  * @property string $indicadores_risco
  * @property string $last_update
- * @property string $data_triagem
  * @property integer $paciente_r
  *
  * The followings are the available model relations:
@@ -103,7 +102,6 @@ class Triagem extends CActiveRecord
 			'resultado_direito' => 'Resultado Ouvido Direito',
 			'indicadores_risco' => 'Indicadores Risco',
 			'last_update' => 'Paciente','Última Atualização',
-			'data_triagem' => 'Data da Triagem',
 			'paciente_r' => 'Paciente',
 		);
 	}
@@ -136,7 +134,6 @@ class Triagem extends CActiveRecord
 		$criteria->compare('resultado_direito',$this->resultado_direito,true);
 		$criteria->compare('indicadores_risco',$this->indicadores_risco,true);
 		$criteria->compare('last_update',$this->last_update,true);
-		$criteria->compare('data_triagem',$this->data_triagem,true);
 		$criteria->compare('paciente_r',$this->paciente_r);
 
 		return new CActiveDataProvider($this, array(
@@ -146,15 +143,6 @@ class Triagem extends CActiveRecord
 	
 	protected function afterFind(){
 		parent::afterFind();
-		$this->data_triagem=date('d/m/Y', strtotime(str_replace("-", "", $this->data_triagem)));
 		$this->last_update=date('d/m/Y - G:i', strtotime(str_replace("-", "", $this->last_update)))."h";
-	}
-	protected function beforeSave(){
-		if(parent::beforeSave()){
-			$data = explode("/",$this->data_triagem);
-			$this->data_triagem=implode(array_reverse($data));
-			return TRUE;
-		}
-		else return false;
 	}
 }

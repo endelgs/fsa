@@ -115,7 +115,7 @@ table tr td.first,table tr th.first{text-align:right}
 		<?php echo $form->error($model,'paciente_r'); ?>
 	</div>
 	<br/>
-	<h3>Anamnese</h3>
+	<h3>I - Anamnese</h3>
 	<hr/>
 	<div class="row">
 		<?php echo $form->labelEx($model,'consanguinidade'); ?>
@@ -176,19 +176,19 @@ table tr td.first,table tr th.first{text-align:right}
 		<?php echo $form->labelEx($model,'reinternado'); ?>
 		<?php echo $form->radioButtonList($model,'reinternado',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'susto_ruido_alto'); ?>
-		<?php echo $form->radioButtonList($model,'susto_ruido_alto',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
-	</div>
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'motivo'); ?>
 		<?php echo $form->textArea($model,'motivo',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'motivo'); ?>
 	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'susto_ruido_alto'); ?>
+		<?php echo $form->radioButtonList($model,'susto_ruido_alto',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+	</div>
+
+	
 	<br/>
-	<h3>POTENCIAL EVOCADO AUDITIVO DE TRONCO ENCEFÁLICO</h3>
+	<h3>II - Potencial Evocado Auditivo de Tronco Encefálico</h3>
 	<hr/>
 	<div class="row">
 		<?php echo $form->labelEx($model,'pesquisa_integridade'); ?>
@@ -246,7 +246,7 @@ table tr td.first,table tr th.first{text-align:right}
 	</div>
 
 	<div class="row">
-		Pesquisa do limiar eletrofisiológico - latência absoluta
+		Pesquisa do limiar eletrofisiológico - latência absoluta onda V
 		<table style="width:200px;">
 			<tr>
 				<th></th>
@@ -323,10 +323,10 @@ table tr td.first,table tr th.first{text-align:right}
 		<?php echo $form->error($model,'limiar_eletrofisiologico'); ?>
 	</div>
 	<br/>
-	<h3>EMISSÕES OTOACÚSTICAS	</h3>
+	<h3>III - Emissões Otoacústicas</h3>
 	<hr/>
 	<div class="row">
-		TRANSIENTE - SNR (dB)
+		Transiente - SNR (dB)
 		<table style="width:200px;">
 			<tr>
 				<th>Freq (KHz)</th>
@@ -470,7 +470,7 @@ table tr td.first,table tr th.first{text-align:right}
 		</div>
 	</div>
 	<br/>
-	<h3>IMITANCIOMETRIA</h3>
+	<h3>IV - Imitanciometria</h3>
 	<hr/>
 	<div class="row">
 		Curva timpanométrica
@@ -531,7 +531,7 @@ table tr td.first,table tr th.first{text-align:right}
 	</div>
 
 	<br/>
-	<h3>NÍVEL MÍNIMO DE RESPOSTA (AUDIOMETRIA PEDIÁTRICA) - NMR</h3>
+	<h3>V - Nível Mínimo de Respota (Audiometria Pediátrica) - NMR</h3>
 	<hr/>
 
 	<div class="row">
@@ -569,7 +569,7 @@ table tr td.first,table tr th.first{text-align:right}
 		</table>
 	</div>
 	<br/>
-	<h3>AVALIAÇÃO COMPORTAMENTAL</h3>
+	<h3>VI - Avaliação Comportamental</h3>
 	<hr/>
 	<div class="row">
 		<table style="width:550px;">
@@ -601,13 +601,13 @@ table tr td.first,table tr th.first{text-align:right}
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'conclusao_reflexo'); ?>
-		<?php echo $form->textArea($model,'conclusao_reflexo',array('rows'=>6, 'cols'=>50)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+		<?php echo $form->textArea($model,'conclusao_reflexo',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'conclusao_reflexo'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'conduta_reflexo'); ?>
-		<?php echo $form->textArea($model,'conduta_reflexo',array('rows'=>6, 'cols'=>50)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+		<?php echo $form->textArea($model,'conduta_reflexo',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'conduta_reflexo'); ?>
 	</div>
 
