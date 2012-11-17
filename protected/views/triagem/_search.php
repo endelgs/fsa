@@ -82,11 +82,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'indicadores_risco'); ?>
-		<?php echo $form->textField($model,'indicadores_risco',array('size'=>60,'maxlength'=>250)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'paciente_r'); ?>
 		<?php echo $form->textField($model,'paciente_r'); ?>
 	</div>

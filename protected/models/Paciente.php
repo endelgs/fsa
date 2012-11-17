@@ -17,9 +17,22 @@
  * @property string $telefone_movel
  * @property string $telefone_trabalho
  * @property string $last_update
+ * @property string $data_internacao
+ * @property string $alta
  *
  * The followings are the available model relations:
+ * @property AgendaDiagnostico[] $agendaDiagnosticos
+ * @property AgendaMonitoramento[] $agendaMonitoramentos
+ * @property AgendaOrl[] $agendaOrls
+ * @property AgendaProtese[] $agendaProteses
+ * @property AgendaTriagem[] $agendaTriagems
+ * @property Diagnostico[] $diagnosticos
  * @property Genetica[] $geneticas
+ * @property Monitoramento[] $monitoramentos
+ * @property Orl[] $orls
+ * @property ProteseAnexo[] $proteseAnexos
+ * @property ProteseAvaliacao[] $proteseAvaliacaos
+ * @property ProtesePrescricao[] $protesePrescricaos
  * @property Triagem[] $triagems
  */
 class Paciente extends CActiveRecord
@@ -57,9 +70,10 @@ class Paciente extends CActiveRecord
 			array('endereco', 'length', 'max'=>500),
 			array('cidade', 'length', 'max'=>200),
 			array('telefone_fixo, telefone_movel, telefone_trabalho', 'length', 'max'=>15),
+			array('alta', 'length', 'max'=>21),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, nome, hc, nome_mae, hc_mae, data_nascimento, sexo, endereco, cidade, telefone_fixo, telefone_movel, telefone_trabalho', 'safe', 'on'=>'search'),
+			array('id, nome, hc, nome_mae, hc_mae, data_nascimento, sexo, endereco, cidade, telefone_fixo, telefone_movel, telefone_trabalho, data_internacao, alta', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,7 +85,18 @@ class Paciente extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'agendaDiagnosticos' => array(self::HAS_MANY, 'AgendaDiagnostico', 'paciente_r'),
+			'agendaMonitoramentos' => array(self::HAS_MANY, 'AgendaMonitoramento', 'paciente_r'),
+			'agendaOrls' => array(self::HAS_MANY, 'AgendaOrl', 'paciente_r'),
+			'agendaProteses' => array(self::HAS_MANY, 'AgendaProtese', 'paciente_r'),
+			'agendaTriagems' => array(self::HAS_MANY, 'AgendaTriagem', 'paciente_r'),
+			'diagnosticos' => array(self::HAS_MANY, 'Diagnostico', 'paciente_r'),
 			'geneticas' => array(self::HAS_MANY, 'Genetica', 'paciente_r'),
+			'monitoramentos' => array(self::HAS_MANY, 'Monitoramento', 'paciente_r'),
+			'orls' => array(self::HAS_MANY, 'Orl', 'paciente_r'),
+			'proteseAnexos' => array(self::HAS_MANY, 'ProteseAnexo', 'paciente_r'),
+			'proteseAvaliacaos' => array(self::HAS_MANY, 'ProteseAvaliacao', 'paciente_r'),
+			'protesePrescricaos' => array(self::HAS_MANY, 'ProtesePrescricao', 'paciente_r'),
 			'triagems' => array(self::HAS_MANY, 'Triagem', 'paciente_r'),
 		);
 	}
@@ -95,6 +120,8 @@ class Paciente extends CActiveRecord
 			'telefone_movel' => 'Telefone Móvel',
 			'telefone_trabalho' => 'Telefone Trabalho',
 			'last_update' => 'Última Atualização',
+			'data_internacao' => 'Data da Internação',
+			'alta' => 'Alta',
 		);
 	}
 
@@ -122,6 +149,8 @@ class Paciente extends CActiveRecord
 		$criteria->compare('telefone_movel',$this->telefone_movel,true);
 		$criteria->compare('telefone_trabalho',$this->telefone_trabalho,true);
 		$criteria->compare('last_update',$this->last_update,true);
+		$criteria->compare('data_internacao',$this->data_internacao,true);
+		$criteria->compare('alta',$this->alta,true);
 		
 
 		return new CActiveDataProvider($this, array(
@@ -132,6 +161,7 @@ class Paciente extends CActiveRecord
 	protected function afterFind(){
 		parent::afterFind();
 		$this->data_nascimento=date('d/m/Y', strtotime(str_replace("-", "", $this->data_nascimento)));
+		$this->data_internacao=date('d/m/Y', strtotime(str_replace("-", "", $this->data_internacao)));
 		$this->last_update=date('d/m/Y - G:i', strtotime(str_replace("-", "", $this->last_update)))."h";
 	}
 	
@@ -139,6 +169,9 @@ class Paciente extends CActiveRecord
 		if(parent::beforeSave()){
 			$data = explode("/",$this->data_nascimento);
 			$this->data_nascimento=implode(array_reverse($data));
+			
+			$dataInternacao = explode("/",$this->data_internacao);
+			$this->data_internacao=implode(array_reverse($dataInternacao));
 			return TRUE;
 		}
 		else return false;

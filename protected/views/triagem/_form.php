@@ -212,14 +212,7 @@
 			<?php echo $form->error($model,'crescimento'); ?>
 		</div>
 	</div>
-	
-	<div class="row">
-		<?php echo $form->labelEx($model,'indicadores_risco'); ?>
-		<?php echo $form->textArea($model,'indicadores_risco',array('cols'=>62)). '<br/><span class="help">Ex: Algum indicador de risco</span>'; ?>
-		<?php echo $form->error($model,'indicadores_risco'); ?>
-	</div>
-	
-	
+	<br/><hr/>
 	<div class="row">
 		<div style="float:left; margin-right:12px;">
 			<?php echo $form->labelEx($model,'tipo_exame'); ?>
@@ -236,6 +229,183 @@
 			<?php echo $form->dropDownList($model, 'resultado_direito',array(''=>'Selecione','passou' => 'Passou', 'falhou' => 'Falhou')). '<br/><span class="help">Ex: Passou</span>'; ?>
 			<?php echo $form->error($model,'resultado_direito'); ?>
 		</div>
+	</div>
+	<div class="row">
+		<div style="float:left; margin-right:12px;">
+			<?php echo $form->labelEx($model,'falhou_35'); ?>
+			<?php echo $form->radioButtonList($model,'falhou_35',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+			<?php echo $form->error($model,'falhou_35'); ?>
+		</div>
+		<div style="float:left; margin-right:12px;">
+			<?php echo $form->labelEx($model,'falhou_40'); ?>
+			<?php echo $form->radioButtonList($model,'falhou_40',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+			<?php echo $form->error($model,'falhou_40'); ?>
+		</div>
+		<div>
+			<?php echo $form->labelEx($model,'falhou_45'); ?>
+			<?php echo $form->radioButtonList($model,'falhou_45',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+			<?php echo $form->error($model,'falhou_45'); ?>
+		</div>
+	</div>
+	<br/><hr/>
+	<H3>Indicadores de Risco</H3>
+	<div class="row">
+		<?php echo $form->labelEx($model,'historia_perda_auditiva'); ?>
+		<?php echo $form->radioButtonList($model,'historia_perda_auditiva',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'historia_perda_auditiva'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'consanguinidade'); ?>
+		<?php echo $form->radioButtonList($model,'consanguinidade',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'consanguinidade'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'peso_inferiro_1500'); ?>
+		<?php echo $form->radioButtonList($model,'peso_inferiro_1500',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'peso_inferiro_1500'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'pig'); ?>
+		<?php echo $form->radioButtonList($model,'pig',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'pig'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'nascimento_pre_termo'); ?>
+		<?php echo $form->radioButtonList($model,'nascimento_pre_termo',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'nascimento_pre_termo'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'apgar_04_primeiro_minuto'); ?>
+		<?php echo $form->radioButtonList($model,'apgar_04_primeiro_minuto',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'apgar_04_primeiro_minuto'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'apgar_06_quinto_minuto'); ?>
+		<?php echo $form->radioButtonList($model,'apgar_06_quinto_minuto',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'apgar_06_quinto_minuto'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'uti_5_dias'); ?>
+		<?php echo $form->radioButtonList($model,'uti_5_dias',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'uti_5_dias'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'ventilacao_mecanica'); ?>
+		<?php echo $form->radioButtonList($model,'ventilacao_mecanica',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'ventilacao_mecanica'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'drogas_ototoxicas'); ?>
+		<?php echo $form->radioButtonList($model,'drogas_ototoxicas',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'drogas_ototoxicas'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'hiperbilirrubinemia'); ?>
+		<?php echo $form->radioButtonList($model,'hiperbilirrubinemia',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'hiperbilirrubinemia'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'anomalias_cranio_faciais'); ?>
+		<?php echo $form->radioButtonList($model,'anomalias_cranio_faciais',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'anomalias_cranio_faciais'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'anoxia_perinatal_grave'); ?>
+		<?php echo $form->radioButtonList($model,'anoxia_perinatal_grave',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'anoxia_perinatal_grave'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'asfixia_neonatal'); ?>
+		<?php echo $form->radioButtonList($model,'asfixia_neonatal',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'asfixia_neonatal'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'asfixia_neonatal'); ?>
+		<?php echo $form->radioButtonList($model,'asfixia_neonatal',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'asfixia_neonatal'); ?>
+	</div>
+	<b>Infecções congênitas</b>
+	<div class="row">
+		<div class="alinhamento">
+			<div style="float:left;"><?php echo $form->checkBox($model,'infeccoes_congenitas_toxoplasmose',array('value'=>'true', 'uncheckValue'=>'false')); ?></div>
+			<div style="float:left; line-height:20px;"><?php echo $form->labelEx($model,'infeccoes_congenitas_toxoplasmose'); ?></div>
+		</div>
+		<div class="alinhamento">
+			<div style="float:left;"><?php echo $form->checkBox($model,'infeccoes_congenitas_rubeola',array('value'=>'true', 'uncheckValue'=>'false')); ?></div>
+			<div style="float:left; line-height:20px;"><?php echo $form->labelEx($model,'infeccoes_congenitas_rubeola'); ?></div>
+		</div>
+		<div class="alinhamento">
+			<div style="float:left;"><?php echo $form->checkBox($model,'infeccoes_congenitas_citomegalovirus',array('value'=>'true', 'uncheckValue'=>'false')); ?></div>
+			<div style="float:left; line-height:20px;"><?php echo $form->labelEx($model,'infeccoes_congenitas_citomegalovirus'); ?></div>
+		</div>
+		<div class="alinhamento">
+			<div style="float:left;"><?php echo $form->checkBox($model,'infeccoes_congenitas_herpes',array('value'=>'true', 'uncheckValue'=>'false')); ?></div>
+			<div style="float:left; line-height:20px;"><?php echo $form->labelEx($model,'infeccoes_congenitas_herpes'); ?></div>
+		</div>
+		<div class="alinhamento">
+			<div style="float:left;"><?php echo $form->checkBox($model,'infeccoes_congenitas_sifilis',array('value'=>'true', 'uncheckValue'=>'false')); ?></div>
+			<div style="float:left; line-height:20px;"><?php echo $form->labelEx($model,'infeccoes_congenitas_sifilis'); ?></div>
+		</div>
+		<div>
+			<div style="float:left;"><?php echo $form->checkBox($model,'infeccoes_congenitas_hiv',array('value'=>'true', 'uncheckValue'=>'false')); ?></div>
+			<div style="float:left; line-height:20px;"><?php echo $form->labelEx($model,'infeccoes_congenitas_hiv'); ?></div>
+		</div>
+	</div><br/>
+	<div class="row">
+		<?php echo $form->labelEx($model,'infeccoes_congenitas_outra'); ?>
+		<?php echo $form->textField($model,'infeccoes_congenitas_outra' ,array('size'=>70)); ?>
+	</div>
+	<div>
+		<?php echo $form->labelEx($model,'sindrome_genetica_deficiencia_auditiva'); ?>
+		<?php echo $form->textField($model,'sindrome_genetica_deficiencia_auditiva',array('size'=>70)); ?>
+		<?php echo $form->error($model,'sindrome_genetica_deficiencia_auditiva'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'disturbios_neurodegenerativos'); ?>
+		<?php echo $form->radioButtonList($model,'disturbios_neurodegenerativos',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'disturbios_neurodegenerativos'); ?>
+	</div>
+	<b>Infecções bacterianas ou virais pós-natais</b>
+	<div class="row">
+		<div class="alinhamento">
+			<div style="float:left;"><?php echo $form->checkBox($model,'infeccoes_bacterianas_virais_citomegalovirus',array('value'=>'true', 'uncheckValue'=>'false')); ?></div>
+			<div style="float:left; line-height:20px;"><?php echo $form->labelEx($model,'infeccoes_bacterianas_virais_citomegalovirus'); ?></div>
+		</div>
+		<div class="alinhamento">
+			<div style="float:left;"><?php echo $form->checkBox($model,'infeccoes_bacterianas_virais_herpes',array('value'=>'true', 'uncheckValue'=>'false')); ?></div>
+			<div style="float:left; line-height:20px;"><?php echo $form->labelEx($model,'infeccoes_bacterianas_virais_herpes'); ?></div>
+		</div>
+		<div class="alinhamento">
+			<div style="float:left;"><?php echo $form->checkBox($model,'infeccoes_bacterianas_virais_sarampo',array('value'=>'true', 'uncheckValue'=>'false')); ?></div>
+			<div style="float:left; line-height:20px;"><?php echo $form->labelEx($model,'infeccoes_bacterianas_virais_sarampo'); ?></div>
+		</div>
+		<div class="alinhamento">
+			<div style="float:left;"><?php echo $form->checkBox($model,'infeccoes_bacterianas_virais_varicela',array('value'=>'true', 'uncheckValue'=>'false')); ?></div>
+			<div style="float:left; line-height:20px;"><?php echo $form->labelEx($model,'infeccoes_bacterianas_virais_varicela'); ?></div>
+		</div>
+		<div>
+			<div style="float:left;"><?php echo $form->checkBox($model,'infeccoes_bacterianas_virais_meningite',array('value'=>'true', 'uncheckValue'=>'false')); ?></div>
+			<div style="float:left; line-height:20px;"><?php echo $form->labelEx($model,'infeccoes_bacterianas_virais_meningite'); ?></div>
+		</div>
+	</div><br/>
+	<div class="row">
+		<?php echo $form->labelEx($model,'infeccoes_bacterianas_virais_outra'); ?>
+		<?php echo $form->textField($model,'infeccoes_bacterianas_virais_outra' ,array('size'=>70)); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'traumatismo_craniano'); ?>
+		<?php echo $form->radioButtonList($model,'traumatismo_craniano',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'traumatismo_craniano'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'quimioterapia'); ?>
+		<?php echo $form->radioButtonList($model,'quimioterapia',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'quimioterapia'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'materno_drogas_ilicitas'); ?>
+		<?php echo $form->radioButtonList($model,'materno_drogas_ilicitas',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
+		<?php echo $form->error($model,'materno_drogas_ilicitas'); ?>
 	</div>
 </div>
 	

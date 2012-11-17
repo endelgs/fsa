@@ -6,7 +6,10 @@ $this->breadcrumbs=array(
 	'Pacientes'=>array('admin'),
 	'Perfil completo de '.$model->nome,
 );
-
+if($model->alta=="alta")$model->alta="Alta";
+else if($model->alta=="transferencia_interna")$model->alta="Transferência Interna";
+else if($model->alta=="transferencia_externa")$model->alta="Transferência Externa";
+else if($model->alta=="obito")$model->alta="Óbito";
 ?>
 <style>
 	.linha{}
@@ -70,9 +73,23 @@ $this->breadcrumbs=array(
 		<span>Telefone Trabalho:</span><b> <?php echo CHtml::encode($model->telefone_trabalho); ?></b>
 	</div>
 </p>
-<?php
-$modelTriagem = Triagem::model()->find(array('select'=>'*','condition'=>'paciente_r=:id','params'=>array(':id'=>$model->id)));
-if($modelTriagem != null)$tabTriagem=$this->renderPartial('../triagem/tabView', array('model'=>$modelTriagem),true);
+<p class='linha'>
+	<div class="item30 alinhamento">
+		<span>Data Internação:</span><b> <?php echo CHtml::encode($model->data_internacao); ?></b>
+	</div>
+	<div class="item30 alinhamento">
+		<span>Alta:</span><b> <?php echo CHtml::encode($model->alta); ?></b>
+	</div>
+</p>
+<?php 
+
+$paciente_id=$model->id;
+$sql="select triagem.id from triagem where triagem.paciente_r=:paciente_id";
+$command = Yii::app()->db->createCommand($sql);
+$command->bindParam(":paciente_id",$paciente_id , PDO::PARAM_STR);
+$res=$command->queryAll();
+$modelTriagem = Triagem::model()->find(array('select'=>'*','order'=>"id ASC",'condition'=>'paciente_r=:id','params'=>array(':id'=>$paciente_id)));
+if($modelTriagem != null)$tabTriagem=$this->renderPartial('../triagem/tabTriagens', array('model'=>$modelTriagem,'aTriagens'=>$res),true);
 else $tabTriagem="<h5>Não há dados de ".CHtml::encode($model->nome)." cadastrados. ".CHtml::link(CHtml::encode("Cadastrar agora"), array('triagem/create'))."</h5>";
 
 $modelGenetica = Genetica::model()->find(array('select'=>'*','condition'=>'paciente_r=:id','params'=>array(':id'=>$model->id)));
