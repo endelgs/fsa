@@ -449,7 +449,7 @@
 		ou
 		<?php 
 			if($model->isNewRecord ){
-				echo CHtml::submitButton('Inserir e Ir para Validação',array('submit'=>Yii::app()->controller->createUrl('proteseVerificação/createProximoForm')));
+				echo CHtml::submitButton('Inserir e Ir para Validação',array('submit'=>Yii::app()->controller->createUrl('proteseVerificacao/createProximoForm')));
 			}
 		?>
 	</div>

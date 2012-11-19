@@ -38,6 +38,7 @@
                     array('label'=>'Cadastrar novo paciente', 'url'=>array('paciente/create')),
                     array('label'=>'Gerenciar pacientes', 'url'=>array('paciente/admin')),
                   ),
+                  'visible'=>$user->checkAccess('@')
                 ),
             	array('label'=>'Triagem',
             		'visible'=>$user->checkAccess('triagem'),
