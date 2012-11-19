@@ -1,12 +1,12 @@
 <?php
 
-class ProtesePrescricaoController extends Controller
+class UserController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column1';
+	public $layout='//layouts/column2';
 
 	/**
 	 * @return array action filters
@@ -32,12 +32,12 @@ class ProtesePrescricaoController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','createProximoForm'),
-				'roles'=>array('protese','admin'),
+				'actions'=>array('create','update'),
+				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'roles'=>array('protese','admin'),
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -62,40 +62,20 @@ class ProtesePrescricaoController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new ProtesePrescricao;
+		$model=new User;
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
-		if(isset($_POST['ProtesePrescricao']))
+		if(isset($_POST['User']))
 		{
-			$model->attributes=$_POST['ProtesePrescricao'];
-			$model->last_update=new CDbExpression('NOW()');
+			$model->attributes=$_POST['User'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
-		));
-	}
-	public function actionCreateProximoForm()
-	{
-		$model=new ProtesePrescricao;
-	
-		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
-	
-		if(isset($_POST['ProtesePrescricao']))
-		{
-			$model->attributes=$_POST['ProtesePrescricao'];
-			$model->last_update=new CDbExpression('NOW()');
-			if($model->save())
-				$this->redirect(array('proteseVerificacao/create'));
-		}
-	
-		$this->render('create',array(
-				'model'=>$model,
 		));
 	}
 
@@ -111,10 +91,9 @@ class ProtesePrescricaoController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
-		if(isset($_POST['ProtesePrescricao']))
+		if(isset($_POST['User']))
 		{
-			$model->attributes=$_POST['ProtesePrescricao'];
-			$model->last_update=new CDbExpression('NOW()');
+			$model->attributes=$_POST['User'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -143,7 +122,7 @@ class ProtesePrescricaoController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('ProtesePrescricao');
+		$dataProvider=new CActiveDataProvider('User');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -154,10 +133,10 @@ class ProtesePrescricaoController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new ProtesePrescricao('search');
+		$model=new User('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['ProtesePrescricao']))
-			$model->attributes=$_GET['ProtesePrescricao'];
+		if(isset($_GET['User']))
+			$model->attributes=$_GET['User'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -171,7 +150,7 @@ class ProtesePrescricaoController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=ProtesePrescricao::model()->findByPk($id);
+		$model=User::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -183,7 +162,7 @@ class ProtesePrescricaoController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='protese-prescricao-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

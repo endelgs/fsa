@@ -27,9 +27,12 @@
 	</div><!-- header -->
 
 	<div id="mainMbMenu">
-		<?php $this->widget('application.extensions.mbmenu.MbMenu',array(
+		<?php 
+		$user = Yii::app()->user;
+		$this->widget('application.extensions.mbmenu.MbMenu',array(
             'items'=>array(
                 array('label'=>'Página Inicial', 'url'=>array('/')),
+            	array('label'=>'Usuários', 'url'=>array('user/admin'),'visible'=>$user->checkAccess('admin')),
                 array('label'=>'Pacientes',
                   'items'=>array(
                     array('label'=>'Cadastrar novo paciente', 'url'=>array('paciente/create')),
@@ -37,6 +40,7 @@
                   ),
                 ),
             	array('label'=>'Triagem',
+            		'visible'=>$user->checkAccess('triagem'),
             		'items'=>array(
             			array('label'=>'Cadastrar triagem para um paciente', 'url'=>array('triagem/create')),
             			array('label'=>'Gerenciar triagens', 'url'=>array('triagem/admin')),
@@ -44,18 +48,21 @@
             		),
             	),
             	array('label'=>'Genética',
+            		'visible'=>$user->checkAccess('genetica'),
             		'items'=>array(
             			array('label'=>'Cadastrar dados de genética', 'url'=>array('genetica/create')),
             			array('label'=>'Gerenciar dados de genética', 'url'=>array('genetica/admin')),
             		),
             	),
             	array('label'=>'Assistência Social',
+            		'visible'=>$user->checkAccess('servicosocial'),
             		'items'=>array(
             			array('label'=>'Cadastrar dados de assistência social', 'url'=>array('servicoSocial/create')),
             			array('label'=>'Gerenciar dados de assistência social', 'url'=>array('servicoSocial/admin')),
             		),
             	),
             	array('label'=>'Prótese',
+            		'visible'=>$user->checkAccess('protese'),
             		'items'=>array(
             			array('label'=>'Cadastrar avaliação de prótese', 'url'=>array('proteseAvaliacao/create')),
             			array('label'=>'Cadastrar prescrição de prótese', 'url'=>array('protesePrescricao/create')),
@@ -65,8 +72,8 @@
             			array('label'=>'Agenda de próteses', 'url'=>array('agendaProtese/create')),
             		),
             	),
-            	//array('label'=>'Agenda*'),
             	array('label'=>'Monitoramento',
+            		'visible'=>$user->checkAccess('monitoramento'),
             		'items'=>array(
             			array('label'=>'Cadastrar dados de monitoramento', 'url'=>array('monitoramento/create')),
             			array('label'=>'Gerenciar dados de monitoramento', 'url'=>array('monitoramento/admin')),
@@ -74,6 +81,7 @@
             		),
             	),
             	array('label'=>'Diagnóstico',
+            		'visible'=>$user->checkAccess('diagnostico'),
             		'items'=>array(
             			array('label'=>'Cadastrar diagnóstico', 'url'=>array('diagnostico/create')),
             			array('label'=>'Gerenciar diagnósticos', 'url'=>array('diagnostico/admin')),
@@ -81,17 +89,15 @@
             		),
             	),
             	array('label'=>'ORL',
+            		'visible'=>$user->checkAccess('orl'),
             		'items'=>array(
             			array('label'=>'Cadastrar ORL', 'url'=>array('orl/create')),
             			array('label'=>'Gerenciar ORL', 'url'=>array('orl/admin')),
             			array('label'=>'Agenda de ORLs', 'url'=>array('agendaOrl/create')),
             		),
             	),
-            	/*array('url'=>Yii::app()->getModule('user')->loginUrl, 'label'=>Yii::app()->getModule('user')->t("Login"), 'visible'=>Yii::app()->user->isGuest),
-            	array('url'=>Yii::app()->getModule('user')->registrationUrl, 'label'=>Yii::app()->getModule('user')->t("Register"), 'visible'=>Yii::app()->user->isGuest),
-            	array('url'=>Yii::app()->getModule('user')->profileUrl, 'label'=>Yii::app()->getModule('user')->t("Profile"), 'visible'=>!Yii::app()->user->isGuest),
-            	array('url'=>Yii::app()->getModule('user')->logoutUrl, 'label'=>Yii::app()->getModule('user')->t("Logout").' ('.Yii::app()->user->name.')', 'visible'=>!Yii::app()->user->isGuest),
-            	array('label'=>'Sair do sistema', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),*/
+            	array('label'=>'Entrar do sistema', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+            	array('label'=>'Sair do sistema', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
             ),
 				
     )); ?>
