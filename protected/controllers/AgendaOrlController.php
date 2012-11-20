@@ -71,6 +71,7 @@ class AgendaOrlController extends Controller
 		if(isset($_POST['AgendaOrl']))
 		{
 			$model->attributes=$_POST['AgendaOrl'];
+			$model->horario=$_POST['AgendaOrl']['horario'].':'.$_POST['AgendaOrl']['horario_minuto'];
 			
 			if(isset($model->data) && isset($model->paciente_r)){
 				$modelOrl->attributes=array();

@@ -71,6 +71,7 @@ class AgendaMonitoramentoController extends Controller
 		if(isset($_POST['AgendaMonitoramento']))
 		{
 			$model->attributes=$_POST['AgendaMonitoramento'];
+			$model->horario=$_POST['AgendaMonitoramento']['horario'].':'.$_POST['AgendaMonitoramento']['horario_minuto'];
 			
 			if(isset($model->data) && isset($model->paciente_r)){
 				$modelMonitoramento->attributes=array();

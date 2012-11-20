@@ -71,7 +71,7 @@ class AgendaTriagemController extends Controller
 		if(isset($_POST['AgendaTriagem']))
 		{
 			$model->attributes=$_POST['AgendaTriagem'];
-			
+			$model->horario=$_POST['AgendaTriagem']['horario'].':'.$_POST['AgendaTriagem']['horario_minuto'];
 			
 			if(isset($model->data) && isset($model->paciente_r)){
 				$modelTriagem->attributes=array();

@@ -15,7 +15,7 @@ $this->menu=array(
 .sumir{border:solid thin #93B576; color:#446925; font-weight: bold; background-color:#BDE898; padding: 3px 0px 3px 10px;}
 </style>
 <h1>Agendar Monitoramentos</h1>
-<?php if($_GET['sucesso']=="true")echo "<div class='sumir'>Monitoramento agendado com sucesso</div><br/>"; ?>
+<?php if(isset($_GET['sucesso']))echo "<div class='sumir'>Monitoramento agendado com sucesso</div><br/>"; ?>
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
 <script>
 $(document).ready(function(){ 

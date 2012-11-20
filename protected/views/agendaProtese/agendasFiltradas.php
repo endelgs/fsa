@@ -9,6 +9,7 @@ exit;
 	<tr>
 		<th>Paciente</th>
 		<th>Agendado para dia</th>
+		<th>Horário</th>
 		<th>Prótese</th>
 		<th></th>
 	</tr>
@@ -19,6 +20,7 @@ foreach($proteses as $protese){
 	echo '<tr class="itemAgenda">
 	<td>'.$protese["nome"].'</td>
 	<td>'.$data.'</td>
+	<td>'.$protese['horario'].'</td>
 	<td>'.$protese['agenda_tipo'].'</td>
 	<td><a href="'.Yii::app()->createAbsoluteUrl('protese'.ucfirst($protese['agenda_tipo']).'/update').'&id='.$protese['form_tipo_r'].'">Cadastrar Protese '.$protese['agenda_tipo'].'</a></td>
 	</tr>';

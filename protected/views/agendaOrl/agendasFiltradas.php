@@ -9,6 +9,7 @@ exit;
 	<tr>
 		<th>Paciente</th>
 		<th>Agendado para dia</th>
+		<th>Horário</th>
 		<th></th>
 	</tr>
 
@@ -18,6 +19,7 @@ foreach($orls as $orl){
 	echo '<tr class="itemAgenda">
 	<td>'.$orl["nome"].'</td>
 	<td>'.$data.'</td>
+	<td>'.$orl['horario'].'</td>
 	<td><a href="'.Yii::app()->createAbsoluteUrl('orl/update').'&id='.$orl['orl_r'].'">Cadastrar Triagem</a></td>
 	</tr>';
 }

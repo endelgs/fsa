@@ -9,6 +9,7 @@ exit;
 	<tr>
 		<th>Paciente</th>
 		<th>Agendado para dia</th>
+		<th>Horário</th>
 		<th></th>
 	</tr>
 
@@ -18,6 +19,7 @@ foreach($monitoramentos as $monitoramento){
 	echo '<tr class="itemAgenda">
 	<td>'.$monitoramento["nome"].'</td>
 	<td>'.$data.'</td>
+	<td>'.$monitoramento['horario'].'</td>
 	<td><a href="'.Yii::app()->createAbsoluteUrl('monitoramento/update').'&id='.$monitoramento['monitoramento_r'].'">Cadastrar Monitoramento</a></td>
 	</tr>';
 }

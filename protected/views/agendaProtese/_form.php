@@ -7,7 +7,7 @@
 .help{font-size:9px;font-style:italic;} 
 .itemAgenda{background-color: #E8F8FF;}
 .itemAgenda:HOVER{background-color: #B4DCED;}
-.alinhamento{float:left; margin-right: 10px;}
+.alinhamento{float:left; margin-right:20px;}
 </style>
 <div class="form">
 
@@ -22,17 +22,18 @@
 
 	<hr class="larguraDefault"/>
 	<div class="row">
-		<div>
-			<h5 class="alinhamento">Agendar Protese:</h5>
-			<?php echo $form->dropDownList($model, 'agenda_tipo',array(
-					''=>'Selecione',
-					'anexo' => 'Anexo', 
-					'avaliacao' => 'Avaliação',
-					'prescricao' => 'Prescrição', 
-					'validacao' => 'Validação',
-					'verificacao' => 'Verificação')); ?>
-		</div>
+		<h5 class="alinhamento">Agendar Protese:</h5>
+		<?php echo $form->dropDownList($model, 'agenda_tipo',array(
+				''=>'Selecione',
+				'anexo' => 'Anexo', 
+				'avaliacao' => 'Avaliação',
+				'prescricao' => 'Prescrição', 
+				'validacao' => 'Validação',
+				'verificacao' => 'Verificação')); ?>
+	</div>
+	<div class="row alinhamento">
 		<div class="alinhamento">
+			<b>Agendar triagem para:</b><br/>
 			<?php echo CHtml::CheckBox('agenda_hoje',false, array('value'=>date("d/m/Y")))."Hoje"; ?>
 			<?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 			        'attribute'=>'data',
@@ -45,7 +46,36 @@
 			    	)
 				));
 			?>
-			<b>para o Paciente: </b>
+		</div>
+		<div class="alinhamento">
+			<b>Horário:</b><br/>
+			<?php echo $form->dropDownList(	$model,'horario',
+				array(
+					''=>'Selecione',
+					'07' => '07', 
+					'08' => '08', 
+					'09' => '09', 
+					'10' => '10', 
+					'11' => '11',
+					'12' => '12',
+					'13' => '13',
+					'14' => '14',
+					'15' => '15',
+					'16' => '16',
+					'17' => '17',
+					'18' => '18',
+			)); ?>
+			<?php echo CHtml::dropDownList(CHtml::activeName($model, 'horario_minuto'),'horario_minuto',
+				array(
+					''=>'Selecione',
+					'00' => '00', 
+					'15' => '15', 
+					'30' => '30', 
+					'45' => '45',
+			)); ?>
+		</div>
+		<div class="alinhamento">
+			<b>Paciente:</b><br/>
 			<?php 
 	     		if($model->isNewRecord){
 		       		$this->widget('ext.devAutoComplete', array(
@@ -54,7 +84,7 @@
 		         		'name'=>'paciente_r',
 		          		'value'=>$model->isNewRecord ? '': $model->pacienteR->nome,
 		                'sourceUrl'=> $this->createUrl('paciente/getPacientesAC'),
-		                'htmlOptions'=>array('size'=>65),
+		                'htmlOptions'=>array('size'=>50),
 		          		'options'=>array(
 		            		'minLength'=>'1',
 		            		'showAnim'=>'fold',
@@ -106,6 +136,7 @@
 	<tr>
 		<th>Paciente</th>
 		<th>Agendado para dia</th>
+		<th>Horário</th>
 		<th>Protese</th>
 		<th></th>
 	</tr>
@@ -114,6 +145,7 @@ foreach($aProtesesHoje as $protese){
 	echo '<tr class="itemAgenda">
 		<td>'.CHtml::encode($protese->pacienteR->nome).'</td>
 		<td>'.CHtml::encode($protese->data).'</td>
+		<td>'.CHtml::encode($protese->horario).'</td>
 		<td>'.CHtml::encode($protese->agenda_tipo).'</td>
 		<td><a href="'.Yii::app()->createAbsoluteUrl('protese'.ucfirst($protese->agenda_tipo).'/update').'&id='.$protese->form_tipo_r.'">Cadastrar prótese '.$protese->agenda_tipo.'</a></td>
 	</tr>';

@@ -70,6 +70,7 @@ class AgendaProteseController extends Controller
 		if(isset($_POST['AgendaProtese']))
 		{
 			$model->attributes=$_POST['AgendaProtese'];
+			$model->horario=$_POST['AgendaProtese']['horario'].':'.$_POST['AgendaProtese']['horario_minuto'];
 			
 			$agenda_tipo=$_POST['AgendaProtese']['agenda_tipo'];
 			if($agenda_tipo=="anexo")$modelRef=new ProteseAnexo;
