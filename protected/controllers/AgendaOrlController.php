@@ -77,11 +77,11 @@ class AgendaOrlController extends Controller
 				$modelOrl->last_update=new CDbExpression('NOW()');
 				$modelOrl->paciente_r=$model->paciente_r;
 			
-				if($modelOrl->insert())$model->orl_r=$modelOrl->id;
+				if($modelOrl->validate(array("paciente_r")) && $modelOrl->insert())	$model->orl_r=$modelOrl->id;
 			}
 			
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('create','sucesso'=>'true'));
 		}
 
 		$this->render('create',array(

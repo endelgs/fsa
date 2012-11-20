@@ -78,10 +78,10 @@ class AgendaTriagemController extends Controller
 				$modelTriagem->last_update=new CDbExpression('NOW()');
 				$modelTriagem->paciente_r=$model->paciente_r;
 				
-				if($modelTriagem->insert())$model->triagem_r=$modelTriagem->id;
+				if($modelTriagem->validate(array("paciente_r")) && $modelTriagem->insert())	$model->triagem_r=$modelTriagem->id;
 			}
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('create','sucesso'=>'true'));
 		}
 
 		$this->render('create',array(

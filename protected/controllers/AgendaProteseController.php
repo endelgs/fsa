@@ -78,16 +78,16 @@ class AgendaProteseController extends Controller
 			else if($agenda_tipo=="validacao")$modelRef=new ProteseValidacao;
 			else if($agenda_tipo=="verificacao")$modelRef=new ProteseVerificacao;
 			
-			if($modelRef && isset($model->data) && isset($model->paciente_r)){
+			if($model->validate(array("agenda_tipo")) && $modelRef && isset($model->data) && isset($model->paciente_r)){
 				$modelRef->attributes=array();
 				$modelRef->last_update=new CDbExpression('NOW()');
 				$modelRef->paciente_r=$model->paciente_r;
 			
-				if($modelRef->insert())$model->form_tipo_r=$modelRef->id;
+				if($modelRef->validate(array("paciente_r")) && $modelRef->insert())	$model->form_tipo_r=$modelRef->id;
 			}
 			
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('create','sucesso'=>'true'));
 		}
 
 		$this->render('create',array(

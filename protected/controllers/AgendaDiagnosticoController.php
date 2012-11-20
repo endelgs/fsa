@@ -76,12 +76,12 @@ class AgendaDiagnosticoController extends Controller
 				$modelDiagnostico->attributes=array();
 				$modelDiagnostico->last_update=new CDbExpression('NOW()');
 				$modelDiagnostico->paciente_r=$model->paciente_r;
-					
-				if($modelDiagnostico->insert())$model->diagnostico_r=$modelDiagnostico->id;
+			
+				if($modelDiagnostico->validate(array("paciente_r")) && $modelDiagnostico->insert())	$model->diagnostico_r=$modelDiagnostico->id;
 			}
 			
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('create','sucesso'=>'true'));
 		}
 
 		$this->render('create',array(

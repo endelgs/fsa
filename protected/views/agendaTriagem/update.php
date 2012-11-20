@@ -3,7 +3,7 @@
 /* @var $model AgendaTriagem */
 
 $this->breadcrumbs=array(
-	'Agenda Triagems'=>array('index'),
+	'Agenda Triagens'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Editar',
 );

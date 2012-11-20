@@ -77,11 +77,11 @@ class AgendaMonitoramentoController extends Controller
 				$modelMonitoramento->last_update=new CDbExpression('NOW()');
 				$modelMonitoramento->paciente_r=$model->paciente_r;
 					
-				if($modelMonitoramento->insert())$model->monitoramento_r=$modelMonitoramento->id;
+				if($modelMonitoramento->validate(array("paciente_r")) && $modelMonitoramento->insert())	$model->monitoramento_r=$modelMonitoramento->id;
 			}
 			
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('create','sucesso'=>'true'));
 		}
 
 		$this->render('create',array(

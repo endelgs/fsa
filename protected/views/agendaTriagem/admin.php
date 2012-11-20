@@ -3,7 +3,7 @@
 /* @var $model AgendaTriagem */
 
 $this->breadcrumbs=array(
-	'Agenda Triagems'=>array('index'),
+	'Agenda Triagens'=>array('index'),
 	'Gerenciar',
 );
 
@@ -25,7 +25,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Gerenciar Agenda Triagems</h1>
+<h1>Gerenciar Agenda Triagens</h1>
 
 <p>
 Você pode usar operadores de comparação (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
