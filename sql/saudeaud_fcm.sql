@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 19/11/2012 às 12h13min
+-- Tempo de Geração: 20/11/2012 às 11h41min
 -- Versão do Servidor: 5.5.28
 -- Versão do PHP: 5.3.10-1ubuntu3.4
 
@@ -29,20 +29,22 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `agenda_diagnostico` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `data` date NOT NULL,
+  `horario` time NOT NULL,
   `diagnostico_r` int(11) NOT NULL,
   `paciente_r` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `diagnostico_r` (`diagnostico_r`),
   KEY `paciente_r` (`paciente_r`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `agenda_diagnostico`
 --
 
-INSERT INTO `agenda_diagnostico` (`id`, `data`, `diagnostico_r`, `paciente_r`) VALUES
-(3, '2012-11-14', 4, 46),
-(4, '2012-11-21', 5, 13);
+INSERT INTO `agenda_diagnostico` (`id`, `data`, `horario`, `diagnostico_r`, `paciente_r`) VALUES
+(3, '2012-11-14', '00:00:00', 4, 46),
+(4, '2012-11-21', '00:00:00', 5, 13),
+(5, '2012-11-20', '16:30:00', 6, 44);
 
 -- --------------------------------------------------------
 
@@ -53,20 +55,23 @@ INSERT INTO `agenda_diagnostico` (`id`, `data`, `diagnostico_r`, `paciente_r`) V
 CREATE TABLE IF NOT EXISTS `agenda_monitoramento` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `data` date NOT NULL,
+  `horario` time NOT NULL,
   `monitoramento_r` int(11) NOT NULL,
   `paciente_r` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `monitoramento_r` (`monitoramento_r`),
   KEY `paciente_r` (`paciente_r`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `agenda_monitoramento`
 --
 
-INSERT INTO `agenda_monitoramento` (`id`, `data`, `monitoramento_r`, `paciente_r`) VALUES
-(2, '2012-11-14', 4, 2),
-(3, '2012-11-22', 5, 50);
+INSERT INTO `agenda_monitoramento` (`id`, `data`, `horario`, `monitoramento_r`, `paciente_r`) VALUES
+(2, '2012-11-14', '00:00:00', 4, 2),
+(3, '2012-11-22', '00:00:00', 5, 50),
+(4, '2012-11-20', '09:15:00', 6, 44),
+(5, '2012-11-20', '11:30:00', 7, 8);
 
 -- --------------------------------------------------------
 
@@ -77,21 +82,23 @@ INSERT INTO `agenda_monitoramento` (`id`, `data`, `monitoramento_r`, `paciente_r
 CREATE TABLE IF NOT EXISTS `agenda_orl` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `data` date NOT NULL,
+  `horario` time NOT NULL,
   `orl_r` int(11) NOT NULL,
   `paciente_r` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `orl_r` (`orl_r`),
   KEY `paciente_r` (`paciente_r`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Extraindo dados da tabela `agenda_orl`
 --
 
-INSERT INTO `agenda_orl` (`id`, `data`, `orl_r`, `paciente_r`) VALUES
-(1, '0000-00-00', 4, 47),
-(2, '2012-11-14', 5, 40),
-(3, '2012-11-19', 6, 12);
+INSERT INTO `agenda_orl` (`id`, `data`, `horario`, `orl_r`, `paciente_r`) VALUES
+(1, '0000-00-00', '00:00:00', 4, 47),
+(2, '2012-11-14', '00:00:00', 5, 40),
+(3, '2012-11-19', '00:00:00', 6, 12),
+(4, '2012-11-20', '13:30:00', 7, 44);
 
 -- --------------------------------------------------------
 
@@ -102,24 +109,27 @@ INSERT INTO `agenda_orl` (`id`, `data`, `orl_r`, `paciente_r`) VALUES
 CREATE TABLE IF NOT EXISTS `agenda_protese` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `data` date NOT NULL,
+  `horario` time NOT NULL,
   `agenda_tipo` enum('anexo','avaliacao','prescricao','validacao','verificacao') NOT NULL,
   `form_tipo_r` int(11) NOT NULL,
   `paciente_r` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `form_tipo_r` (`form_tipo_r`),
   KEY `paciente_r` (`paciente_r`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Extraindo dados da tabela `agenda_protese`
 --
 
-INSERT INTO `agenda_protese` (`id`, `data`, `agenda_tipo`, `form_tipo_r`, `paciente_r`) VALUES
-(1, '2012-11-14', 'anexo', 51, 7),
-(2, '2012-11-15', 'avaliacao', 51, 13),
-(3, '2012-11-16', 'prescricao', 51, 30),
-(4, '2012-11-14', 'validacao', 51, 48),
-(5, '2012-11-19', 'verificacao', 51, 32);
+INSERT INTO `agenda_protese` (`id`, `data`, `horario`, `agenda_tipo`, `form_tipo_r`, `paciente_r`) VALUES
+(1, '2012-11-14', '00:00:00', 'anexo', 51, 7),
+(2, '2012-11-15', '00:00:00', 'avaliacao', 51, 13),
+(3, '2012-11-16', '00:00:00', 'prescricao', 51, 30),
+(4, '2012-11-14', '00:00:00', 'validacao', 51, 48),
+(5, '2012-11-19', '00:00:00', 'verificacao', 51, 32),
+(6, '2012-11-20', '00:00:00', 'anexo', 52, 7),
+(7, '2012-11-20', '11:45:00', 'anexo', 53, 44);
 
 -- --------------------------------------------------------
 
@@ -130,21 +140,27 @@ INSERT INTO `agenda_protese` (`id`, `data`, `agenda_tipo`, `form_tipo_r`, `pacie
 CREATE TABLE IF NOT EXISTS `agenda_triagem` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `data` date NOT NULL,
+  `horario` time NOT NULL,
   `triagem_r` int(11) NOT NULL,
   `paciente_r` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `triagem_r` (`triagem_r`),
   KEY `paciente_r` (`paciente_r`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Extraindo dados da tabela `agenda_triagem`
 --
 
-INSERT INTO `agenda_triagem` (`id`, `data`, `triagem_r`, `paciente_r`) VALUES
-(4, '0000-00-00', 51, 7),
-(5, '2012-11-14', 52, 26),
-(6, '2012-11-16', 53, 38);
+INSERT INTO `agenda_triagem` (`id`, `data`, `horario`, `triagem_r`, `paciente_r`) VALUES
+(4, '0000-00-00', '00:00:00', 51, 7),
+(5, '2012-11-14', '00:00:00', 52, 26),
+(6, '2012-11-16', '00:00:00', 53, 38),
+(10, '2012-11-20', '00:00:00', 59, 7),
+(11, '2012-11-20', '00:00:00', 60, 13),
+(14, '2012-11-20', '00:00:00', 61, 2),
+(15, '2012-11-20', '00:00:00', 62, 26),
+(16, '2012-11-20', '09:30:00', 63, 44);
 
 -- --------------------------------------------------------
 
@@ -274,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `diagnostico` (
   `paciente_r` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `paciente_r` (`paciente_r`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Extraindo dados da tabela `diagnostico`
@@ -285,7 +301,8 @@ INSERT INTO `diagnostico` (`id`, `consanguinidade`, `perda_auditiva_familia`, `p
 (2, 'true', 'true', 'true', 'natural', 'deitado', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '80', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'normal', 'normal', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'presente', 'presente', 'presente', 'presente', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'indireta', 'indireta', 'indireta', 'indireta', 'indireta', 'indireta', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '2012-11-14 15:35:30', 32),
 (3, 'true', 'true', 'true', 'natural', 'deitado', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '80', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'normal', 'normal', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'presente', 'presente', 'presente', 'presente', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'indireta', 'indireta', 'indireta', 'indireta', 'indireta', 'indireta', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '2012-11-14 15:37:37', 32),
 (4, 'true', 'true', 'true', 'natural', 'deitado', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '80', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'normal', 'normal', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'presente', 'presente', 'presente', 'presente', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'indireta', 'indireta', 'indireta', 'indireta', 'indireta', 'indireta', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '2012-11-14 16:49:16', 46),
-(5, 'true', 'true', 'true', 'natural', 'deitado', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '80', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'normal', 'normal', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'presente', 'presente', 'presente', 'presente', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'indireta', 'indireta', 'indireta', 'indireta', 'indireta', 'indireta', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '2012-11-14 16:49:55', 13);
+(5, 'true', 'true', 'true', 'natural', 'deitado', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '80', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'normal', 'normal', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'presente', 'presente', 'presente', 'presente', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'indireta', 'indireta', 'indireta', 'indireta', 'indireta', 'indireta', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '2012-11-14 16:49:55', 13),
+(6, 'true', 'true', 'true', 'natural', 'deitado', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '80', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'normal', 'normal', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'presente', 'presente', 'presente', 'presente', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'indireta', 'indireta', 'indireta', 'indireta', 'indireta', 'indireta', 'presente', '', '', '', '', '', '', '', '', '', '', '', '', '2012-11-20 11:39:13', 44);
 
 -- --------------------------------------------------------
 
@@ -477,7 +494,7 @@ CREATE TABLE IF NOT EXISTS `monitoramento` (
   `paciente_r` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `paciente_r` (`paciente_r`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Extraindo dados da tabela `monitoramento`
@@ -488,7 +505,9 @@ INSERT INTO `monitoramento` (`id`, `guizo`, `sino`, `agogo`, `reacao_voz`, `od_5
 (2, 'o', 'rcp', 's', 'a', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 'true', 'true', 'true', 'true', 'true', '', 'true', 'true', 'true', '', '1', '1', '1', '1', '1', '1', '1', '1', '', '', '', '2012-10-24 16:32:55', 44),
 (3, 'o', 'o', 'o', 'o', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '', '', '', '', '', '', '', '', '', '', '', '2012-11-14 15:38:16', 2),
 (4, 'o', 'o', 'o', 'o', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '', '', '', '', '', '', '', '', '', '', '', '2012-11-14 15:51:18', 2),
-(5, 'o', 'o', 'o', 'o', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '', '', '', '', '', '', '', '', '', '', '', '2012-11-14 16:48:52', 50);
+(5, 'o', 'o', 'o', 'o', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '', '', '', '', '', '', '', '', '', '', '', '2012-11-14 16:48:52', 50),
+(6, 'o', 'o', 'o', 'o', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '', '', '', '', '', '', '', '', '', '', '', '2012-11-20 11:37:08', 44),
+(7, 'o', 'o', 'o', 'o', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '', '', '', '', '', '', '', '', '', '', '', '2012-11-20 11:37:23', 8);
 
 -- --------------------------------------------------------
 
@@ -511,7 +530,7 @@ CREATE TABLE IF NOT EXISTS `orl` (
   `paciente_r` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `paciente_r` (`paciente_r`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Extraindo dados da tabela `orl`
@@ -523,7 +542,8 @@ INSERT INTO `orl` (`id`, `diagnostico`, `qp`, `hpma`, `interrogatorio_complement
 (3, '', '', '', '', '', '', '', '', '', '2012-11-13 22:04:17', 7),
 (4, '', '', '', '', '', '', '', '', '', '2012-11-14 15:02:21', 47),
 (5, '', '', '', '', '', '', '', '', '', '2012-11-14 15:06:54', 40),
-(6, '', '', '', '', '', '', '', '', '', '2012-11-14 15:07:20', 12);
+(6, '', '', '', '', '', '', '', '', '', '2012-11-14 15:07:20', 12),
+(7, '', '', '', '', '', '', '', '', '', '2012-11-20 11:34:56', 44);
 
 -- --------------------------------------------------------
 
@@ -666,7 +686,7 @@ CREATE TABLE IF NOT EXISTS `protese_anexo` (
   `paciente_r` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `paciente_r` (`paciente_r`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
 
 --
 -- Extraindo dados da tabela `protese_anexo`
@@ -727,7 +747,9 @@ INSERT INTO `protese_anexo` (`id`, `comportamento_vocal`, `primeiras_vocalizacoe
 INSERT INTO `protese_anexo` (`id`, `comportamento_vocal`, `primeiras_vocalizacoes`, `esqueceu_dispositivo`, `primeiro_teste_dispositivo`, `silabas_articuladas`, `crianca_conversa`, `tipos_sons_brincadeira`, `emite_sons_exemplo`, `emite_sons`, `resposta_primeira_chamada`, `resposta_espontanea`, `resposta_chamada_ruido`, `resposta_espontanea_ruido`, `sons_ambientais`, `atencao_espontanea_sons_ambiente`, `curiosidade_novos_sons`, `atencao_espontanea_sinais_auditivos`, `reconhece_sinais_auditivos`, `atencao_espontanea_sinais_auditivos_diariamente`, `diferenciar_vozes`, `habilidade_discriminar_dois_falantes`, `reconhece_fala_sons_nao_verbais`, `reconhece_estimulos_fala_audicao`, `emocao_voz_pessoa`, `associa_entonacao`, `last_update`, `paciente_r`) VALUES
 (49, 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam porttitor convallis adipiscing. Cras tincidunt tincidunt turpis, vel elementum nibh elementum eget. Mauris quis ultricies velit. Praesent id libero ante', 'Proin a purus purus, auctor placerat tellus. Morbi id lacus sapien, ac fringilla arcu. Sed at cursus purus. Donec lacus lacus, interdum vitae pulvinar vitae, interdum eu velit. Aliquam mattis metus quis diam placerat vel vehicula nisl egestas. Proin ', 'Nulla pharetra odio in dolor varius eu fringilla ante hendrerit. Cras rhoncus pharetra ante, non imperdiet augue suscipit eu. Vivamus vestibulum gravida dignissim. Ut a felis placerat diam fermentum luctus. Donec est diam, lacinia ac posuere nec, con', '', 'Phasellus eu purus eget nisl ullamcorper pretium quis eget purus. Phasellus rhoncus sollicitudin nulla, ut rutrum lorem posuere quis. Sed eget cursus lacus. Sed dapibus tristique neque a dictum. Phasellus ultricies, risus ut gravida adipiscing, arcu ', 'Quisque accumsan ultrices eleifend. Pellentesque lacus massa, tincidunt a vehicula convallis, tristique id justo. Praesent sed diam ac arcu interdum porttitor at consectetur risus. Donec arcu mauris, ullamcorper in pulvinar hendrerit, placerat ultric', 'Proin ut eros eu odio luctus aliquet non vel mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam velit lorem, viverra id dictum sed, fermentum et lorem. Duis quis massa massa. Curabitur sed mi vel nulla convallis mollis lacinia et es', 'Quisque accumsan ultrices eleifend. Pellentesque lacus massa, tincidunt a vehicula convallis, tristique id justo. Praesent sed diam ac arcu interdum porttitor at consectetur risus. Donec arcu mauris, ullamcorper in pulvinar hendrerit, placerat ultric', '', 'Cras placerat neque ac dui commodo vel consequat erat faucibus. Nulla eu elit nunc, vitae vehicula elit. In blandit tincidunt ultrices. Nam quis metus id orci luctus semper non sed elit. Aliquam laoreet interdum imperdiet. Curabitur accumsan, libero ', '', 'Etiam varius quam sit amet eros facilisis eu mattis ligula congue. Nunc congue lorem at leo auctor id fermentum dui accumsan. Aliquam tempor tristique leo, mollis volutpat nunc ultrices eget. Pellentesque a commodo elit. Donec convallis mollis gravid', '0', 'Suspendisse potenti. Maecenas ultrices tempus purus vel mollis. Aliquam erat volutpat. Duis iaculis, dui a mollis interdum, arcu mi consectetur orci, nec elementum lectus diam sit amet dui. In at justo mi, in pellentesque eros. In hac habitasse plate', '1', 'Aliquam in ante sem. Fusce luctus neque et elit vestibulum accumsan tincidunt orci varius. Ut malesuada tempor pretium. Nam convallis libero nec justo venenatis at posuere mauris suscipit. Morbi mi ante, sagittis in convallis a, blandit fringilla ips', '1', 'Duis malesuada vulputate consequat. Proin condimentum placerat diam iaculis porta. Cras faucibus elementum interdum. Integer at tellus orci. Nunc porta diam sit amet erat scelerisque et varius ligula consequat. Vestibulum tincidunt erat quis justo co', '0', 'Proin luctus rhoncus egestas. Vestibulum euismod, erat in cursus ullamcorper, velit tellus elementum turpis, sed cursus mauris orci non augue. Maecenas ut dui nec arcu vulputate pharetra a in odio. Praesent gravida velit nec enim consectetur cursus v', '3', 'Suspendisse potenti. Maecenas ultrices tempus purus vel mollis. Aliquam erat volutpat. Duis iaculis, dui a mollis interdum, arcu mi consectetur orci, nec elementum lectus diam sit amet dui. In at justo mi, in pellentesque eros. In hac habitasse plate', '2', 'Duis id nisl enim. Sed ante risus, sodales sit amet vestibulum posuere, tincidunt eget elit. Nullam mi odio, hendrerit vel iaculis eget, sollicitudin vitae tortor. Suspendisse sapien lorem, tincidunt sed tincidunt et, mattis eu dui. Cras non tempor n', '3', '2010-06-25 10:00:22', 49),
 (50, 'Phasellus eu purus eget nisl ullamcorper pretium quis eget purus. Phasellus rhoncus sollicitudin nulla, ut rutrum lorem posuere quis. Sed eget cursus lacus. Sed dapibus tristique neque a dictum. Phasellus ultricies, risus ut gravida adipiscing, arcu ', 'Proin a purus purus, auctor placerat tellus. Morbi id lacus sapien, ac fringilla arcu. Sed at cursus purus. Donec lacus lacus, interdum vitae pulvinar vitae, interdum eu velit. Aliquam mattis metus quis diam placerat vel vehicula nisl egestas. Proin ', 'In nec imperdiet tellus. Ut ut dolor mi. Vestibulum nec dolor at lorem vestibulum euismod vel bibendum sem. Vestibulum pharetra risus sed velit auctor iaculis. Praesent non risus ante. Vestibulum tincidunt purus et risus dapibus et rutrum justo euism', '0', 'Maecenas eget porta nibh. Aliquam fermentum eros et lectus ullamcorper dignissim eu ut magna. Nunc tellus neque, posuere nec aliquet ut, ullamcorper at odio. Sed scelerisque ligula ac orci mattis dapibus. Sed venenatis, turpis ornare congue hendrerit', 'Nulla placerat mattis neque, et pulvinar neque pellentesque ultrices. In massa nibh, luctus aliquam mollis nec, adipiscing non erat. Mauris faucibus, arcu at auctor rhoncus, orci purus interdum diam, ut mollis lorem urna id neque. Integer tincidunt e', 'In nec imperdiet tellus. Ut ut dolor mi. Vestibulum nec dolor at lorem vestibulum euismod vel bibendum sem. Vestibulum pharetra risus sed velit auctor iaculis. Praesent non risus ante. Vestibulum tincidunt purus et risus dapibus et rutrum justo euism', 'Quisque eu magna sem, ut hendrerit diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed a volutpat velit. Aliquam lorem neque, congue quis tristique eget, imperdiet ut sapien. Morbi vel massa eros, u', '1', 'Aliquam in ante sem. Fusce luctus neque et elit vestibulum accumsan tincidunt orci varius. Ut malesuada tempor pretium. Nam convallis libero nec justo venenatis at posuere mauris suscipit. Morbi mi ante, sagittis in convallis a, blandit fringilla ips', '3', 'Quisque eu magna sem, ut hendrerit diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed a volutpat velit. Aliquam lorem neque, congue quis tristique eget, imperdiet ut sapien. Morbi vel massa eros, u', '0', 'Proin molestie iaculis tellus, at varius ipsum mollis quis. Integer eget metus sit amet enim volutpat fermentum. Morbi vitae neque lectus, at pretium quam. Morbi quis dui risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur r', '', 'Praesent nec arcu ac dui auctor iaculis. Aliquam enim erat, molestie eget tincidunt eget, egestas nec urna. Aliquam viverra justo quis justo pellentesque nec fermentum urna molestie. Quisque tristique cursus auctor. Aliquam sit amet tellus in erat po', '', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed vel odio id augue ultrices faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin varius velit nec augue ', '2', 'Cras placerat neque ac dui commodo vel consequat erat faucibus. Nulla eu elit nunc, vitae vehicula elit. In blandit tincidunt ultrices. Nam quis metus id orci luctus semper non sed elit. Aliquam laoreet interdum imperdiet. Curabitur accumsan, libero ', '2', 'Integer consectetur magna et est dignissim quis pharetra dolor blandit. Duis eget ligula a neque sodales scelerisque. Aliquam vestibulum nunc id felis lobortis commodo. Morbi dictum purus leo. Nullam dolor ligula, molestie eu pellentesque id, aliquet', '0', 'Donec blandit orci non magna dapibus commodo tincidunt quam facilisis. Vestibulum in quam sit amet mauris aliquet vestibulum sit amet vel mauris. Donec sollicitudin consectetur fermentum. Ut porta semper enim, ac blandit dui luctus vitae. Vestibulum ', '0', '1971-01-05 15:02:33', 50),
-(51, '', '', '', '0', '', '', '', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '2012-11-14 18:13:53', 7);
+(51, '', '', '', '0', '', '', '', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '2012-11-14 18:13:53', 7),
+(52, '', '', '', '0', '', '', '', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '2012-11-20 10:25:50', 7),
+(53, '', '', '', '0', '', '', '', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '', '0', '2012-11-20 11:32:12', 44);
 
 -- --------------------------------------------------------
 
@@ -1463,7 +1485,7 @@ CREATE TABLE IF NOT EXISTS `triagem` (
   `paciente_r` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `paciente_r` (`paciente_r`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=64 ;
 
 --
 -- Extraindo dados da tabela `triagem`
@@ -1523,7 +1545,12 @@ INSERT INTO `triagem` (`id`, `peso`, `apgar_1`, `apgar_5`, `apgar_10`, `apgar_15
 (51, 0, 0, 0, NULL, NULL, 0, 0, 'capurro', NULL, 'termo', 'aig', 'peate-a', 'passou', 'passou', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '', 'true', 'true', 'true', 'true', 'true', '', 'true', 'true', 'true', 'true', '2012-11-14 09:51:27', 7),
 (52, 0, 0, 0, NULL, NULL, 0, 0, 'capurro', NULL, 'termo', 'aig', 'peate-a', 'passou', 'passou', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '', 'true', 'true', 'true', 'true', 'true', '', 'true', 'true', 'true', 'true', '2012-11-14 10:02:21', 26),
 (53, 0, 0, 0, NULL, NULL, 0, 0, 'capurro', NULL, 'termo', 'aig', 'peate-a', 'passou', 'passou', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '', 'true', 'true', 'true', 'true', 'true', '', 'true', 'true', 'true', 'true', '2012-11-14 14:33:26', 38),
-(54, 1, 1, 1, 1, 1, 1, 1, 'capurro', NULL, 'termo', 'aig', 'peate-a', 'passou', 'passou', 'true', 'true', 'true', 'false', 'true', 'false', 'true', 'false', 'true', 'false', 'true', 'false', 'true', 'false', 'true', 'false', '', 'true', 'false', 'false', 'false', 'false', 'false', 'asdadasd', 'asdasdasd', 'true', 'true', 'false', 'false', 'false', 'asdasdadasd', 'false', 'false', 'true', 'false', '2012-11-16 14:03:33', 1);
+(54, 1, 1, 1, 1, 1, 1, 1, 'capurro', NULL, 'termo', 'aig', 'peate-a', 'passou', 'passou', 'true', 'true', 'true', 'false', 'true', 'false', 'true', 'false', 'true', 'false', 'true', 'false', 'true', 'false', 'true', 'false', '', 'true', 'false', 'false', 'false', 'false', 'false', 'asdadasd', 'asdasdasd', 'true', 'true', 'false', 'false', 'false', 'asdasdadasd', 'false', 'false', 'true', 'false', '2012-11-16 14:03:33', 1),
+(59, 0, 0, 0, NULL, NULL, 0, 0, 'capurro', NULL, 'termo', 'aig', 'peate-a', 'passou', 'passou', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '', 'true', 'true', 'true', 'true', 'true', '', 'true', 'true', 'true', 'true', '2012-11-20 10:13:56', 7),
+(60, 0, 0, 0, NULL, NULL, 0, 0, 'capurro', NULL, 'termo', 'aig', 'peate-a', 'passou', 'passou', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '', 'true', 'true', 'true', 'true', 'true', '', 'true', 'true', 'true', 'true', '2012-11-20 10:15:27', 13),
+(61, 0, 0, 0, NULL, NULL, 0, 0, 'capurro', NULL, 'termo', 'aig', 'peate-a', 'passou', 'passou', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '', 'true', 'true', 'true', 'true', 'true', '', 'true', 'true', 'true', 'true', '2012-11-20 10:19:57', 2),
+(62, 0, 0, 0, NULL, NULL, 0, 0, 'capurro', NULL, 'termo', 'aig', 'peate-a', 'passou', 'passou', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '', 'true', 'true', 'true', 'true', 'true', '', 'true', 'true', 'true', 'true', '2012-11-20 10:28:39', 26),
+(63, 0, 0, 0, NULL, NULL, 0, 0, 'capurro', NULL, 'termo', 'aig', 'peate-a', 'passou', 'passou', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', 'true', '', '', 'true', 'true', 'true', 'true', 'true', '', 'true', 'true', 'true', 'true', '2012-11-20 11:23:44', 44);
 
 -- --------------------------------------------------------
 
@@ -1546,10 +1573,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `nome_completo`, `username`, `password`, `email`, `roles`) VALUES
-(1, 'Admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@teste.com', 'admin'),
-(2, 'Triagem', 'triagem', '6dcb01378179a086e279e999d91c4a14', 'triagem@teste.com', 'triagem'),
-(3, 'Serviço Social', 'servicosocial', '04f8dd33d9b1b24fc306d593b0172b9d', 'servicosocial@teste.com', 'servicosocial'),
-(5, 'Teste Genética', 'testegenetica', '4240721df02821d62d6e3b39f4617882', 'tgenetica@teste.com', 'genetica');
+(1, 'Admin', 'admin', 'YWRtaW4=', 'joaotonussi@gmail.com', 'admin'),
+(2, 'Triagem Teste', 'triagem', 'dHJpYWdlbXRlc3Rl', 'triagem@teste.com', 'triagem'),
+(3, 'Serviço Social', 'servicosocial', 'c2Vydmljb3NvY2lhbA==', 'servicosocial@teste.com', 'servicosocial'),
+(5, 'Teste Genética', 'testegenetica', 'dGVzdGVnZW5ldGljYQ==', 'tgenetica@teste.com', 'genetica');
 
 --
 -- Restrições para as tabelas dumpadas
