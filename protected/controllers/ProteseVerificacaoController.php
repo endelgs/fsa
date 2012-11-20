@@ -71,7 +71,7 @@ class ProteseVerificacaoController extends Controller
 		{
 			$model->attributes=$_POST['ProteseVerificacao'];
 			$model->last_update=new CDbExpression('NOW()');
-			if($model->save()) die();
+			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
@@ -90,10 +90,8 @@ class ProteseVerificacaoController extends Controller
 		{
 			$model->attributes=$_POST['ProteseVerificacao'];
 			$model->last_update=new CDbExpression('NOW()');
-			if($model->save()){
-        $paciente = $model->pacienteR;
-				$this->redirect(array('proteseValidacao/create','phc'=>$paciente->hc));
-      }
+			if($model->save())
+				$this->redirect(array('proteseValidacao/create'));
 		}
 	
 		$this->render('create',array(

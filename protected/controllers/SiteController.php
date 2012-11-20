@@ -40,6 +40,42 @@ class SiteController extends Controller
 		// using the default layout 'protected/views/layouts/main.php'
 		$this->render('index');
 	}
+	
+	public function actionRecuperarSenha()
+	{
+		$model=new User;
+		
+		if(isset($_POST['User'])){
+			$email=$_POST['User']['email'];
+			if($email=="")return $this->renderPartial('ajaxResp', array('model'=>$model,'res'=>"Preencha o campo email."));
+			
+			$res=User::model()->findByAttributes(array('email'=>$email));
+			if($res===null)return $this->renderPartial('ajaxResp', array('model'=>$model,'res'=>"Email não encontrado."));
+			
+			$message = 'Senha: '.base64_decode($res->password);
+			
+			$mailer = Yii::createComponent('application.extensions.mailer.EMailer');
+			$mailer->IsSMTP();
+			$mailer->SMTPAuth = true;
+			$mailer->SMTPSecure = 'ssl';
+			$mailer->Host = "smtp.gmail.com";
+			$mailer->Port = 465;
+			$mailer->Username = "joaotonussi@gmail.com";
+			$mailer->Password = "semsenha24";
+			
+			
+			$mailer->From = "joaotonussi@gmail.com";
+			$mailer->FromName = "FCM";
+			$mailer->AddAddress($email);
+			$mailer->CharSet = 'UTF-8';
+			$mailer->Subject = 'Recuperação de Senha' ;
+			$mailer->Body = $message;
+			
+			$mailer->Send();
+			return $this->renderPartial('ajaxResp', array('model'=>$model,'res'=>"Email enviado com sucesso."));
+		}
+		$this->render('recuperarSenha',array('model'=>$model));
+	}
 
 	/**
 	 * This is the action to handle external exceptions.

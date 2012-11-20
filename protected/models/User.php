@@ -101,7 +101,7 @@ class User extends CActiveRecord
 	protected function beforeSave(){
 		if(parent::beforeSave()){
 			
-			$this->password=md5($this->password);
+			$this->password=base64_encode($this->password);
 	
 			return TRUE;
 		}

@@ -238,10 +238,7 @@ div.search-form
   float:left;
   border:dashed 1px #999;
 }
-/*#yw0{
+#yw0{
   font-size: 13px;
   font-family:arial;
-}*/
-.ui-tabs *{
-  font-size: 0.9em;
 }

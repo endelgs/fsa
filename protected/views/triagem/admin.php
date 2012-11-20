@@ -45,7 +45,7 @@ or <b>=</b>) no começo de cada valor de busca para especificar como a comparaç
     array(
       'name' => 'paciente_r',
       'value' => '$data->pacienteR->nome'),
-		/*'peso',
+		'peso',
 		'apgar_1',
 		'apgar_5',
 		'apgar_10',

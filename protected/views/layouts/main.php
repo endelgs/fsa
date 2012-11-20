@@ -33,12 +33,12 @@
             'items'=>array(
                 array('label'=>'Página Inicial', 'url'=>array('/')),
             	array('label'=>'Usuários', 'url'=>array('user/admin'),'visible'=>$user->checkAccess('admin')),
+            	array('label'=>'Perfil', 'url'=>array('user/update&id='.$user->id),'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'Pacientes',
                   'items'=>array(
-                    array('label'=>'Cadastrar novo paciente', 'url'=>array('paciente/create')),
+                    array('label'=>'Cadastrar novo paciente', 'url'=>array('paciente/create'),'visible'=>!Yii::app()->user->isGuest),
                     array('label'=>'Gerenciar pacientes', 'url'=>array('paciente/admin')),
                   ),
-                  'visible'=>$user->checkAccess('@')
                 ),
             	array('label'=>'Triagem',
             		'visible'=>$user->checkAccess('triagem'),

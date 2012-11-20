@@ -2,6 +2,8 @@
 /* @var $this UserController */
 /* @var $model User */
 /* @var $form CActiveForm */
+
+$user = Yii::app()->user;
 ?>
 <style type="text/css">
 .help{font-size:9px;font-style:italic;}  
@@ -50,8 +52,8 @@
 			'diagnostico' => 'Diagnóstico',
 			'monitoramento' => 'Monitoramento',
 			'protese' => 'Prótese',
-			'servicosocial' => 'Assistência Socual',
-			'genetica' => 'Genética')); ?>
+			'servicosocial' => 'Assistência Social',
+			'genetica' => 'Genética'),array("disabled"=>$user->checkAccess('admin')?"":"disabled")); ?>
 		<?php echo $form->error($model,'roles'); ?>
 	</div>
 

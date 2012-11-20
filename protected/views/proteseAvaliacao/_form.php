@@ -99,7 +99,7 @@ table tr td.first,table tr th.first{text-align:right}
 		                // additional javascript options for the autocomplete plugin
 		                'options'=>array(
 		                	'minLength'=>'1',
-		                	'select'=>'js:function(event,ui){perfilPaciente(event,ui)}'
+		                	'select'=>'perfilPaciente'
 		                ),
 		                'htmlOptions'=>array('size'=>70),
 		            ));
@@ -466,33 +466,34 @@ table tr td.first,table tr th.first{text-align:right}
 		</div>
 	</div>
 <?php $this->endWidget(); ?>
-</div><!-- form -->
 <script type="text/javascript">
 function perfilPaciente(event, ui) {
-  $("#ProteseAvaliacao_paciente_r").val(ui.item.id);//linha mto importante é o que faz funcionar o autocomplete heheheh
-
-  $("#infoPaciente").css("display","inline-block");
-  $("#infoPaciente th").css("text-align","right");
-  $("#infoPaciente .lastUpdate").html("última atualização em "+ui.item.last_update);
-  $("#infoPaciente .nome").html(ui.item.nome);
-  $("#infoPaciente .hc").html(ui.item.hc);
-  $("#infoPaciente .mae").html(ui.item.nome_mae);
-  $("#infoPaciente .hc_mae").html(ui.item.hc_mae);
-  $("#infoPaciente .nascimento").html(ui.item.data_nascimento);
-  $("#infoPaciente .sexo").html(ui.item.sexo);
-  $("#infoPaciente .endereco").html(ui.item.endereco);
-  $("#infoPaciente .cidade").html(ui.item.cidade);
-  $("#infoPaciente .tel_fixo").html(ui.item.telefone_fixo);
-  $("#infoPaciente .tel_movel").html(ui.item.telefone_movel);
-  $("#infoPaciente .tel_trab").html(ui.item.telefone_trabalho);
-
-  if(ui.item.servico_social_id_id != null){
-    $("#infoPaciente .aviso").html("<div style=\"color:red;\">Este paciente já possui dados de serviço social cadastrados!</div>");
-  }else{
-    $("#infoPaciente .aviso").empty();
-    $("#infoPaciente .link").empty();
+        $("#ProteseAvaliacao_paciente_r").val(ui.item.id);//linha mto importante é o que faz funcionar o autocomplete heheheh
+        
+        $("#infoPaciente").css("display","inline-block");
+        $("#infoPaciente th").css("text-align","right");
+        $("#infoPaciente .lastUpdate").html("última atualização em "+ui.item.last_update);
+        $("#infoPaciente .nome").html(ui.item.nome);
+        $("#infoPaciente .hc").html(ui.item.hc);
+        $("#infoPaciente .mae").html(ui.item.nome_mae);
+        $("#infoPaciente .hc_mae").html(ui.item.hc_mae);
+        $("#infoPaciente .nascimento").html(ui.item.data_nascimento);
+        $("#infoPaciente .sexo").html(ui.item.sexo);
+        $("#infoPaciente .endereco").html(ui.item.endereco);
+        $("#infoPaciente .cidade").html(ui.item.cidade);
+        $("#infoPaciente .tel_fixo").html(ui.item.telefone_fixo);
+        $("#infoPaciente .tel_movel").html(ui.item.telefone_movel);
+        $("#infoPaciente .tel_trab").html(ui.item.telefone_trabalho);
+        
+        if(ui.item.servico_social_id_id != null){
+            $("#infoPaciente .aviso").html("<div style=\"color:red;\">Este paciente já possui dados de serviço social cadastrados!</div>");
+            
+          }else{
+            $("#infoPaciente .aviso").empty();
+            $("#infoPaciente .link").empty();
   }
-
-  $("#infoPaciente .link").html('<a href="<?php echo Yii::app()->createAbsoluteUrl('paciente/update')?>&id=\'+ui.item.pacienteID+\'">Atualizar dados cadastrais</a>');
-}
+        
+        $("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('paciente/update').'&id=\'+ui.item.pacienteID+\'">Atualizar dados cadastrais</a>\');
+      }
 </script>
+</div><!-- form -->
