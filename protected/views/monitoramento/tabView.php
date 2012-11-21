@@ -1,7 +1,22 @@
 <?php
 /* @var $this MonitoramentoController */
 /* @var $model Monitoramento */
+$baseurl = Yii::app()->request->baseUrl;
+$urlsim = Yii::app()->request->baseUrl.'/images/Ok-icon.png';
+$urlnao = Yii::app()->request->baseUrl.'/images/Close-2-icon.png';
+$urledit = $baseurl.'/images/edit-icon.png';
 
+$model->da_tchau = ($model->da_tchau)?$urlsim:$urlnao;
+$model->joga_beijo = ($model->joga_beijo)?$urlsim:$urlnao;
+$model->bate_palma = ($model->bate_palma)?$urlsim:$urlnao;
+
+$model->cade_chupeta = ($model->cade_chupeta)?$urlsim:$urlnao;
+$model->cade_mamae = ($model->cade_mamae)?$urlsim:$urlnao;
+$model->cade_sapato = ($model->cade_sapato)?$urlsim:$urlnao;
+
+$model->cade_cabelo = ($model->cade_cabelo)?$urlsim:$urlnao;
+$model->cade_mao = ($model->cade_mao)?$urlsim:$urlnao;
+$model->cade_pe = ($model->cade_pe)?$urlsim:$urlnao;
  ?>
  
 <style>
@@ -18,6 +33,8 @@
 <div class='direita'>
 	última atualização <?php echo $model->last_update ;?>
 </div>
+<h2>Monitoramento</h2>
+<hr/>
 <div class="row">
 	<h3>I - Observação comportamental a estímulos sonoros:</h3>
 	<div class="row">
@@ -119,15 +136,15 @@
 				<table>
 					<tr>
 						<td style="width:80px; text-align:right;">Da tchau</td>
-						<td><?php echo CHtml::encode($model->da_tchau); ?></td>
+						<td><?php echo CHtml::image($model->da_tchau); ?></td>
 					</tr>
 					<tr>
 						<td style="width:80px; text-align:right;">Joga beijo</td>
-						<td><?php echo CHtml::encode($model->joga_beijo); ?></td>
+						<td><?php echo CHtml::image($model->joga_beijo); ?></td>
 					</tr>
 					<tr>
 						<td style="width:80px; text-align:right;">Bate palma</td>
-						<td><?php echo CHtml::encode($model->bate_palma); ?></td>
+						<td><?php echo CHtml::image($model->bate_palma); ?></td>
 					</tr>
 				</table>
 			</td>
@@ -135,15 +152,15 @@
 				<table>
 					<tr>
 						<td style="width:100px; text-align:right;">Cade chupeta</td>
-						<td><?php echo CHtml::encode($model->cade_chupeta); ?></td>
+						<td><?php echo CHtml::image($model->cade_chupeta); ?></td>
 					</tr>
 					<tr>
 						<td style="width:80px; text-align:right;">Cade mamãe</td>
-						<td><?php echo CHtml::encode($model->cade_mamae); ?></td>
+						<td><?php echo CHtml::image($model->cade_mamae); ?></td>
 					</tr>
 					<tr>
 						<td style="width:80px; text-align:right;">Cade sapato</td>
-						<td><?php echo CHtml::encode($model->cade_sapato); ?></td>
+						<td><?php echo CHtml::image($model->cade_sapato); ?></td>
 					</tr>
 				</table>
 			</td>
@@ -151,15 +168,15 @@
 				<table>
 					<tr>
 						<td style="width:80px; text-align:right;">Cade cabelo</td>
-						<td><?php echo CHtml::encode($model->cade_cabelo); ?></td>
+						<td><?php echo CHtml::image($model->cade_cabelo); ?></td>
 					</tr>
 					<tr>
 						<td style="width:80px; text-align:right;">Cade mão</td>
-						<td><?php echo CHtml::encode($model->cade_mao); ?></td>
+						<td><?php echo CHtml::image($model->cade_mao); ?></td>
 					</tr>
 					<tr>
 						<td style="width:80px; text-align:right;">Cade pé</td>
-						<td><?php echo CHtml::encode($model->cade_pe); ?></td>
+						<td><?php echo CHtml::image($model->cade_pe); ?></td>
 					</tr>
 				</table>
 			</td>
@@ -171,7 +188,7 @@
 <br/>
 <div class="larguraDefault"><hr/></div>
 <p class="row">
-	Reflexo Acústico
+	<h3>Reflexo Acústico</h3>
 	<table class="larguraDefault">
 		<tr>
 			<th>RE ipsi</th>
@@ -210,3 +227,5 @@
 	<b><span>Desenvolvimento da Linguagem:</span></b>
 	<?php echo CHtml::encode($model->desenvolvimento_linguagem); ?>
 </p>
+<hr/>
+<p><img src="<?php echo $urledit;?>"/> <?php echo CHtml::link("Editar dados de monitoramento",array("monitoramento/update","id" => $model->id),array('class' => 'botao'));?></p>

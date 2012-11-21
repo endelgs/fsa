@@ -1,6 +1,8 @@
 <?php
 /* @var $this PacienteController */
 /* @var $model Paciente */
+$baseurl = Yii::app()->request->baseUrl;
+$urledit = $baseurl.'/images/edit-icon.png';
 
 $this->breadcrumbs=array(
 	'Pacientes'=>array('admin'),
@@ -22,65 +24,68 @@ else if($model->alta=="obito")$model->alta="Óbito";
 	.item20{width:20%;}
 	.item10{width:10%;}
 	
-	#yw1_tab_0 *{
+	/*#yw1_tab_0 *{
 		font-size:12px;
 		color:rgb(85,85,85);
 	}
 	#yw1_tab_0 p{
 		margin-bottom: 5px;
-	}
+	}*/
 </style>
 
-<div>
-	<div class='alinhamento'><h2>Perfil completo de <?php echo $model->nome; ?></h2></div>
-	<div class='alinhamento direita'>última atualização: <i><?php echo $model->last_update; ?></i></div>
+<div class='direita' style="margin-top:-30px;">
+	última atualização <?php echo $model->last_update ;?>
 </div>
+<hr/>
+<div class='alinhamento'><h2>Perfil completo de <?php echo $model->nome; ?></h2></div>
 <p class='linha'>
 		<div class="item50 alinhamento">
-			<span>Nome:</span><b> <?php echo CHtml::encode($model->nome); ?></b>
+			<b><span>Nome:</span></b> <?php echo CHtml::encode($model->nome); ?>
 		</div>
 		<div class="item20 alinhamento">
-			<span>HC:</span><b> <?php echo CHtml::encode($model->hc); ?></b>
+			<b><span>HC:</span></b> <?php echo CHtml::encode($model->hc); ?>
 		</div>
 		<div class="alinhamento">
-			<span>Data Nascimento:</span><b> <?php echo CHtml::encode($model->data_nascimento); ?></b>
+			<b><span>Data Nascimento:</span></b> <?php echo CHtml::encode($model->data_nascimento); ?>
 		</div>
 </p>
 <p class='linha'>
 	<div class="item50 alinhamento">
-		<span>Mãe:</span><b> <?php echo CHtml::encode($model->nome_mae); ?></b>
+		<b><span>Mãe:</span></b> <?php echo CHtml::encode($model->nome_mae); ?>
 	</div>
 	<div class="item20 alinhamento">
-		<span>HC:</span><b> <?php echo CHtml::encode($model->hc_mae); ?></b>
+		<b><span>HC:</span></b> <?php echo CHtml::encode($model->hc_mae); ?>
 	</div>
 </p>
 <p class='linha'>
 	<div class="item50 alinhamento">
-		<span>Endereço:</span><b> <?php echo CHtml::encode($model->endereco); ?></b>
+		<b><span>Endereço:</span></b> <?php echo CHtml::encode($model->endereco); ?>
 	</div>
 	<div class="item20 alinhamento">
-		<span>Cidade:</span><b> <?php echo CHtml::encode($model->cidade); ?></b>
+		<b><span>Cidade:</span></b> <?php echo CHtml::encode($model->cidade); ?>
 	</div>
 </p>
 <p class='linha'>
 	<div class="item30 alinhamento">
-		<span>Telefone Residencial:</span><b> <?php echo CHtml::encode($model->telefone_fixo); ?></b>
+		<b><span>Telefone Residencial:</span></b> <?php echo CHtml::encode($model->telefone_fixo); ?>
 	</div>
 	<div class="item30 alinhamento">
-		<span>Telefone Móvel:</span><b> <?php echo CHtml::encode($model->telefone_movel); ?></b>
+		<b><span>Telefone Móvel:</span></b> <?php echo CHtml::encode($model->telefone_movel); ?>
 	</div>
 	<div class="item30 alinhamento">
-		<span>Telefone Trabalho:</span><b> <?php echo CHtml::encode($model->telefone_trabalho); ?></b>
+		<b><span>Telefone Trabalho:</span></b> <?php echo CHtml::encode($model->telefone_trabalho); ?>
 	</div>
 </p>
 <p class='linha'>
 	<div class="item30 alinhamento">
-		<span>Data Internação:</span><b> <?php echo CHtml::encode($model->data_internacao); ?></b>
+		<b><span>Data Internação:</span></b> <?php echo CHtml::encode($model->data_internacao); ?>
 	</div>
 	<div class="item30 alinhamento">
-		<span>Alta:</span><b> <?php echo CHtml::encode($model->alta); ?></b>
+		<b><span>Alta:</span></b> <?php echo CHtml::encode($model->alta); ?>
 	</div>
 </p>
+<hr/>
+<p><img src="<?php echo $urledit;?>"/> <?php echo CHtml::link("Editar dados do paciente",array("paciente/update","id" => $model->id),array('class' => 'botao'));?></p>
 <?php 
 
 $paciente_id=$model->id;
@@ -138,15 +143,15 @@ $this->widget('zii.widgets.jui.CJuiTabs', array(
 	'tabs' => array(
 		'Triagem'=>$tabTriagem,
 		'Genética'=>$tabGenetica,
-		'Avaliação de Prótese'=>$tabProteseAvaliacao,
-		'Prescrição de Prótese'=>$tabProtesePrescricao,
-		'Verificação de Prótese'=>$tabProteseVerificacao,
-		'Validação de Prótese'=>$tabProteseValidacao,
-		'Anexo de Prótese'=>$tabProteseAnexo,
 		'Serviço Social'=>$tabServicoSocial,
 		'Monitoramento'=>$tabMonitoramento,	
 		'Diagnóstico'=>$tabDiagnostico,
 		'ORL'=>$tabOrl,
+    'Avaliação de Prótese'=>$tabProteseAvaliacao,
+		'Prescrição de Prótese'=>$tabProtesePrescricao,
+		'Verificação de Prótese'=>$tabProteseVerificacao,
+		'Validação de Prótese'=>$tabProteseValidacao,
+		'Anexo de Prótese'=>$tabProteseAnexo,
 	)
 ));
 

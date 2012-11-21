@@ -2,7 +2,12 @@
 /* @var $this ServicoSocialController */
 /* @var $model ServicoSocial */
 
-$model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
+
+$baseurl = Yii::app()->request->baseUrl;
+    $urlsim = Yii::app()->request->baseUrl.'/images/Ok-icon.png';
+    $urlnao = Yii::app()->request->baseUrl.'/images/Close-2-icon.png';
+    $urledit = $baseurl.'/images/edit-icon.png';
+    $model->residentes_familia=($model->residentes_familia == 'true')?$urlsim:$urlnao;
  ?>
  
 <style>
@@ -19,7 +24,9 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 <div class='direita'>
 	última atualização <?php echo $model->last_update ;?>
 </div>
-<h2>Situação Familiar</h2>
+<h2>Serviço Social</h2>
+<hr/>
+<h3>Situação Familiar</h3>
 	<p class="row">
 		<div class="alinhamento item50">
 			<b><span>Nome da Mãe:</span></b> <?php echo CHtml::encode($model->nome_mae); ?>
@@ -49,7 +56,6 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 			<b><span>Telefone do Trabalho:</span></b> <?php echo CHtml::encode($model->telefone_trabalho_mae); ?>
 		</div>
 	</p>
-	<br/>
 	<div><hr/></div>
 	<p class="row">
 		<div class="alinhamento item50">
@@ -79,7 +85,6 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 			<b><span>Telefone do trabalho:</span></b> <?php echo CHtml::encode($model->telefone_trabalho_pai); ?>
 		</div>
 	</p>
-	<br/>
 	<div><hr/></div>
 	<p class="row">
 		<b><span>Responsável pela criança:</span></b> <?php echo CHtml::encode($model->responsavel_crianca); ?>
@@ -94,7 +99,6 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 			}
 		?>
 	</p>
-	<br/>
 	<div><hr/></div>
 	<p class="row">
 		<div class="alinhamento item50">
@@ -104,9 +108,10 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 			<b><span>Outro:</span></b> <?php echo CHtml::encode($model->uniao_outro); ?>
 		</div>
 	</p>
-	<br/>
 	<div><hr/></div>
-	<h2>Irmãos</h2>
+	<h3>Irmãos</h3>
+  <?php $aIrmaos=$modelIrmao->findAll('servico_social_r=:servico_social_r', array(':servico_social_r'=>$model->id));?>
+  <?php if(!empty($aIrmaos)): ?>
 	<p>
 		<table>
 			<tr>
@@ -116,7 +121,7 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 				<th>Salário</th>
 			</tr>
 			<?php
-				$aIrmaos=$modelIrmao->findAll('servico_social_r=:servico_social_r', array(':servico_social_r'=>$model->id));
+				
 				foreach($aIrmaos as $irmao){
 					echo '<tr>
 						<td>'.CHtml::encode($irmao->nome).'</td>
@@ -129,12 +134,14 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 		</table>
 	
 	</p>
-	<br/>
+  <?php else: ?>
+  <p>Não há irmãos cadastrados para esta criança.</p>
+  <?php endif; ?>
 	<div><hr/></div>
-	<p class="row">
-		<b><span>Residentes com a familia:</span></b> <?php echo CHtml::encode($model->residentes_familia); ?>
-		<h4>Residentes</h4>
-		<table>
+		<h3>Residentes com a familia </h3>
+    <?php $aResi=$modelResidente->findAll('servico_social_r=:servico_social_r', array(':servico_social_r'=>$model->id)); ?>
+		<?php if(!empty($aResi)):?>
+    <table>
 			<tr>
 				<th>Nome</th>
 				<th>Idade</th>
@@ -142,7 +149,7 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 				<th>Salário</th>
 			</tr>
 			<?php
-				$aResi=$modelResidente->findAll('servico_social_r=:servico_social_r', array(':servico_social_r'=>$model->id));
+				
 				foreach($aResi as $resi){
 					echo '<tr>
 						<td>'.CHtml::encode($resi->nome).'</td>
@@ -153,10 +160,11 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 				}
 			?>
 		</table>
-	</p>
-	<br/>
+    <?php else: ?>
+    <p>Não há outros residentes com a família.</p>
+    <?php endif; ?>
 	<div><hr/></div>
-	<h2>Situação Econômica</h2>
+	<h3>Situação Econômica</h3>
 	<p class="row">
 		<div  class="alinhamento item50">
 			<b><span>Renda Total:</span></b> <?php echo CHtml::encode($model->renda_total); ?>
@@ -182,9 +190,8 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 	<p class="row">
 		<b><span>Outros:</span></b> <?php echo CHtml::encode($model->outros_situacao_economica); ?>
 	</p>
-	<br/>
 	<div><hr/></div>
-	<h2>Habitação</h2>
+	<h3>Habitação</h3>
 	<p class="row">
 		<b><span>Casa:</span></b> <?php 
 			if(CHtml::encode($model->casa_tipo)=='propria'){
@@ -206,9 +213,8 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 			<b><span>Nº de Cômodos:</span></b> <?php echo CHtml::encode($model->n_comodos); ?>
 		</div>
 	</p>
-	<br/>
 	<div><hr/></div>
-	<h2>Outros</h2>
+	<h3>Outros</h3>
 	<p class="row">
 		<b><span>Transporte Utilizado:</span></b> <?php echo CHtml::encode($model->transporte_utilizado); ?>
 	</p>
@@ -220,11 +226,11 @@ $model->residentes_familia=($model->residentes_familia == 'true')?'Sim':'Não';
 	<p class="row">
 		<b><span>Centro de Sáude:</span></b> <?php echo CHtml::encode($model->centro_saude); ?>
 	</p>
-	<br/>
 	<div><hr/></div>
 	
-	<h2>Síntese do Atendimento</h2>
+	<h3>Síntese do Atendimento</h3>
 	<p class="row">
 		<b><span>Síntese do Atendimento:</span></b> <?php echo CHtml::encode($model->sintese_atendimento); ?>
 	</p>
-</div>
+<hr/>
+<p><img src="<?php echo $urledit;?>"/> <?php echo CHtml::link("Editar estes dados de serviço social",array("servicoSocial/update","id" => $model->id),array('class' => 'botao'));?></p>

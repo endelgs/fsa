@@ -238,7 +238,45 @@ div.search-form
   float:left;
   border:dashed 1px #999;
 }
-#yw0{
+.ui-tabs-panel *{
   font-size: 13px;
+  color:#555;
   font-family:arial;
+  line-height: 20px;
+}
+.ui-tabs-panel h3{
+  font-size:16px;
+  color:#000;
+  line-height:25px;
+}
+.ui-tabs-panel h2{
+  font-size:18px;
+  font-weight:bold;
+}
+.ui-tabs-panel table th{
+  background:#C9E0ED;
+  border:solid 1px #fff;
+  color:#222;
+}
+.ui-tabs-panel div {
+  margin-bottom: 5px;
+}
+.ui-tabs-panel .subpergunta{
+  font-style:italic;
+  color:#6B9CA0;
+}
+.ui-tabs-panel a.botao{
+  color:#06C;
+  font-weight:bold;
+  font-size:13px;
+  text-decoration:none;
+}
+.ui-tabs .ui-tabs-nav li a{
+  font-size:12px;
+}
+a.botao:hover{
+  text-decoration:underline;
+}
+p.help{
+  color:#666;
 }

@@ -1,7 +1,10 @@
 <?php
 /* @var $this OrlController */
 /* @var $model Orl */
-
+    $baseurl = Yii::app()->request->baseUrl;
+    $urlsim = Yii::app()->request->baseUrl.'/images/Ok-icon.png';
+    $urlnao = Yii::app()->request->baseUrl.'/images/Close-2-icon.png';
+    $urledit = $baseurl.'/images/edit-icon.png';
  ?>
  
 <style>
@@ -18,6 +21,8 @@
 <div class='direita'>
 	última atualização <?php echo $model->last_update ;?>
 </div>
+<h2>ORL</h2>
+<hr/>
 <p class="row">
 	<b><span>Diagnóstico:</span></b>
 	<?php echo CHtml::encode($model->diagnostico);?>
@@ -54,13 +59,17 @@
 	<b><span>Conduta:</span></b>
 	<?php echo CHtml::encode($model->conduta);?>
 </p>
+<hr/>
+<h3>Retorno</h3>
+<?php $aRetornos=$modelOrlRetorno->findAll('orl_r=:orl_r', array(':orl_r'=>$model->id));?>
+<?php if(!empty($aRetornos)): ?>
 <table>
 	<tr>
 		<th>HD</th>
 		<th>Evolução</th>
 	</tr>
 	<?php
-		$aRetornos=$modelOrlRetorno->findAll('orl_r=:orl_r', array(':orl_r'=>$model->id));
+		
 		foreach($aRetornos as $retorno){
 			echo '<tr>
 				<td>'.CHtml::encode($retorno->hd).'</td>
@@ -69,3 +78,8 @@
 		}
 	?>
 </table>
+<?php else: ?>
+<p>Não há dados de retorno cadastrados para esta criança</p>
+<?php endif; ?>
+<hr/>
+<p><img src="<?php echo $urledit;?>"/> <?php echo CHtml::link("Editar os dados de ORL",array("orl/update","id" => $model->id),array('class' => 'botao'));?></p>

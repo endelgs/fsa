@@ -1,6 +1,9 @@
 <?php
 /* @var $this ProtesePrescricaoController */
 /* @var $model ProtesePrescricao */
+$baseurl = Yii::app()->request->baseUrl;
+$urledit = $baseurl.'/images/edit-icon.png';
+
  ?>
  
 <style>
@@ -17,8 +20,10 @@
 <div class='direita'>
 	última atualização <?php echo $model->last_update ;?>
 </div>
+<h2>Prescrição de Prótese</h2>
+<hr/>
 <div class="row">
-	Prescrição pela DSL:
+	<h3>Prescrição pela DSL</h3>
 	<table class="larguraDefault">
 		<tr>
 			<th>NPS</th>
@@ -130,10 +135,9 @@
 	<b><span>Modificação Acústica:</span></b>
 	<?php echo CHtml::encode($model->modificacao_acustica); ?>
 </p>
-<br/>
 	<div class="larguraDefault"><hr/></div>
 <div class="row">
-	Prótese Selecionada:
+	<h3>Prótese Selecionada</h3>
 	<table>
 		<tr>
 			<th>Orelha</th>
@@ -155,3 +159,5 @@
 		</tr>
 	</table>
 </div>
+<hr/>
+<p><img src="<?php echo $urledit;?>"/> <?php echo CHtml::link("Editar essa prescrição de prótese",array("protesePrescricao/update","id" => $model->id),array('class' => 'botao'));?></p>

@@ -4,7 +4,8 @@
 
 //die(print_r($aTriagens));
 ?>
-<h3>Cada aba representa uma triagem</h3>
+<h2>Triagens</h2>
+<p class="help">Aqui, você pode ver todas as triagens que uma criança já fez: basta navegar entre as abas.</p>
 <?php 
 $aTabs=array();
 $cont=1;

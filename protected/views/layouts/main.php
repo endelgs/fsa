@@ -32,9 +32,17 @@
 		$this->widget('application.extensions.mbmenu.MbMenu',array(
             'items'=>array(
                 array('label'=>'Página Inicial', 'url'=>array('/')),
-            	array('label'=>'Usuários', 'url'=>array('user/admin'),'visible'=>$user->checkAccess('admin')),
+                array(
+                  'label'=>'Usuários', 
+                  'visible'=>$user->checkAccess('admin'),
+                  'items' => array(
+                    array('label' => 'Cadastrar novo usuário', 'url'=>array('user/create')),
+                    array('label'=>'Gerenciar usuários', 'url'=>array('user/admin')),
+                  )
+                ),
             	array('label'=>'Perfil', 'url'=>array('user/update&id='.$user->id),'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'Pacientes',
+                  'visible'=>$user->checkAccess('@'),
                   'items'=>array(
                     array('label'=>'Cadastrar novo paciente', 'url'=>array('paciente/create'),'visible'=>!Yii::app()->user->isGuest),
                     array('label'=>'Gerenciar pacientes', 'url'=>array('paciente/admin')),

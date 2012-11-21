@@ -1,21 +1,25 @@
 <?php
 /* @var $this DiagnosticoController */
 /* @var $model Diagnostico */
- 
-    $model->consanguinidade=($model->consanguinidade == 'true')?'Sim':'Não';
-    $model->perda_auditiva_familia=($model->perda_auditiva_familia == 'true')?'Sim':'Não';
-    $model->preocupacao_familiar=($model->preocupacao_familiar == 'true')?'Sim':'Não';
+    $baseurl = Yii::app()->request->baseUrl;
+    $urlsim = Yii::app()->request->baseUrl.'/images/Ok-icon.png';
+    $urlnao = Yii::app()->request->baseUrl.'/images/Close-2-icon.png';
+    $urledit = $baseurl.'/images/edit-icon.png';
+    
+    $model->consanguinidade=($model->consanguinidade == 'true')?$urlsim:$urlnao;
+    $model->perda_auditiva_familia=($model->perda_auditiva_familia == 'true')?$urlsim:$urlnao;
+    $model->preocupacao_familiar=($model->preocupacao_familiar == 'true')?$urlsim:$urlnao;
     
     $model->alimentacao_neonato = ($model->alimentacao_neonato == 'natural')?'Natural':'Mamadeira';
     $model->posicao_alimentacao = ($model->posicao_alimentacao == 'deitado')?'Deitado':'Sentado';
-    $model->refluxo = ($model->refluxo == 'true')?'Sim':'Não';
-    $model->dor_ouvido = ($model->dor_ouvido == 'true')?'Sim':'Não';
-    $model->chora_ruido_alto = ($model->chora_ruido_alto == 'true')?'Sim':'Não';
+    $model->refluxo = ($model->refluxo == 'true')?$urlsim:$urlnao;
+    $model->dor_ouvido = ($model->dor_ouvido == 'true')?$urlsim:$urlnao;
+    $model->chora_ruido_alto = ($model->chora_ruido_alto == 'true')?$urlsim:$urlnao;
     
-    $model->procurar_som_fora_visao = ($model->procurar_som_fora_visao == 'true')?'Sim':'Não';
-	$model->atento_voz_materna = ($model->atento_voz_materna == 'true')?'Sim':'Não';
-	$model->reinternado = ($model->reinternado == 'true')?'Sim':'Não';	
-    $model->susto_ruido_alto = ($model->susto_ruido_alto == 'true')?'Sim':'Não';
+    $model->procurar_som_fora_visao = ($model->procurar_som_fora_visao == 'true')?$urlsim:$urlnao;
+	$model->atento_voz_materna = ($model->atento_voz_materna == 'true')?$urlsim:$urlnao;
+	$model->reinternado = ($model->reinternado == 'true')?$urlsim:$urlnao;	
+    $model->susto_ruido_alto = ($model->susto_ruido_alto == 'true')?$urlsim:$urlnao;
     $model->pesquisa_integridade = ($model->pesquisa_integridade == '80')?'80dB':'100dB';
     $model->latencia = ($model->latencia == 'normal')?'Normal':'Alterada';
 		
@@ -52,22 +56,22 @@
 <div class='direita'>
 	última atualização <?php echo $model->last_update ;?>
 </div>
-<br/>
-<h3>I - Anamnese</h3>
+<h2>Diagnóstico</h2>
 <hr/>
+<h3>I - Anamnese</h3>
 <p class='linha'>
 	<div class="alinhamento">
-		<b><span>Consanguinidade:</span></b> <?php echo CHtml::encode($model->consanguinidade); ?>
+		<b><span>Consanguinidade:</span></b> <?php echo CHtml::image($model->consanguinidade); ?>
 	</div>
 </p>
 <p class='linha'>
 	<div class="alinhamento">
-		<b><span>História familiar de perda auditiva permanente na infância?</span></b> <?php echo CHtml::encode($model->perda_auditiva_familia); ?>
+		<b><span>História familiar de perda auditiva permanente na infância?</span></b> <?php echo CHtml::image($model->perda_auditiva_familia); ?>
 	</div>
 </p>
 <p class='linha'>
 	<div class="alinhamento">
-		<b><span>Preocupação familiar com o desenvolvimento da criança (audição, fala ou linguagem)?</span></b> <?php echo CHtml::encode($model->preocupacao_familiar); ?>
+		<b><span>Preocupação familiar com o desenvolvimento da criança (audição, fala ou linguagem)?</span></b> <?php echo CHtml::image($model->preocupacao_familiar); ?>
 	</div>
 </p>
 <p class='linha'>
@@ -82,53 +86,46 @@
 </p>
 <p class='linha'>
 	<div class="alinhamento">
-		<b><span>Tem refluxo gastro-esofágico?</span></b> <?php echo CHtml::encode($model->refluxo); ?>
+		<b><span>Tem refluxo gastro-esofágico?</span></b> <?php echo CHtml::image($model->refluxo); ?>
 	</div>
 </p>
 <p class='linha'>
 	<div class="alinhamento">
-		<b><span>Teve dor de ouvido?</span></b> <?php echo CHtml::encode($model->dor_ouvido); ?>
+		<b><span>Teve dor de ouvido?</span></b> <?php echo CHtml::image($model->dor_ouvido); ?>
 	</div>
 </p>
 <p class='linha'>
 	<div class="alinhamento">
-		<b><span>Quando o neonato esta dormindo tranqüilamente, barulhos altos o acordam?</span></b> <?php echo CHtml::encode($model->barulho_alto_acorda); ?>
+		<b><span>Quando o neonato esta dormindo tranqüilamente, barulhos altos o acordam?</span></b> <?php echo CHtml::image($model->barulho_alto_acorda); ?>
 	</div>
 </p>
 <p class='linha'>
 	<div class="alinhamento">
-		<b><span>O neonato chora na presença de ruídos muitos altos?</span></b> <?php echo CHtml::encode($model->chora_ruido_alto); ?>
+		<b><span>O neonato chora na presença de ruídos muitos altos?</span></b> <?php echo CHtml::image($model->chora_ruido_alto); ?>
 	</div>
 </p>
 <p class='linha'>
 	<div class="alinhamento">
-		<b><span>Começou a procurar o som que está fora da sua visão?</span></b> <?php echo CHtml::encode($model->procurar_som_fora_visao); ?>
+		<b><span>Começou a procurar o som que está fora da sua visão?</span></b> <?php echo CHtml::image($model->procurar_som_fora_visao); ?>
 	</div>
 </p>
 <p class='linha'>
 	<div class="alinhamento">
-		<b><span>Neonato fica atento na presença da voz materna?</span></b> <?php echo CHtml::encode($model->atento_voz_materna); ?>
+		<b><span>Neonato fica atento na presença da voz materna?</span></b> <?php echo CHtml::image($model->atento_voz_materna); ?>
 	</div>
 </p>
 <p class='linha'>
 	<div class="alinhamento">
-		<b><span>Foi reinternado?</span></b> <?php echo CHtml::encode($model->reinternado); ?>
+		<b><span>Foi reinternado?</span></b> <?php echo CHtml::image($model->reinternado); ?> <b><span>Motivo: </span></b> <?php echo CHtml::encode($model->motivo); ?>
 	</div>
 </p>
 <p class='linha'>
 	<div class="alinhamento">
-		<b><span>Motivo</span></b> <?php echo CHtml::encode($model->motivo); ?>
+		<b><span>O neonato se assusta com ruídos altos?</span></b> <?php echo CHtml::image($model->susto_ruido_alto); ?>
 	</div>
 </p>
-<p class='linha'>
-	<div class="alinhamento">
-		<b><span>O neonato se assusta com ruídos altos?</span></b> <?php echo CHtml::encode($model->susto_ruido_alto); ?>
-	</div>
-</p>
-
-<br/>
-<h3>II - Potencial Evocado Auditivo de Tronco Encefálico</h3>
 <hr/>
+<h3>II - Potencial Evocado Auditivo de Tronco Encefálico</h3>
 <p class='linha'>
 	<div class="alinhamento">
 		<table style="width:400px;">
@@ -258,9 +255,8 @@
 		<b><span>Limiar Eletrofisiologico:</span></b> <?php echo CHtml::encode($model->limiar_eletrofisiologico); ?>
 	</div>
 </p>
-<br/>
-<h3>III - Emissões Otoacústicas</h3>
 <hr/>
+<h3>III - Emissões Otoacústicas</h3>
 <p class='linha'>
 	<div class="alinhamento">
 		<b>Transiente - SNR (dB)</b>
@@ -422,9 +418,8 @@
 		<b><span>4.0 KHz:</span></b> <?php echo CHtml::encode($model->distorcao_conclusao_4); ?>
 	</div>
 </p>
-<br/>
-<h3>IV - Imitanciometria</h3>
 <hr/>
+<h3>IV - Imitanciometria</h3>
 <p class='linha'>
 	<div class="alinhamento">
 		<b>Curva timpanométrica</b>
@@ -484,9 +479,8 @@
 		</table>
 	</div>
 </p>
-<br/>
-<h3>V - Nível Mínimo de Respota (Audiometria Pediátrica) - NMR</h3>
 <hr/>
+<h3>V - Nível Mínimo de Respota (Audiometria Pediátrica) - NMR</h3>
 <p class='linha'>
 	<div class="alinhamento">
 		<b>Reflexo Acústico Ipsilateral</b>
@@ -524,9 +518,8 @@
 		</table>
 	</div>
 </p>
-<br/>
-<h3>VI - Avaliação Comportamental</h3>
 <hr/>
+<h3>VI - Avaliação Comportamental</h3>
 <p class='linha'>
 	<div class="alinhamento">
 		<b>Reflexo Acústico Ipsilateral</b>
@@ -567,3 +560,5 @@
 		<b><span>Conduta:</span></b> <?php echo CHtml::encode($model->conduta_reflexo); ?>
 	</div>
 </p>
+<hr/>
+<p><img src="<?php echo $urledit;?>"/> <?php echo CHtml::link("Editar este diagnóstico",array("diagnostico/update","id" => $model->id),array('class' => 'botao'));?></p>

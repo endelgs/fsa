@@ -7,9 +7,6 @@ $this->breadcrumbs=array(
 	'Inserir',
 );
 
-$this->menu=array(
-	array('label'=>'Gerenciar Usuário', 'url'=>array('admin')),
-);
 ?>
 
 <h1>Inserir Usuário</h1>

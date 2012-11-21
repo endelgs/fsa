@@ -1,9 +1,28 @@
 <?php
 /* @var $this ProteseAvaliacaoController */
 /* @var $model ProteseAvaliacaoSocial */
-
+function resultado($r){
+  $resultados = array(
+    'rcp' => 'R.C.P',
+    'nao_reacao' => 'Não reação',
+    'ros_ll' => 'ROS ou LL*',
+    'local_down' => 'Local down',
+    'local_up' => 'Local up',
+    'atencao_som' => 'Atenção ao som',
+    'startle' => 'Startle/habituação');
+  return $resultados[$r];
+}
+function nmr($n){
+  $nmr = array(
+    'audiometro_pediatrico' => 'Audiômetro pediátrico',
+    'campo_livre' => 'Campo livre'
+  );
+  return $nmr[$n];
+}
 $model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º':'<90º';
- ?>
+$baseurl = Yii::app()->request->baseUrl;
+$urledit = $baseurl.'/images/edit-icon.png';
+?>
  
 <style>
 	.linha{}
@@ -19,7 +38,9 @@ $model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º'
 <div class='direita'>
 	última atualização <?php echo $model->last_update ;?>
 </div>
-
+<h2>Avaliação de Prótese</h2>
+<hr/>
+<h3>Informações Básicas</h3>
 <div class="row">
 	<div>Pesquisa do limiar eletrofisiológico _PEATE:</div>
 	<div class="row">
@@ -49,18 +70,17 @@ $model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º'
 </div>
 
 <p class="row">
-	<b><span>imitanciometria:</span></b>
+	<b><span>Imitanciometria:</span></b>
 	<?php echo CHtml::encode($model->imitanciometria); ?>
 </p>
 
 <p class="row">
-	<b><span>otoscopia:</span></b>
+	<b><span>Otoscopia:</span></b>
 	<?php echo CHtml::encode($model->otoscopia); ?>
 </p>
-<br/>
 <div class="larguraDefault"><hr/></div>
 <p class="row">
-	Curva Timpanométrica
+	<h3>Curva Timpanométrica</h3>
 	<table class="larguraDefault">
 		<tr>
 			<th>Orelha</th>
@@ -82,10 +102,9 @@ $model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º'
 		</tr>
 	</table>
 </p>
-<br/>
 <div class="larguraDefault"><hr/></div>
 <p class="row">
-	Reflexo Acústico
+	<h3>Reflexo Acústico</h3>
 	<table class="larguraDefault">
 		<tr>
 			<th>RE ipsi</th>
@@ -110,11 +129,10 @@ $model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º'
 		</tr>
 	</table>
 </p>
-<br/>
 <div class="larguraDefault"><hr/></div>
 <div class="row">
-	<b><span>agogo_grande:</span></b>
-	<?php echo CHtml::encode($model->nmr);?>
+	<h3>Nível Mínimo de Resposta a <?php echo CHtml::encode(nmr($model->nmr));?></h3>
+	
 </div>
 
 <div class="row">
@@ -145,8 +163,10 @@ $model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º'
 		</tr>
 	</table>
 </div>
-<br/>
 <div class="larguraDefault"><hr/></div>
+<div class="row">
+  <h3>RECD (real ear coupler difference)</h3>
+</div>
 <div class="row">
 	<table class="larguraDefault">
 		<tr>
@@ -184,17 +204,17 @@ $model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º'
 		</tr>
 	</table>
 </div>
-<br/>
 <div class="larguraDefault"><hr/></div>
 <div class="row">
-	<b><span>agogo_grande:</span></b>
-	<?php echo CHtml::encode($model->reacao_sons);?>
-	<?php echo CHtml::encode($model->voz_amplificada); ?>
+	<h3>Reação aos sons verbais com amplificação</h3>
+  <p><b><span>
+  <?php if($model->reacao_sons == "viva_voz") echo "Viva voz";
+  else echo "Voz amplificada a ".CHtml::encode($model->voz_amplificada)." dB"; ?>
+  </span></b></p>
 </div>
-<br/>
 <div class="larguraDefault"><hr/></div>
 <div class="row">
-	Sons Ling:
+	<h3>Sons Ling</h3>
 	<table class="larguraDefault">
 		<tr>
 			<th>s</th>
@@ -231,50 +251,49 @@ $model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º'
 		</tr>
 	</table>
 </div>
-<br/>
 <div class="larguraDefault"><hr/></div>
 <div class="row">
-	Observação do comportamento auditivo a sons não calibrados:
+	<h3>Observação do comportamento auditivo a sons não calibrados</h3>
 	<table style="width:700px; text-align:center;">
 		<tr>
 			<th>Estímulos</th>
 			<th>Resultado</th>
 		</tr>
 		<tr>
-			<td><b><span>Guizo 1:</span></b></td>
-			<td><?php echo CHtml::encode($model->guizo_1);?></td>
+			<td><b><span>Guizo 1</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->guizo_1));?></td>
 		</tr>
 		<tr>
-			<td><b><span>Guizo 2:</span></b></td>
-			<td><?php echo CHtml::encode($model->guizo_2);?></td>
+			<td><b><span>Guizo 2</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->guizo_2));?></td>
 		</tr>
 		<tr>
-			<td><b><span>Reco-Reco:</span></b></td>
-			<td><?php echo CHtml::encode($model->reco_reco);?></td>
+			<td><b><span>Reco-Reco</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->reco_reco));?></td>
 		</tr>
 		<tr>
-			<td><b><span>Sino:</span></b></td>
-			<td><?php echo CHtml::encode($model->sino);?></td>
+			<td><b><span>Sino</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->sino));?></td>
 		</tr>
 		<tr>
-			<td><b><span>Ganza:</span></b></td>
-			<td><?php echo CHtml::encode($model->ganza);?></td>
+			<td><b><span>Ganzá</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->ganza));?></td>
 		</tr>
 		<tr>
-			<td><b><span>Black-Black:</span></b></td>
-			<td><?php echo CHtml::encode($model->black_black);?></td>
+			<td><b><span>Black-Black</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->black_black));?></td>
 		</tr>
 		<tr>
-			<td><b><span>Agogo Pequeno:</span></b></td>
-			<td><?php echo CHtml::encode($model->agogo_pequeno);?></td>
+			<td><b><span>Agogô Pequeno</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->agogo_pequeno));?></td>
 		</tr>
 		<tr>
-			<td><b><span>Agogo Grande:</span></b></td>
-			<td><?php echo CHtml::encode($model->agogo_grande);?></td>
+			<td><b><span>Agogô Grande</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->agogo_grande));?></td>
 		</tr>
 		<tr>
-			<td><b><span>Prato:</span></b></td>
-			<td><?php echo CHtml::encode($model->prato);?></td>
+			<td><b><span>Prato</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->prato));?></td>
 		</tr>
 	</table>
 </div>
@@ -291,3 +310,5 @@ $model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º'
 	<b><span>Grau de movimentação da cabeça:</span></b>
 	<?php echo CHtml::encode($model->grau_movimentacao_cabeca);?>
 </p>
+<hr/>
+<p><img src="<?php echo $urledit;?>"/> <?php echo CHtml::link("Editar essa avaliação de prótese",array("proteseAvaliacao/update","id" => $model->id),array('class' => 'botao'));?></p>

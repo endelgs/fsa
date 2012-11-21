@@ -52,7 +52,7 @@ class SiteController extends Controller
 			$res=User::model()->findByAttributes(array('email'=>$email));
 			if($res===null)return $this->renderPartial('ajaxResp', array('model'=>$model,'res'=>"Email não encontrado."));
 			
-			$message = 'Senha: '.base64_decode($res->password);
+			$message = 'Senha: '.$res->password;
 			
 			$mailer = Yii::createComponent('application.extensions.mailer.EMailer');
 			$mailer->IsSMTP();
@@ -134,7 +134,7 @@ class SiteController extends Controller
 		// collect user input data
 		if(isset($_POST['LoginForm']))
 		{
-			$model->attributes=$_POST['LoginForm'];
+      $model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
 				$this->redirect(Yii::app()->user->returnUrl);

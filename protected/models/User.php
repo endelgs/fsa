@@ -71,7 +71,7 @@ class User extends CActiveRecord
 			'username' => 'Nome de Usuário',
 			'password' => 'Senha',
 			'email' => 'E-mail',
-			'roles' => 'Grupos de Usuário',
+			'roles' => 'Grupo de Usuário',
 		);
 	}
 
@@ -100,11 +100,17 @@ class User extends CActiveRecord
 	
 	protected function beforeSave(){
 		if(parent::beforeSave()){
-			
 			$this->password=base64_encode($this->password);
-	
 			return TRUE;
 		}
 		else return false;
 	}
+  protected function afterFind(){
+    $this->password=base64_decode($this->password);
+    return true;
+  }
+  protected function beforeFind(){
+    $this->password=base64_encode($this->password);
+    return true;
+  }
 }

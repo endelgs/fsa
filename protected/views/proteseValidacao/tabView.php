@@ -3,6 +3,9 @@
 /* @var $model ProteseValidacao */
 
 $model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º':'<90º';
+$baseurl = Yii::app()->request->baseUrl;
+$urledit = $baseurl.'/images/edit-icon.png';
+
  ?>
  
 <style>
@@ -19,13 +22,15 @@ $model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º'
 <div class='direita'>
 	última atualização <?php echo $model->last_update ;?>
 </div>
-<p class="row">
+<h2>Validação de Prótese</h2>
+<hr/>
+<div class="row">
 	<b><span>Data :</span></b>
 	<?php echo CHtml::encode($model->data);?>
-</p>
+</div>
+<hr/>
 <p class="row">
-	<b><span>NMR Nível mínio de resposta (Audiometria pediátrica) :</span></b>
-	<?php echo CHtml::encode($model->nmr);?>
+	<h3>NMR Nível mínimo de resposta a <?php echo CHtml::encode(nmr($model->nmr));?></h3>
 </p>
 
 <div class="row">
@@ -56,17 +61,17 @@ $model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º'
 		</tr>
 	</table>
 </div>
-<br/>
 <div class="larguraDefault"><hr/></div>
 <div class="row">
-	<b><span>Reação aos sons:</span></b>
-	<?php echo CHtml::encode($model->reacao_sons);?>
-	<?php echo CHtml::encode($model->voz_amplificada); ?>
+	<h3>Reação aos sons verbais com amplificação</h3>
+  <p><b><span>
+  <?php if($model->reacao_sons == "viva_voz") echo "Viva voz";
+  else echo "Voz amplificada a ".CHtml::encode($model->voz_amplificada)." dB"; ?>
+  </span></b></p>
 </div>
-<br/>
 <div class="larguraDefault"><hr/></div>
 <div class="row">
-	Sons Ling:
+	<h3>Sons Ling</h3>
 	<table class="larguraDefault">
 		<tr>
 			<th>s</th>
@@ -103,10 +108,9 @@ $model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º'
 		</tr>
 	</table>
 </div>
-<br/>
 <div class="larguraDefault"><hr/></div>
 <div class="row">
-	Prescrição pela DSL:
+	<h3>Prescrição pela DSL</h3>
 	<table class="larguraDefault">
 		<tr>
 			<th>NPS</th>
@@ -194,50 +198,49 @@ $model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º'
 		</tr>
 	</table>
 </div>
-<br/>
 <div class="larguraDefault"><hr/></div>
 <div class="row">
-	Observação do comportamento auditivo a sons não calibrados:
+	<h3>Observação do comportamento auditivo a sons não calibrados</h3>
 	<table style="width:700px; text-align:center;">
 		<tr>
 			<th>Estímulos</th>
 			<th>Resultado</th>
 		</tr>
 		<tr>
-			<td><b><span>Guizo 1:</span></b></td>
-			<td><?php echo CHtml::encode($model->guizo_1);?></td>
+			<td><b><span>Guizo 1</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->guizo_1));?></td>
 		</tr>
 		<tr>
 			<td><b><span>Guizo 2:</span></b></td>
-			<td><?php echo CHtml::encode($model->guizo_2);?></td>
+			<td><?php echo CHtml::encode(resultado($model->guizo_2));?></td>
 		</tr>
 		<tr>
-			<td><b><span>Reco-Reco:</span></b></td>
-			<td><?php echo CHtml::encode($model->reco_reco);?></td>
+			<td><b><span>Reco-Reco</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->reco_reco));?></td>
 		</tr>
 		<tr>
-			<td><b><span>Sino:</span></b></td>
-			<td><?php echo CHtml::encode($model->sino);?></td>
+			<td><b><span>Sino</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->sino));?></td>
 		</tr>
 		<tr>
-			<td><b><span>Ganza:</span></b></td>
-			<td><?php echo CHtml::encode($model->ganza);?></td>
+			<td><b><span>Ganzá</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->ganza));?></td>
 		</tr>
 		<tr>
-			<td><b><span>Black-Black:</span></b></td>
-			<td><?php echo CHtml::encode($model->black_black);?></td>
+			<td><b><span>Black-Black</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->black_black));?></td>
 		</tr>
 		<tr>
-			<td><b><span>Agogo Pequeno:</span></b></td>
-			<td><?php echo CHtml::encode($model->agogo_pequeno);?></td>
+			<td><b><span>Agogô Pequeno</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->agogo_pequeno));?></td>
 		</tr>
 		<tr>
-			<td><b><span>Agogo Grande:</span></b></td>
-			<td><?php echo CHtml::encode($model->agogo_grande);?></td>
+			<td><b><span>Agogô Grande</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->agogo_grande));?></td>
 		</tr>
 		<tr>
-			<td><b><span>Prato:</span></b></td>
-			<td><?php echo CHtml::encode($model->prato);?></td>
+			<td><b><span>Prato</span></b></td>
+			<td><?php echo CHtml::encode(resultado($model->prato));?></td>
 		</tr>
 	</table>
 </div>
@@ -253,3 +256,5 @@ $model->grau_movimentacao_cabeca=($model->grau_movimentacao_cabeca=="90")?'90º'
 	<b><span>Estágio de desenvolvimento auditivo:</span></b>
 	<?php echo CHtml::encode($model->estagio_desenvolvimento);?>
 </p>
+<hr/>
+<p><img src="<?php echo $urledit;?>"/> <?php echo CHtml::link("Editar essa validação de prótese",array("proteseValidacao/update","id" => $model->id),array('class' => 'botao'));?></p>

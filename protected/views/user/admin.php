@@ -7,10 +7,6 @@ $this->breadcrumbs=array(
 	'Gerenciar',
 );
 
-$this->menu=array(
-	array('label'=>'Inserir Usuário	', 'url'=>array('create')),
-);
-
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();
