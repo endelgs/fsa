@@ -6,22 +6,6 @@
 <style type="text/css">
 .help{font-size:9px;font-style:italic;}
 
-#infoPaciente{
-	float:right;
-	display:none;
-	position:relative;
-	text-align:right;
-	border:solid thin grey;
-	background-color:#efefef;
-	padding: 5px 10px 5px 10px;
-	width:320px;
-}
-#infoPaciente .lastUpdate{
-	font-style: italic;
-	text-align: center;
-	margin-bottom: 10px;
-	margin-top: -15px;
-}
 
 </style>
 <div class="form">
@@ -52,6 +36,8 @@
 		</table>
 		<div class='aviso'></div>
 		<div class='link'></div>
+    <a style="position:absolute; bottom:20px; right: 20px;color:#C00;" href="javascript:$('#infoPaciente').fadeOut('slow');">Fechar</a>
+
 	</div>
 	<div class="coluna">
 		<div class="row">
@@ -71,7 +57,7 @@
 		            		'select'=>'js:function(event, ui) {
 			               		$("#Orl_paciente_r").val(ui.item.id);//linha mto importante é o que faz funcionar o autocomplete heheheh
 			                		
-			               		$("#infoPaciente").css("display","inline-block");
+			               		$("#infoPaciente").fadeIn("slow");
 			               		$("#infoPaciente th").css("text-align","right");
 			               		$("#infoPaciente .lastUpdate").html("última atualização em "+ui.item.last_update);
 			               		$("#infoPaciente .nome").html(ui.item.nome);
@@ -96,10 +82,10 @@
 			                	$("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('paciente/update').'&id=\'+ui.item.id+\'">Atualizar dados cadastrais</a>\');
 			               	}'
 			            ),
-			        	'htmlOptions'=>array('size'=>70),
+			        	'htmlOptions'=>array('size'=>80),
 			    	));
 	    		}else{
-			    	echo $form->textField($model->pacienteR,'nome',array('size'=>30,'disabled'=>'disabled'));
+			    	echo $form->textField($model->pacienteR,'nome',array('size'=>80,'disabled'=>'disabled'));
 				}
 	       	?>
 			<?php echo $form->error($model,'paciente_r'); ?>

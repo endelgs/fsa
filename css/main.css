@@ -1,5 +1,4 @@
-body
-{
+body{
 	margin: 0;
 	padding: 0;
 	color: #555;
@@ -7,8 +6,7 @@ body
 	background: #EFEFEF;
 }
 
-#page
-{
+#page{
 	margin-top: 5px;
 	margin-bottom: 5px;
 	background: white;
@@ -244,14 +242,15 @@ div.search-form
   font-family:arial;
   line-height: 20px;
 }
-.ui-tabs-panel h3{
+.ui-tabs-panel h3, h3{
   font-size:16px;
   color:#000;
   line-height:25px;
 }
-.ui-tabs-panel h2{
+.ui-tabs-panel h2, h2{
   font-size:18px;
   font-weight:bold;
+  color:#666;
 }
 .ui-tabs-panel table th{
   background:#C9E0ED;
@@ -279,4 +278,42 @@ a.botao:hover{
 }
 p.help{
   color:#666;
+}
+h1{
+  font-weight:bold;
+}
+.form .row span label{
+  font-weight:normal;
+}
+.larguraMenor{
+  width:510px;
+  clear:none;
+}
+textarea{
+  font-family:inherit;
+  width:510px;
+  border:solid 1px #ccc;
+}
+input[type=text]{
+  border:solid 1px #ccc;
+}
+#infoPaciente{
+	float:right;
+	display:none;
+	position:fixed;
+  right:-1px;
+  top:-1px;
+	text-align:right;
+	border:solid thin grey;
+	background-color:#efefef;
+	padding: 5px 10px 5px 10px;
+  height:100%;
+	width:320px;
+  z-index:1000;
+}
+#infoPaciente .lastUpdate{
+	font-style: italic;
+	text-align: center;
+	margin-bottom: 10px;
+	margin-top: -15px;
 }

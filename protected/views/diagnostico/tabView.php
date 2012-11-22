@@ -2,9 +2,10 @@
 /* @var $this DiagnosticoController */
 /* @var $model Diagnostico */
     $baseurl = Yii::app()->request->baseUrl;
+    $urledit = $baseurl.'/images/edit-icon.png';
     $urlsim = Yii::app()->request->baseUrl.'/images/Ok-icon.png';
     $urlnao = Yii::app()->request->baseUrl.'/images/Close-2-icon.png';
-    $urledit = $baseurl.'/images/edit-icon.png';
+   
     
     $model->consanguinidade=($model->consanguinidade == 'true')?$urlsim:$urlnao;
     $model->perda_auditiva_familia=($model->perda_auditiva_familia == 'true')?$urlsim:$urlnao;

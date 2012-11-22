@@ -5,22 +5,7 @@
 ?>
 <style type="text/css">
 .help{font-size:9px;font-style:italic;}  
-#infoPaciente{
-			float:right;
-			display:none;
-			position:relative;
-			text-align:right;
-			border:solid thin grey;
-			background-color:#efefef;
-			padding: 5px 10px 5px 10px;
-     		width: 320px;
-		}
-		#infoPaciente .lastUpdate{
-			font-style: italic;
-			text-align: center;
-			margin-bottom: 10px;
-			margin-top: -15px;
-		}
+
 		.larguraDefault{width:500px;}
 		.alinhamento{float:left;margin-right: 12px;}
 		.coluna{width:550px; display:inline-block;}
@@ -74,6 +59,8 @@
 		</table>
 		<div class='aviso'></div>
 		<div class='link'></div>
+    <a style="position:absolute; bottom:20px; right: 20px;color:#C00;" href="javascript:$('#infoPaciente').fadeOut('slow');">Fechar</a>
+
 	</div>
 <div class="coluna">
     <div class="row" style="margin-right:12px;">
@@ -86,7 +73,7 @@
          		'name'=>'paciente_r',
           		'value'=>$model->isNewRecord ? '': $model->pacienteR->nome,
                 'sourceUrl'=> $this->createUrl('paciente/getPacientesAC'),
-                'htmlOptions'=>array('size'=>65),
+                'htmlOptions'=>array('size'=>80),
           		'options'=>array(
             		'minLength'=>'1',
             		'showAnim'=>'fold',
@@ -94,7 +81,7 @@
                		'select'=>'js:function(event, ui) {
           				$("#Triagem_paciente_r").val(ui.item.id);//linha mto importante é o que faz funcionar o autocomplete heheheh
           				
-			            $("#infoPaciente").css("display","inline-block");
+			            $("#infoPaciente").fadeIn("slow");
 			            $("#infoPaciente th").css("text-align","right");
 			          	$("#infoPaciente .lastUpdate").html("última atualização em "+ui.item.last_update);
 			            $("#infoPaciente .nome").html(ui.item.nome);
@@ -122,12 +109,13 @@
               	
            	));
             }else{
-              echo $form->textField($model->pacienteR,'nome',array('size'=>60,'disabled'=>'disabled'));
+              echo $form->textField($model->pacienteR,'nome',array('size'=>80,'disabled'=>'disabled'));
             }
         ?>
 		<?php echo $form->error($model,'paciente_r'); ?>
 	</div><br/>
 	<hr class="larguraDefault"/>
+  <h2>Informações básicas</h2>
 	<div class="row">
     <div style="float:left; margin-right:12px;">
 			<?php echo $form->labelEx($model,'peso'); ?>
@@ -213,6 +201,7 @@
 		</div>
 	</div>
 	<br/><hr/>
+  <h2>Exames</h2>
 	<div class="row">
 		<div style="float:left; margin-right:12px;">
 			<?php echo $form->labelEx($model,'tipo_exame'); ?>
@@ -248,7 +237,7 @@
 		</div>
 	</div>
 	<br/><hr/>
-	<H3>Indicadores de Risco</H3>
+	<H2>Indicadores de Risco</H2>
 	<div class="row">
 		<?php echo $form->labelEx($model,'historia_perda_auditiva'); ?>
 		<?php echo $form->radioButtonList($model,'historia_perda_auditiva',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
@@ -324,7 +313,8 @@
 		<?php echo $form->radioButtonList($model,'asfixia_neonatal',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
 		<?php echo $form->error($model,'asfixia_neonatal'); ?>
 	</div>
-	<b>Infecções congênitas</b>
+  <hr/>
+	<h2>Infecções congênitas</h2>
 	<div class="row">
 		<div class="alinhamento">
 			<div style="float:left;"><?php echo $form->checkBox($model,'infeccoes_congenitas_toxoplasmose',array('value'=>'true', 'uncheckValue'=>'false')); ?></div>
@@ -351,7 +341,7 @@
 			<div style="float:left; line-height:20px;"><?php echo $form->labelEx($model,'infeccoes_congenitas_hiv'); ?></div>
 		</div>
 	</div><br/>
-	<div class="row">
+	<div class="row" style="clear:both">
 		<?php echo $form->labelEx($model,'infeccoes_congenitas_outra'); ?>
 		<?php echo $form->textField($model,'infeccoes_congenitas_outra' ,array('size'=>70)); ?>
 	</div>
@@ -365,7 +355,8 @@
 		<?php echo $form->radioButtonList($model,'disturbios_neurodegenerativos',array('true'=>'Sim','false'=>'Não'), array('separator'=>'','labelOptions'=>array('style'=>'display:inline; line-height:30px; margin-right:10px;'))); ?>
 		<?php echo $form->error($model,'disturbios_neurodegenerativos'); ?>
 	</div>
-	<b>Infecções bacterianas ou virais pós-natais</b>
+  <hr/>
+	<h2>Infecções bacterianas ou virais pós-natais</h2>
 	<div class="row">
 		<div class="alinhamento">
 			<div style="float:left;"><?php echo $form->checkBox($model,'infeccoes_bacterianas_virais_citomegalovirus',array('value'=>'true', 'uncheckValue'=>'false')); ?></div>

@@ -6,22 +6,7 @@
 <style type="text/css">
 .help{font-size:9px;font-style:italic;} 
 
-#infoPaciente{
-	float:right;
-	display:none;
-	position:relative;
-	text-align:right;
-	border:solid thin grey;
-	background-color:#efefef;
-	padding: 5px 10px 5px 10px;
-	width:320px;
-}
-#infoPaciente .lastUpdate{
-	font-style: italic;
-	text-align: center;
-	margin-bottom: 10px;
-	margin-top: -15px;
-}
+
 
 .alinhamento{float:left;margin-right: 12px;}
 
@@ -80,6 +65,7 @@
 			</table>
 			<div class='aviso'></div>
 			<div class='link'></div>
+      <a style="position:absolute; bottom:20px; right: 20px;color:#C00;" href="javascript:$('#infoPaciente').fadeOut('slow');">Fechar</a>
 		</div>
 		<div style="float:left; margin-right:12px;">
 			<?php echo $form->labelEx($model,'paciente_r'); ?>
@@ -98,7 +84,7 @@
 		                	'select'=>'js:function(event, ui) {
 		                		$("#ServicoSocial_paciente_r").val(ui.item.id);//linha mto importante é o que faz funcionar o autocomplete heheheh
 		                		
-		                		$("#infoPaciente").css("display","block");
+		                		$("#infoPaciente").fadeIn("slow");
 		                		$("#infoPaciente th").css("text-align","right");
 		                		$("#infoPaciente .lastUpdate").html("última atualização em "+ui.item.last_update);
 		                		$("#infoPaciente .nome").html(ui.item.nome);
@@ -121,7 +107,7 @@
 			                      $("#infoPaciente .link").empty();
 			    				}
 		                		
-		                		$("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('paciente/update').'&id=\'+ui.item.pacienteID+\'">Atualizar dados cadastrais</a>\');
+		                		$("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('paciente/update').'&id=\'+ui.item.id+\'">Atualizar dados cadastrais</a>\');
 		               		}'
 		                ),
 		                'htmlOptions'=>array('size'=>78),
@@ -133,7 +119,7 @@
 			<?php echo $form->error($model,'paciente_r'); ?>
 		</div>
 	<div><br/><br/><br/><br/>
-	
+	<hr class="larguraMenor"/>
 	<h2>Situação Familiar</h2>
 	<div class="row">
 		<div class="alinhamento">
@@ -158,21 +144,6 @@
 			<?php echo '<br/><span class="help">Ex: 01/01/2001</span>'; ?>
 		</div>
 	</div>
-	
-	<div class="row">
-		<div class="alinhamento">
-			<?php echo $form->labelEx($model,'escolaridade_mae'); ?>
-			<?php echo $form->textField($model,'escolaridade_mae',array('size'=>40,'maxlength'=>250)). '<br/><span class="help">Ex: Ensino Médio Completo</span>'; ?>
-			<?php echo $form->error($model,'escolaridade_mae'); ?>
-		</div>
-
-		<div>
-			<?php echo $form->labelEx($model,'profissao_mae'); ?>
-			<?php echo $form->textField($model,'profissao_mae',array('size'=>30,'maxlength'=>250)). '<br/><span class="help">Ex: Professor</span>'; ?>
-			<?php echo $form->error($model,'profissao_mae'); ?>
-		</div>
-	</div>
-
 	<div class="row">
 		<div class="alinhamento">
 			<?php echo $form->labelEx($model,'local_trabalho_mae'); ?>
@@ -186,8 +157,23 @@
 			<?php echo $form->error($model,'telefone_trabalho_mae'); ?>
 		</div>
 	</div>
+	<div class="row">
+		<div class="alinhamento">
+			<?php echo $form->labelEx($model,'escolaridade_mae'); ?>
+			<?php echo $form->textField($model,'escolaridade_mae',array('size'=>50,'maxlength'=>250)). '<br/><span class="help">Ex: Ensino Médio Completo</span>'; ?>
+			<?php echo $form->error($model,'escolaridade_mae'); ?>
+		</div>
+
+		<div>
+			<?php echo $form->labelEx($model,'profissao_mae'); ?>
+			<?php echo $form->textField($model,'profissao_mae',array('size'=>20,'maxlength'=>250)). '<br/><span class="help">Ex: Professor</span>'; ?>
+			<?php echo $form->error($model,'profissao_mae'); ?>
+		</div>
+	</div>
+
+	
 	<br/>
-	<div style="width:500px"><hr/></div>
+	<div style="width:500px"><hr class="larguraMenor"/></div>
 	<div class="row">
 		<div class="alinhamento">
 			<?php echo $form->labelEx($model,'nome_pai'); ?>
@@ -213,18 +199,7 @@
 	</div>
 
 	<div class="row">
-		<div class="alinhamento">
-			<?php echo $form->labelEx($model,'escolaridade_pai'); ?>
-			<?php echo $form->textField($model,'escolaridade_pai',array('size'=>40,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
-			<?php echo $form->error($model,'escolaridade_pai'); ?>
-		</div>
-
-		<div>
-			<?php echo $form->labelEx($model,'profissao_pai'); ?>
-			<?php echo $form->textField($model,'profissao_pai',array('size'=>30,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
-			<?php echo $form->error($model,'profissao_pai'); ?>
-		</div>
-	</div>
+		
 
 	<div class="row">
 		<div class="alinhamento">
@@ -237,9 +212,21 @@
 			<?php echo $form->textField($model,'telefone_trabalho_pai',array('size'=>20,'maxlength'=>15)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
 			<?php echo $form->error($model,'telefone_trabalho_pai'); ?>
 		</div>
+    <div class="alinhamento">
+			<?php echo $form->labelEx($model,'escolaridade_pai'); ?>
+			<?php echo $form->textField($model,'escolaridade_pai',array('size'=>50,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+			<?php echo $form->error($model,'escolaridade_pai'); ?>
+		</div>
+
+		<div>
+			<?php echo $form->labelEx($model,'profissao_pai'); ?>
+			<?php echo $form->textField($model,'profissao_pai',array('size'=>20,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+			<?php echo $form->error($model,'profissao_pai'); ?>
+		</div>
+	</div>
 	</div>
 	<br/>
-	<div style="width:500px"><hr/></div>
+	<hr class="larguraMenor"/>
 	<div class="row">
 		<?php echo $form->labelEx($model,'responsavel_crianca'); ?>
 		<?php echo $form->textField($model,'responsavel_crianca',array('size'=>78,'maxlength'=>250)). '<br/><span class="help">Ex: Antônia das Dores</span>'; ?>
@@ -254,7 +241,7 @@
 		<?php echo $form->error($model,'familia'); ?>
 	</div>
 	<br/>
-	<div style="width:500px"><hr/></div>
+	<div style="width:500px"><hr class="larguraMenor"/></div>
 	<div class="row">
 		<div class="alinhamento">
 			<?php echo $form->labelEx($model,'uniao'); ?>
@@ -269,7 +256,7 @@
 		</div>
 	</div>
 	<br/>
-	<div style="width:500px"><hr/></div>
+	<div style="width:500px"><hr class="larguraMenor"/></div>
 	<div class="row">
 		<h2>Irmãos</h2>
 		<?php
@@ -291,7 +278,7 @@
 		?>
 	</div>
 	<br/>
-	<div style="width:500px"><hr/></div>
+	<div style="width:500px"><hr class="laguraMenor"/></div>
 	<h2>Residentes com a família</h2>
 	<div class="row">
 		<div class="alinhamento"><?php echo $form->labelEx($model,'residentes_familia'); ?></div>
@@ -318,7 +305,7 @@
 		?>
 	</div>
 	<br/>
-	<div style="width:500px"><hr/></div>
+	<div style="width:500px"><hr class="larguraMenor"/></div>
 	<h2>Situação Econômica</h2>
 	<div class="row">
 		<div  class="alinhamento">
@@ -358,7 +345,7 @@
 		<?php echo $form->error($model,'outros_situacao_economica'); ?>
 	</div>
 	<br/>
-	<div style="width:500px"><hr/></div>
+	<div style="width:500px"><hr class="larguraMenor"/></div>
 	<h2>Habitação</h2>
 	<div class="row">
 		<?php echo $form->labelEx($model,'casa_tipo'); ?>
@@ -382,7 +369,7 @@
 		</div>
 	</div>
 	<br/>
-	<div style="width:500px"><hr/></div>
+	<div style="width:500px"><hr class="larguraMenor"/></div>
 	<h2>Outros</h2>
 	<div class="row">
 		<?php echo $form->labelEx($model,'transporte_utilizado'); ?>
@@ -402,7 +389,7 @@
 		<?php echo $form->error($model,'centro_saude'); ?>
 	</div>
 	<br/>
-	<div style="width:500px"><hr/></div>
+	<div style="width:500px"><hr class="larguraMenor"/></div>
 	<h2><?php echo $form->labelEx($model,'sintese_atendimento'); ?></h2>
 	<div class="row">
 		<?php echo $form->textArea($model,'sintese_atendimento',array('rows'=>6, 'cols'=>60)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>

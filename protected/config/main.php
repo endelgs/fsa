@@ -54,10 +54,10 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=saudeaud_fcm',
+			'connectionString' => 'mysql:host=localhost;dbname=fcm',
 			'emulatePrepare' => true,
-			'username' => 'saudeaud_fcm',
-			'password' => 'Z,NgT@eBFOUU',
+			'username' => 'root',
+			'password' => 'root',
 			'charset' => 'utf8',
 			'tablePrefix' => 'tbl_',
 		),

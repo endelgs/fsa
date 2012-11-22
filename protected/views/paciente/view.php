@@ -18,6 +18,9 @@ else if($model->alta=="obito")$model->alta="Óbito";
 	.alinhamento{display:inline-block;}
 	.direita{float: right;}
 	.esquerda{float:left;}
+  .item80{width:80%;}
+  .item70{width:70%;}
+  .item60{width:60%;}
 	.item50{width:50%;}
 	.item40{width:40%;}
 	.item30{width:30%;}
@@ -33,34 +36,25 @@ else if($model->alta=="obito")$model->alta="Óbito";
 	}*/
 </style>
 
-<div class='direita' style="margin-top:-30px;">
-	última atualização <?php echo $model->last_update ;?>
-</div>
+<h2>Perfil completo de paciente</h2>
+<div class='direita' style="margin-top:-30px;">última atualização <?php echo $model->last_update ;?></div>
 <hr/>
-<div class='alinhamento'><h2>Perfil completo de <?php echo $model->nome; ?></h2></div>
-<p class='linha'>
-		<div class="item50 alinhamento">
-			<b><span>Nome:</span></b> <?php echo CHtml::encode($model->nome); ?>
-		</div>
-		<div class="item20 alinhamento">
-			<b><span>HC:</span></b> <?php echo CHtml::encode($model->hc); ?>
-		</div>
-		<div class="alinhamento">
-			<b><span>Data Nascimento:</span></b> <?php echo CHtml::encode($model->data_nascimento); ?>
-		</div>
-</p>
+<h3><?php echo $model->nome; ?> | HC:</span></b> <?php echo CHtml::encode($model->hc); ?> | Nascimento: <?php echo CHtml::encode($model->data_nascimento); ?></h3>
 <p class='linha'>
 	<div class="item50 alinhamento">
 		<b><span>Mãe:</span></b> <?php echo CHtml::encode($model->nome_mae); ?>
 	</div>
+  <div class="item10 alinhamento"></div>
 	<div class="item20 alinhamento">
 		<b><span>HC:</span></b> <?php echo CHtml::encode($model->hc_mae); ?>
 	</div>
 </p>
+<hr/>
 <p class='linha'>
 	<div class="item50 alinhamento">
 		<b><span>Endereço:</span></b> <?php echo CHtml::encode($model->endereco); ?>
 	</div>
+  <div class="item10 alinhamento"></div>
 	<div class="item20 alinhamento">
 		<b><span>Cidade:</span></b> <?php echo CHtml::encode($model->cidade); ?>
 	</div>

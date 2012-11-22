@@ -97,6 +97,7 @@ class OrlController extends Controller
 		$model=$this->loadModel($id);
 		
 		$modelOrlRetorno=new OrlRetorno;
+		$validatedRetorno = array('hd','evolucao','orl_r');
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);

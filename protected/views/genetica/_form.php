@@ -6,23 +6,6 @@
 <style type="text/css">
 .help{font-size:9px;font-style:italic;}
 
-#infoPaciente{
-	float:right;
-	display:none;
-	position:relative;
-	text-align:right;
-	border:solid thin grey;
-	background-color:#efefef;
-	padding: 5px 10px 5px 10px;
-	width:320px;
-}
-#infoPaciente .lastUpdate{
-	font-style: italic;
-	text-align: center;
-	margin-bottom: 10px;
-	margin-top: -15px;
-}
-
 </style>
 <div class="form">
 
@@ -75,6 +58,8 @@
 			</table>
 			<div class='aviso'></div>
 			<div class='link'></div>
+      <a style="position:absolute; bottom:20px; right: 20px;color:#C00;" href="javascript:$('#infoPaciente').fadeOut('slow');">Fechar</a>
+
 		</div>
 		<div style="float:left; margin-right:12px;">
 			<?php echo $form->labelEx($model,'paciente_r'); ?>
@@ -89,11 +74,12 @@
 		                'sourceUrl'=> $this->createUrl('paciente/getPacientesAC'),
 		                // additional javascript options for the autocomplete plugin
 		                'options'=>array(
+                    
 		                	'minLength'=>'1',
 		                	'select'=>'js:function(event, ui) {
 		                		$("#Genetica_paciente_r").val(ui.item.id);//linha mto importante é o que faz funcionar o autocomplete heheheh
 		                		
-		                		$("#infoPaciente").css("display","block");
+		                		$("#infoPaciente").fadeIn("slow");
 		                		$("#infoPaciente th").css("text-align","right");
 		                		$("#infoPaciente .lastUpdate").html("última atualização em "+ui.item.last_update);
 		                		$("#infoPaciente .nome").html(ui.item.nome);
@@ -116,25 +102,27 @@
 			                      $("#infoPaciente .link").empty();
 			    				}
 		                		
-		                		$("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('paciente/update').'&id=\'+ui.item.pacienteID+\'">Atualizar dados cadastrais</a>\');
+		                		$("#infoPaciente .link").html(\'<a href="'.Yii::app()->createAbsoluteUrl('paciente/update').'&id=\'+ui.item.id+\'">Atualizar dados cadastrais</a>\');
 		               		}'
 		                ),
-		                'htmlOptions'=>array('size'=>45),
+		                'htmlOptions'=>array('size'=>80),
 		            ));
     			}else{
-		        	echo $form->textField($model->pacienteR,'nome',array('size'=>45,'disabled'=>'disabled'));
+		        	echo $form->textField($model->pacienteR,'nome',array('size'=>80,'disabled'=>'disabled'));
 		        }
        	 	?>
 			<?php echo $form->error($model,'paciente_r'); ?>
 		</div>
-	  <div>
-		<?php echo $form->labelEx($model,'genetica'); ?>
-		<?php echo $form->textField($model,'genetica',array('size'=>28,'maxlength'=>250)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
-		<?php echo $form->error($model,'genetica'); ?>
+	  
 	</div>
-	</div>
+	<hr class="larguraMenor"/>
+  <h2>Informações Básicas</h2>
 	
-	<br/>
+  <div class="row" style="clear:left">
+		<?php echo $form->labelEx($model,'genetica'); ?>
+		<?php echo $form->textArea($model,'genetica',array('rows'=>3,'cols'=>62)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
+		<?php echo $form->error($model,'genetica'); ?>
+	</div><br/>
 	<div class="row">
 		<?php echo $form->labelEx($model,'hipotese_diagnostica'); ?>
 		<?php echo $form->textArea($model,'hipotese_diagnostica',array('rows'=>3, 'cols'=>62)). '<br/><span class="help">Ex: algum texto de exemplo</span>'; ?>
@@ -153,6 +141,8 @@
 		<?php echo $form->error($model,'alteracoes_observadas'); ?>
 	</div>
 	<br/>
+  	<hr class="larguraMenor"/>
+
 	<div class="row">
 		<h2>Alterações Frequentes</h2><br/>
 		<div style="float:left; margin-right:12px;">
@@ -181,6 +171,8 @@
 		</div>
 	</div>
 	<br/>
+  	<hr class="larguraMenor"/>
+
 	<div class="row">
 		<h2>Deleções</h2><br/>
 		<div style="float:left; margin-right:12px;">
@@ -223,8 +215,9 @@
 			<div><span class="help">Ex: Del 5</span></div>
 			<div><?php echo $form->error($model,'del_5'); ?></div>
 		</div>
-	</div>
-	<br/><br/><br/>
+	</div><br/><br/><br/>
+  	<hr class="larguraMenor"/>
+
 	<div class="row">
 		<h2>Mutações Mitocondriais Frequentes</h2><br/>
 		<div style="float:left; margin-right:12px;">
@@ -277,6 +270,8 @@
 		</div>
 	</div>
 	<br/><br/><br/>
+    	<hr class="larguraMenor"/>
+
 	<div class="row">
 		<h2>Genes</h2><br/>
 		<div style="height:80px;">
@@ -364,7 +359,7 @@
 			</div>
 		</div>
 	</div><br/>
-	
+	<br/>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Inserir' : 'Salvar'); ?>

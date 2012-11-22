@@ -8,22 +8,6 @@
 .larguraDefault{
 	width: 600px;
 }
-#infoPaciente{
-	float:right;
-	display:none;
-	text-align:right;
-	border:solid thin grey;
-	background-color:#efefef;
-	padding: 5px 10px 5px 10px;
-	width:320px;
-	z-index:100;
-}
-#infoPaciente .lastUpdate{
-	font-style: italic;
-	text-align: center;
-	margin-bottom: 10px;
-	margin-top: -15px;
-}
 
 .alinhamento{float:left;margin-right: 12px;}
 .coluna{
@@ -82,6 +66,8 @@
 		</table>
 		<div class='aviso'></div>
 		<div class='link'></div>
+    <a style="position:absolute; bottom:20px; right: 20px;color:#C00;" href="javascript:$('#infoPaciente').fadeOut('slow');">Fechar</a>
+
 	</div>
 <div class="coluna">
 	<div class="row">
@@ -101,7 +87,7 @@
 		                	'select'=>'js:function(event, ui) {
 		                		$("#ProtesePrescricao_paciente_r").val(ui.item.id);//linha mto importante é o que faz funcionar o autocomplete heheheh
 	
-								$("#infoPaciente").css("display","inline-block");
+								$("#infoPaciente").fadeIn("slow");
 								$("#infoPaciente th").css("text-align","right");
 								$("#infoPaciente .lastUpdate").html("última atualização em "+ui.item.last_update);
 								$("#infoPaciente .nome").html(ui.item.nome);
