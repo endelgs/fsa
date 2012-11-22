@@ -97,26 +97,29 @@ class OrlController extends Controller
 		$model=$this->loadModel($id);
 		
 		$modelOrlRetorno=new OrlRetorno;
-		$validatedRetorno = array('hd','evolucao','orl_r');
+		$validatedRetorno = array();
+		//$deleteItems = "";
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
-
+		
 		if(isset($_POST['Orl']))
 		{
 			$model->attributes=$_POST['Orl'];
 			$model->last_update=new CDbExpression('NOW()');
 			
 			$masterValues = array('orl_r'=>$model->id);
-			
-			if(MultiModelForm::save($modelOrlRetorno,$validatedRetorno,$deleteItems,$masterValues) && $model->save()){
+
+			if(MultiModelForm::save($modelOrlRetorno,$validatedRetorno,$deleteMembers,$masterValues) && $model->save()){
 				$this->redirect(array('view','id'=>$model->id));
 			}
+			
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
-			'modelOrlRetorno' => $modelOrlRetorno,'validatedRetorno' => $validatedRetorno,
+			'modelOrlRetorno' => $modelOrlRetorno,
+			'validatedRetorno' => $validatedRetorno,
 		));
 	}
 

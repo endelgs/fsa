@@ -19,6 +19,7 @@ $this->menu=array(
 
 <?php echo $this->renderPartial('_form', array(
 		'model'=>$model,
-		'modelOrlRetorno'=>$modelOrlRetorno,'validatedRetorno'=>$validatedRetorno,
+		'modelOrlRetorno'=>$modelOrlRetorno,
+		'validatedRetorno'=>$validatedRetorno,
 		)
 	); ?>

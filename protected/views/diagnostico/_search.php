@@ -597,8 +597,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'laste_update'); ?>
-		<?php echo $form->textField($model,'laste_update'); ?>
+		<?php echo $form->label($model,'last_update'); ?>
+		<?php echo $form->textField($model,'last_update'); ?>
 	</div>
 
 	<div class="row">
